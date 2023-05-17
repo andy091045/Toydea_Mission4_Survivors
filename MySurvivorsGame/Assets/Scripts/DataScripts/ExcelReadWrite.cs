@@ -39,7 +39,7 @@ namespace DataProcess
             return datasPathList;
         }
         */
-        
+
 
         public List<T> ParseListDataJson<T>(DataRowCollection excelData)
         {
@@ -54,11 +54,20 @@ namespace DataProcess
                 {
                     PropertyInfo property = properties[j];
 
-                    for(int u = 0; u < excelData[0].Table.Columns.Count; u++)
+                    for (int u = 0; u < excelData[0].Table.Columns.Count; u++)
                     {
                         if (excelData[0][u].ToString() == property.Name)
                         {
                             var value = excelData[i][u];
+                            if (property.PropertyType == typeof(float))
+                            {
+                                value = (float)value;
+                            }
+                            else if (property.PropertyType == typeof(int))
+                            {
+                                value = (int)value;
+                            }
+
                             property.SetValue(data, value);
                         }
                     }
@@ -71,22 +80,30 @@ namespace DataProcess
 
         public T ParseDataJson<T>(DataRowCollection excelData)
         {
-            
+
             T data = Activator.CreateInstance<T>();
 
             PropertyInfo[] properties = typeof(T).GetProperties();
             for (int j = 0; j < properties.Length; j++)
             {
-                    PropertyInfo property = properties[j];
+                PropertyInfo property = properties[j];
 
-                    for (int u = 0; u < excelData[0].Table.Columns.Count; u++)
+                for (int u = 0; u < excelData[0].Table.Columns.Count; u++)
+                {
+                    if (excelData[0][u].ToString() == property.Name)
                     {
-                        if (excelData[0][u].ToString() == property.Name)
+                        var value = excelData[1][u];
+                        if (property.PropertyType == typeof(float))
                         {
-                            var value = excelData[1][u];                               
-                            property.SetValue(data, value);
+                            value = float.Parse(value.ToString());
                         }
-                    }                
+                        else if (property.PropertyType == typeof(int))
+                        {
+                            value = int.Parse(value.ToString());
+                        }
+                        property.SetValue(data, value);
+                    }
+                }
             }
 
             return data;
