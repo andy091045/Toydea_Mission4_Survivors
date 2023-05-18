@@ -9,7 +9,6 @@ using System.Runtime.Serialization;
 public class DataInit : MonoBehaviour
 {
     public DatasPathList datasPathList = new DatasPathList();
-    public abc A = new abc();
 
     void Start()
     {        
@@ -21,19 +20,19 @@ public class DataInit : MonoBehaviour
 
         datasPathList.datasPath = excelReadWrite.ParseListDataJson<DatasPath>(excelRowData);
 
+
         //------------------------------------------------------------------------------------
         excelPath = Path.Combine(Application.streamingAssetsPath, datasPathList.datasPath[2].Path);
+        excelSheetName = "RealTimeData";
+        excelRowData = excelReadWrite.ReadExcel(excelPath, excelSheetName);
+        datasPathList.realTimeData = excelReadWrite.ParseDataJson<RealTimeData>(excelRowData);
+        //------------------------------------------------------------------------------------
+        excelPath = Path.Combine(Application.streamingAssetsPath, datasPathList.datasPath[3].Path);
         excelSheetName = "RealTimePlayerData";
         excelRowData = excelReadWrite.ReadExcel(excelPath, excelSheetName);
         datasPathList.realTimePlayerData = excelReadWrite.ParseDataJson<RealTimePlayerData>(excelRowData);
     }
 
-}
-
-[Serializable]
-public class abc
-{
-    public List<int> a;
 }
 
 [Serializable]

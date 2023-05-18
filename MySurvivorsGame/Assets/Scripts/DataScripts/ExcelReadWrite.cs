@@ -33,27 +33,9 @@ namespace DataProcess
                 T data = Activator.CreateInstance<T>();
 
                 PropertyInfo[] properties = typeof(T).GetProperties();
-                for (int j = 0; j < properties.Length; j++)
-                {
-                    PropertyInfo property = properties[j];
 
-                    for (int u = 0; u < excelData[0].Table.Columns.Count; u++)
-                    {
-                        if (excelData[0][u].ToString() == property.Name)
-                        {
-                            var value = excelData[i][u];
-                            if (property.PropertyType == typeof(float))
-                            {
-                                value = float.Parse(value.ToString());
-                            }
-                            else if (property.PropertyType == typeof(int))
-                            {
-                                value = int.Parse(value.ToString());
-                            }
-                            property.SetValue(data, value);
-                        }
-                    }
-                }
+                data = ParseData<T>(excelData, i, data, properties);
+
                 resultList.Add(data);
             }
 
@@ -66,6 +48,14 @@ namespace DataProcess
             T data = Activator.CreateInstance<T>();
 
             PropertyInfo[] properties = typeof(T).GetProperties();
+
+            data = ParseData<T>(excelData, 2, data, properties);
+
+            return data;
+        }
+
+        private T ParseData<T>(DataRowCollection excelData, int initNumber, T data, PropertyInfo[] properties)
+        {
             for (int j = 0; j < properties.Length; j++)
             {
                 PropertyInfo property = properties[j];
@@ -74,7 +64,7 @@ namespace DataProcess
                 {
                     if (excelData[0][u].ToString() == property.Name)
                     {
-                        var value = excelData[2][u];
+                        var value = excelData[initNumber][u];
                         if (property.PropertyType == typeof(float))
                         {
                             value = float.Parse(value.ToString());
@@ -87,16 +77,9 @@ namespace DataProcess
                     }
                 }
             }
-
-            return data;
+            var result = data;
+            return result;
         }
-
-        //private T ParseData<T>(DataRowCollection excelData, int initNumber, T data) 
-        //{
-
-        //    var result = data;
-        //    return result;       
-        //}
     }
 
 }
