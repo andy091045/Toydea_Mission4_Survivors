@@ -25,7 +25,6 @@ public class DataInit : MonoBehaviour
         excelPath = Path.Combine(Application.streamingAssetsPath, datasPathList.datasPath[2].Path);
         excelSheetName = "RealTimePlayerData";
         excelRowData = excelReadWrite.ReadExcel(excelPath, excelSheetName);
-        //Debug.Log(excelRowData[1][0].ToString());
         datasPathList.realTimePlayerData = excelReadWrite.ParseDataJson<RealTimePlayerData>(excelRowData);
     }
 
