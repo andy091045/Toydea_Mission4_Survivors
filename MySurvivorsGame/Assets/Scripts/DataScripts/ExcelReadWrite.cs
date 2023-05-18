@@ -27,8 +27,9 @@ namespace DataProcess
             List<T> resultList = new List<T>();
 
             // i = 0: data_name
-            // i = 1: data_type
-            for (int i = 2; i < excelData.Count; i++)
+            // i = 1: data_des
+            // i = 2: data_type
+            for (int i = 3; i < excelData.Count; i++)
             {
                 T data = Activator.CreateInstance<T>();
 
@@ -49,7 +50,10 @@ namespace DataProcess
 
             PropertyInfo[] properties = typeof(T).GetProperties();
 
-            data = ParseData<T>(excelData, 2, data, properties);
+            // i = 0: data_name
+            // i = 1: data_des
+            // i = 2: data_type
+            data = ParseData<T>(excelData, 3, data, properties);
 
             return data;
         }
@@ -72,6 +76,10 @@ namespace DataProcess
                         else if (property.PropertyType == typeof(int))
                         {
                             value = int.Parse(value.ToString());
+                        }
+                        else
+                        {
+                            value = value.ToString();
                         }
                         property.SetValue(data, value);
                     }
