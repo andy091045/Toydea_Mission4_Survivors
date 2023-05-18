@@ -199,7 +199,7 @@ namespace HD.FrameworkDesign
         public Action<T> OnValueChanged;
     }
 
-    public class IOCContainer: MonoBehaviour
+    public class IOCContainer
     {
         private Dictionary<Type, object> mInstances = new Dictionary<Type, object> ();
 
