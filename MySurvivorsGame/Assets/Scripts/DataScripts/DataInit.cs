@@ -8,11 +8,11 @@ using System.Runtime.Serialization;
 
 namespace DataProcess
 {
-    public class DataInit:MonoBehaviour
+    public class DataInit
     {
         public DataGroup dataGroup = new DataGroup();
 
-        void Start()
+        public void SetDataGroup()
         {
             ExcelReadWrite excelReadWrite = new ExcelReadWrite();
 

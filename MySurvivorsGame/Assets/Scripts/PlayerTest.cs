@@ -6,11 +6,11 @@ using DataProcess;
 public class PlayerTest : MonoBehaviour
 {
     float speed;
-    DataInit data;
     void Start()
     {
-        data = FindObjectOfType<DataInit>();
-        speed = data.dataGroup.realTimePlayerData.Speed;
+        var dataInit = DataContainer.Get<DataInit>();
+        speed = dataInit.dataGroup.realTimePlayerData.Speed;
+
         KeyInputManager.Instance.onTowardRightMoveEvent.AddListener(MoveRight);
         KeyInputManager.Instance.onTowardLeftMoveEvent.AddListener(MoveLeft);
         KeyInputManager.Instance.onTowardUpMoveEvent.AddListener(MoveUp);
