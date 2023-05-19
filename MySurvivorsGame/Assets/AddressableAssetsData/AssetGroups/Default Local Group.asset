@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: f491a61f0020dad4898d0d95463d02ba
+  m_SerializeEntries:
+  - m_GUID: 6cc3509c5015eca43bee5adac908c483
+    m_Address: Assets/ArtResources/Devils/BoneMan/Prefab/BoneMan.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0ef6054bd8fedcc48837450d62d04fd3
+    m_Address: Assets/ArtResources/Devils/Reaper/Prefab/Reaper.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 931cdc787f575bf43a3ad17aea3455d3, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 24d76800733343d479d23e63817089da, type: 2}
+    - {fileID: 11400000, guid: af6184c21d35a4c4cb494a9a7d2466ff, type: 2}

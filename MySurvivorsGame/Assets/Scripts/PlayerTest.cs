@@ -5,7 +5,7 @@ using DataProcess;
 
 public class PlayerTest : MonoBehaviour
 {
-    float speed;
+    public float speed;
     void Start()
     {
         var dataInit = DataContainer.Get<DataReadStore>();
