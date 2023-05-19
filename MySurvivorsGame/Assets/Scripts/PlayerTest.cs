@@ -8,7 +8,7 @@ public class PlayerTest : MonoBehaviour
     float speed;
     void Start()
     {
-        var dataInit = DataContainer.Get<DataInit>();
+        var dataInit = DataContainer.Get<DataReadStore>();
         speed = dataInit.dataGroup.realTimePlayerData.Speed;
 
         KeyInputManager.Instance.onTowardRightMoveEvent.AddListener(MoveRight);

@@ -6,19 +6,19 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
+    DataReadStore dataReadStore;
     void Start()
     {
-        var dataInit = DataContainer.Get<DataInit>();
+        dataReadStore = DataContainer.Get<DataReadStore>();
         var excelTool = DataContainer.Get<ExcelReadWrite>();
 
         var excelPath = Path.Combine(Application.streamingAssetsPath, "RealTimeData.xlsx");
-        //dataInit.dataGroup.realTimeData.KillNumber = 10;
-        Debug.Log(dataInit.dataGroup.realTimeData.KillNumber);
-        //excelTool.WriteExcelData<RealTimeData>(excelPath, "RealTimeData", dataInit.dataGroup.realTimeData);
     }
 
+    // ChooseDevilScene----------------------------------------------------------------------------------------------------------------------
     public void ChooseDevil(string DevilName)
     {
-        Debug.Log("ëIù¢" + DevilName);
+        dataReadStore.dataGroup.realTimePlayerData.ChooseDevil = DevilName;        
+        Debug.Log("ëIù¢" + dataReadStore.dataGroup.realTimePlayerData.ChooseDevil);
     }
 }

@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 
 namespace DataProcess
 {
-    public class DataInit
+    public class DataReadStore
     {
         public DataGroup dataGroup = new DataGroup();
 
@@ -22,7 +22,6 @@ namespace DataProcess
 
             dataGroup.datasPath = excelReadWrite.ParseListDataJson<DatasPath>(excelRowData);
 
-
             //------------------------------------------------------------------------------------
             excelPath = Path.Combine(Application.streamingAssetsPath, dataGroup.datasPath[2].Path);
             excelSheetName = "RealTimeData";
@@ -33,6 +32,22 @@ namespace DataProcess
             excelSheetName = "RealTimePlayerData";
             excelRowData = excelReadWrite.ReadExcel(excelPath, excelSheetName);
             dataGroup.realTimePlayerData = excelReadWrite.ParseDataJson<RealTimePlayerData>(excelRowData);
+        }
+
+        public void StoreDataGroup()
+        {
+            ExcelReadWrite excelReadWrite = new ExcelReadWrite();
+
+            string excelPath = Path.Combine(Application.streamingAssetsPath, "DatasPath.xlsx");
+            string excelSheetName = "DatasPath";
+            var excelRowData = excelReadWrite.ReadExcel(excelPath, excelSheetName);
+
+            dataGroup.datasPath = excelReadWrite.ParseListDataJson<DatasPath>(excelRowData);
+
+            //------------------------------------------------------------------------------------
+            excelPath = Path.Combine(Application.streamingAssetsPath, dataGroup.datasPath[3].Path);
+            excelSheetName = "RealTimePlayerData";
+            excelReadWrite.WriteExcelData<RealTimePlayerData>(excelPath, excelSheetName, dataGroup.realTimePlayerData);
         }
 
     }
@@ -69,6 +84,8 @@ namespace DataProcess
         [field: SerializeField] public float Recovery { get; set; }
         [field: SerializeField] public float DropRate { get; set; }
         [field: SerializeField] public int SoulNumber { get; set; }
+        [field: SerializeField] public string ChooseDevil { get; set; }
+
     }
 }
 
