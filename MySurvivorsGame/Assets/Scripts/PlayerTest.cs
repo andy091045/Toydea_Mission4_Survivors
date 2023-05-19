@@ -8,7 +8,7 @@ public class PlayerTest : MonoBehaviour
     [SerializeField] private float speed_;
     void Start()
     {
-        var dataInit = DataContainer.Get<DataReadStore>();
+        var dataInit = GameContainer.Get<DataManager>();
         speed_ = dataInit.dataGroup.realTimePlayerData.Speed;
 
         KeyInputManager.Instance.onTowardRightMoveEvent.AddListener(MoveRight);

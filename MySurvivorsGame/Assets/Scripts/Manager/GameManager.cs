@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    DataReadStore dataReadStore_;
+    DataManager dataReadStore_;
     private void Awake()
     {
-        dataReadStore_ = DataContainer.Get<DataReadStore>();
+        dataReadStore_ = GameContainer.Get<DataManager>();
         dataReadStore_.SetDataGroup();
     }
 

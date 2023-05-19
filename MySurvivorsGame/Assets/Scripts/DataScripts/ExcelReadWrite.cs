@@ -17,7 +17,7 @@ namespace DataProcess
             {
                 IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(fileStream);
 
-                var result = excelReader.AsDataSet();
+                var result = excelReader.AsDataSet();                
 
                 return result.Tables[excelSheet].Rows;
             }

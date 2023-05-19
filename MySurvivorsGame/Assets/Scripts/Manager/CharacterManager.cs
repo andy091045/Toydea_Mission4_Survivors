@@ -6,11 +6,11 @@ using UnityEngine.AddressableAssets;
 
 public class CharacterManager : MonoBehaviour
 {
-    DataReadStore data_;
+    DataManager data_;
 
     void Start()
     {
-        data_ = DataContainer.Get<DataReadStore>();
+        data_ = GameContainer.Get<DataManager>();
         InstantiateDevil();
     }
 
