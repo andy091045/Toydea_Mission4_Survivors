@@ -40,6 +40,7 @@ public class PlayerTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        var PoolGroup = GameContainer.Get<ObjectPoolGroup>();
+        var bullet = PoolGroup.objectPools_[0].Pool.GetInstance();        
     }
 }
