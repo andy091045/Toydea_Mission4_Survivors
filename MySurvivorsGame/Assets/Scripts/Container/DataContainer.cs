@@ -8,6 +8,7 @@ public class DataContainer : Architecture<DataContainer>
 {
     protected override void Init()
     {
+        Register(new ExcelReadWrite());
         Register(new DataInit());
     }
 }

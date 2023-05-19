@@ -5,6 +5,7 @@ using System.Data;
 using System.Collections.Generic;
 using System;
 using System.Reflection;
+using OfficeOpenXml;
 
 namespace DataProcess
 {
@@ -87,6 +88,30 @@ namespace DataProcess
             }
             var result = data;
             return result;
+        }
+        
+        public void WriteExcelData<T>(string excelPath, string excelSheet, T data)
+        {
+            if (File.Exists(excelPath))
+            {
+                FileInfo existingFile = new FileInfo(excelPath);
+                using (ExcelPackage package = new ExcelPackage(existingFile))
+                {
+                    ExcelWorksheet excelWorksheet = package.Workbook.Worksheets[excelSheet];
+                    
+                    int propertyCount = typeof(T).GetProperties().Length;
+
+                    PropertyInfo[] properties = typeof(T).GetProperties();
+
+                    for (int i = 0; i < propertyCount; i++)
+                    {
+                        object value = properties[i].GetValue(data); 
+                        excelWorksheet.Cells[4, i+1].Value = value;
+                    }
+
+                    package.Save();
+                }
+            }            
         }
     }
 
