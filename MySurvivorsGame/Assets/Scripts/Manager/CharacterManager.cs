@@ -6,26 +6,28 @@ using UnityEngine.AddressableAssets;
 
 public class CharacterManager : MonoBehaviour
 {
-    DataReadStore data;
+    DataReadStore data_;
 
     void Start()
     {
-        data = DataContainer.Get<DataReadStore>();
+        data_ = DataContainer.Get<DataReadStore>();
         InstantiateDevil();
     }
 
     private async void InstantiateDevil()
     {
         string prefabPath = ""; 
-        if(data.dataGroup.realTimePlayerData.ChooseDevil == "Reaper")
+        if(data_.dataGroup.realTimePlayerData.ChooseDevil == "Reaper")
         {
             prefabPath = "Assets/ArtResources/Devils/Reaper/Prefab/Reaper.prefab";
-        }else if(data.dataGroup.realTimePlayerData.ChooseDevil == "BoneMan")
+        }else if(data_.dataGroup.realTimePlayerData.ChooseDevil == "BoneMan")
         {
             prefabPath = "Assets/ArtResources/Devils/BoneMan/Prefab/BoneMan.prefab";
         }
         GameObject prefabObj = await Addressables.LoadAssetAsync<GameObject>(prefabPath).Task;
         GameObject devilObject = Instantiate(prefabObj);
         devilObject.AddComponent<PlayerTest>();
+
+        EventManager.OccurInstantiateDevil.Invoke();
     }
 }

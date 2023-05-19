@@ -5,11 +5,11 @@ using DataProcess;
 
 public class PlayerTest : MonoBehaviour
 {
-    public float speed;
+    [SerializeField] private float speed_;
     void Start()
     {
         var dataInit = DataContainer.Get<DataReadStore>();
-        speed = dataInit.dataGroup.realTimePlayerData.Speed;
+        speed_ = dataInit.dataGroup.realTimePlayerData.Speed;
 
         KeyInputManager.Instance.onTowardRightMoveEvent.AddListener(MoveRight);
         KeyInputManager.Instance.onTowardLeftMoveEvent.AddListener(MoveLeft);
@@ -19,22 +19,22 @@ public class PlayerTest : MonoBehaviour
 
     private void MoveRight()
     {
-        transform.position += new Vector3( speed * Time.deltaTime, 0, 0);
+        transform.position += new Vector3( speed_ * Time.deltaTime, 0, 0);
     }
 
     private void MoveLeft()
     {
-        transform.position += new Vector3(-speed * Time.deltaTime, 0, 0);
+        transform.position += new Vector3(-speed_ * Time.deltaTime, 0, 0);
     }
 
     private void MoveUp()
     {
-        transform.position += new Vector3(0, speed * Time.deltaTime, 0);
+        transform.position += new Vector3(0, speed_ * Time.deltaTime, 0);
     }
 
     private void MoveDown()
     {
-        transform.position += new Vector3(0, -speed * Time.deltaTime, 0);
+        transform.position += new Vector3(0, -speed_ * Time.deltaTime, 0);
     }
 
     // Update is called once per frame
