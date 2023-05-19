@@ -62,6 +62,32 @@ public class ExcelReadWriteTest
         Assert.That(TestList.testDataList[0].Problem2, Is.EqualTo("孝心變質"));
         Assert.That(TestList.testDataList[0].ProblemC, Is.EqualTo(3));
     }
+
+    [TestCase()]
+    public void DataStoreExcel_Test()
+    {
+        TestData testData = new TestData();
+
+        var excelReadWrite = new ExcelReadWrite();
+        string filePath = Path.Combine(Application.streamingAssetsPath, "./TestsData/Test.xlsx"); ;
+        string sheetName = "Test2";
+        var excelRowData = excelReadWrite.ReadExcel(filePath, sheetName);
+        testData = excelReadWrite.ParseDataJson<TestData>(excelRowData);
+
+        testData.Problem1 = "789";
+        excelReadWrite.WriteExcelData(filePath, sheetName, testData);
+        excelRowData = excelReadWrite.ReadExcel(filePath, sheetName);
+        testData = excelReadWrite.ParseDataJson<TestData>(excelRowData);
+
+        Assert.That(testData.Problem1, Is.EqualTo("789"));
+
+        testData.Problem1 = "987";
+        excelReadWrite.WriteExcelData(filePath, sheetName, testData);
+        excelRowData = excelReadWrite.ReadExcel(filePath, sheetName);
+        testData = excelReadWrite.ParseDataJson<TestData>(excelRowData);
+
+        Assert.That(testData.Problem1, Is.EqualTo("987"));
+    }
 }
 
 public class TestDataList 
