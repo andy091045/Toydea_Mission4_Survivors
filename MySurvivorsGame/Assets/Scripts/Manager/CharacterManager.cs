@@ -17,7 +17,7 @@ public class CharacterManager : MonoBehaviour
     private async void InstantiateDevil()
     {
         string prefabPath = data_.dataGroup.realTimePlayerData.PrefabPath;
-        Debug.Log(prefabPath);
+        //Debug.Log(prefabPath);
         GameObject prefabObj = await Addressables.LoadAssetAsync<GameObject>(prefabPath).Task;
         GameObject devilObject = Instantiate(prefabObj);
         devilObject.AddComponent<PlayerTest>();

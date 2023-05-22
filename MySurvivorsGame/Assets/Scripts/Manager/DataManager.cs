@@ -20,6 +20,11 @@ public class DataManager
         dataGroup.datasPath = excelReadWrite.ParseListDataJson<DatasPath>(excelRowData);
 
         //------------------------------------------------------------------------------------
+        excelPath = Path.Combine(Application.streamingAssetsPath, dataGroup.datasPath[0].Path);
+        excelSheetName = dataGroup.datasPath[0].Name;
+        excelRowData = excelReadWrite.ReadExcel(excelPath, excelSheetName);
+        dataGroup.devilsData = excelReadWrite.ParseListDataJson<DevilsData>(excelRowData);
+        //------------------------------------------------------------------------------------
         excelPath = Path.Combine(Application.streamingAssetsPath, dataGroup.datasPath[2].Path);
         excelSheetName = "RealTimeData";
         excelRowData = excelReadWrite.ReadExcel(excelPath, excelSheetName);

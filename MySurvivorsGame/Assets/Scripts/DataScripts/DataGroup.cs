@@ -8,6 +8,7 @@ namespace DataDefinition
     public class DataGroup
     {
         public List<DatasPath> datasPath = new List<DatasPath>();
+        public List<DevilsData> devilsData = new List<DevilsData>();
         public RealTimeData realTimeData = new RealTimeData();
         public RealTimePlayerData realTimePlayerData = new RealTimePlayerData();
     }
@@ -38,4 +39,17 @@ namespace DataDefinition
 
     }
 
+    public class DevilsData
+    {
+        [field: SerializeField] public string DevilName { get; set; }
+        [field: SerializeField] public float Attack { get; set; }
+        [field: SerializeField] public float HP { get; set; }
+        [field: SerializeField] public float Speed { get; set; }
+        [field: SerializeField] public float ExpEffect { get; set; }
+        [field: SerializeField] public float AbsorbExpRange { get; set; }
+        [field: SerializeField] public float DemageCut { get; set; }
+        [field: SerializeField] public float Recovery { get; set; }
+        [field: SerializeField] public float DropRate { get; set; }
+        [field: SerializeField] public string PrefabPath { get; set; }
+    }
 }
