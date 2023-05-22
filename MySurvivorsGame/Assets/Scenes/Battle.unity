@@ -883,7 +883,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerDir: {x: 0, y: 0, z: 0}
+  PreviousPlayerDir: {x: 0, y: 0, z: 0}
   speed_: 5
+  movementVector: {x: 0, y: 0, z: 0}
 --- !u!4 &1015381841 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4763672624275995354, guid: 0ef6054bd8fedcc48837450d62d04fd3,
