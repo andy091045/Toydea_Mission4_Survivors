@@ -16,14 +16,8 @@ public class CharacterManager : MonoBehaviour
 
     private async void InstantiateDevil()
     {
-        string prefabPath = ""; 
-        if(data_.dataGroup.realTimePlayerData.ChooseDevil == "Reaper")
-        {
-            prefabPath = "Assets/Prefabs/Devils/Reaper.prefab";
-        }else if(data_.dataGroup.realTimePlayerData.ChooseDevil == "BoneMan")
-        {
-            prefabPath = "Assets/Prefabs/Devils/BoneMan.prefab";
-        }
+        string prefabPath = data_.dataGroup.realTimePlayerData.PrefabPath;
+        Debug.Log(prefabPath);
         GameObject prefabObj = await Addressables.LoadAssetAsync<GameObject>(prefabPath).Task;
         GameObject devilObject = Instantiate(prefabObj);
         devilObject.AddComponent<PlayerTest>();

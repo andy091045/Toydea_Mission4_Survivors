@@ -25,6 +25,10 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/Devils/Reaper.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 9dcc56e40edd5904fa713e1451726c93
+    m_Address: Assets/Prefabs/NPC/Warrior.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 931cdc787f575bf43a3ad17aea3455d3, type: 2}
   m_SchemaSet:

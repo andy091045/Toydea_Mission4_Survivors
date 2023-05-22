@@ -34,6 +34,7 @@ namespace DataDefinition
         [field: SerializeField] public float DropRate { get; set; }
         [field: SerializeField] public int SoulNumber { get; set; }
         [field: SerializeField] public string ChooseDevil { get; set; }
+        [field: SerializeField] public string PrefabPath { get; set; }
 
     }
 

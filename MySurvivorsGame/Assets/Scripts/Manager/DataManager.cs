@@ -50,7 +50,18 @@ public class DataManager
     // ChooseDevilScene----------------------------------------------------------------------------------------------------------------------
     public void ChooseDevil(string DevilName)
     {
-        dataGroup.realTimePlayerData.ChooseDevil = DevilName;        
+        Debug.Log(DevilName);
+        dataGroup.realTimePlayerData.ChooseDevil = DevilName;      
+        
+        if(DevilName == "Reaper")
+        {
+            dataGroup.realTimePlayerData.PrefabPath = "Assets/Prefabs/Devils/Reaper.prefab";
+        }
+        else if(DevilName == "BoneMan")
+        {
+            dataGroup.realTimePlayerData.PrefabPath = "Assets/Prefabs/Devils/BoneMan.prefab";
+        }
         Debug.Log("ëIù¢" + dataGroup.realTimePlayerData.ChooseDevil);
+        Debug.Log("òHúl" + dataGroup.realTimePlayerData.PrefabPath);
     }
 }
