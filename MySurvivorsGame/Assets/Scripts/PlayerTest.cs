@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using DataProcess;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerTest : MonoBehaviour
 {
     public Vector3 PlayerDir = Vector3.zero;
+    public Vector3 PreviousPlayerDir = Vector3.zero;
     [SerializeField] private float speed_;
-    Rigidbody2D rgbd2d_;
     [SerializeField] private Vector3 movementVector;
+    Rigidbody2D rgbd2d_;
+    
     private void Awake()
     {
         rgbd2d_ = GetComponent<Rigidbody2D>();
@@ -47,6 +48,11 @@ public class PlayerTest : MonoBehaviour
     void Move()
     {
         PlayerDir = new Vector2(movementVector.x, movementVector.y).normalized;
+
+        if(PlayerDir != Vector3.zero)
+        {
+            PreviousPlayerDir = PlayerDir;
+        }
 
         rgbd2d_.velocity = new Vector2(PlayerDir.x * speed_, PlayerDir.y * speed_);
     }
