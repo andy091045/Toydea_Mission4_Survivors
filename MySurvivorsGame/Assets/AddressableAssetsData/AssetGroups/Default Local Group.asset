@@ -18,11 +18,11 @@ MonoBehaviour:
   m_GUID: f491a61f0020dad4898d0d95463d02ba
   m_SerializeEntries:
   - m_GUID: 6cc3509c5015eca43bee5adac908c483
-    m_Address: Assets/ArtResources/Devils/BoneMan/Prefab/BoneMan.prefab
+    m_Address: Assets/Prefabs/Devils/BoneMan.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 0ef6054bd8fedcc48837450d62d04fd3
-    m_Address: Assets/ArtResources/Devils/Reaper/Prefab/Reaper.prefab
+    m_Address: Assets/Prefabs/Devils/Reaper.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

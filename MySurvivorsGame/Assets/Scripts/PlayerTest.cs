@@ -3,44 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using DataProcess;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerTest : MonoBehaviour
 {
+    public Vector3 PlayerDir = Vector3.zero;
     [SerializeField] private float speed_;
+    Rigidbody2D rgbd2d_;
+    Vector3 movementVector;
+    private void Awake()
+    {
+        rgbd2d_ = GetComponent<Rigidbody2D>();
+        movementVector = new Vector2();
+    }
+
     void Start()
     {
         var dataInit = GameContainer.Get<DataManager>();
         speed_ = dataInit.dataGroup.realTimePlayerData.Speed;
-
-        KeyInputManager.Instance.onTowardRightMoveEvent.AddListener(MoveRight);
-        KeyInputManager.Instance.onTowardLeftMoveEvent.AddListener(MoveLeft);
-        KeyInputManager.Instance.onTowardUpMoveEvent.AddListener(MoveUp);
-        KeyInputManager.Instance.onTowardDownMoveEvent.AddListener(MoveDown);
     }
-
-    private void MoveRight()
-    {
-        transform.position += new Vector3( speed_ * Time.deltaTime, 0, 0);
-    }
-
-    private void MoveLeft()
-    {
-        transform.position += new Vector3(-speed_ * Time.deltaTime, 0, 0);
-    }
-
-    private void MoveUp()
-    {
-        transform.position += new Vector3(0, speed_ * Time.deltaTime, 0);
-    }
-
-    private void MoveDown()
-    {
-        transform.position += new Vector3(0, -speed_ * Time.deltaTime, 0);
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        var PoolGroup = GameContainer.Get<ObjectPoolGroup>();
-        var bullet = PoolGroup.objectPools_[0].Pool.GetInstance();        
+        //var PoolGroup = GameContainer.Get<ObjectPoolGroup>();
+        //var bullet = PoolGroup.objectPools_[0].Pool.GetInstance();    
+        //bullet.transform.position = transform.position; 
+        Move();
+    }
+
+    void Move()
+    {
+        movementVector.x = Input.GetAxisRaw("Horizontal");
+        movementVector.y = Input.GetAxisRaw("Vertical");
+
+        PlayerDir = new Vector2(movementVector.x, movementVector.y).normalized;
+
+        rgbd2d_.velocity = new Vector2(PlayerDir.x * speed_, PlayerDir.y * speed_);
     }
 }
