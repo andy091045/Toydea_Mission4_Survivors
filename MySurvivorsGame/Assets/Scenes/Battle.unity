@@ -123,62 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &415445282
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 415445284}
-  - component: {fileID: 415445283}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &415445283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 415445282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d64d881dad2eb4a9ee4e48cc0a6eff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DevilName: 
-  devilData:
-    <DevilName>k__BackingField: 
-    <Attack>k__BackingField: 0
-    <HP>k__BackingField: 0
-    <Speed>k__BackingField: 0
-    <ExpEffect>k__BackingField: 0
-    <AbsorbExpRange>k__BackingField: 0
-    <DamageCut>k__BackingField: 0
-    <Recovery>k__BackingField: 0
-    <DropRate>k__BackingField: 0
-    <PrefabPath>k__BackingField: 
---- !u!4 &415445284
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 415445282}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.7303998, y: 0.6753212, z: 0.031264663}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &423104557
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,7 +810,7 @@ PrefabInstance:
     - target: {fileID: 4763672624275995353, guid: 0ef6054bd8fedcc48837450d62d04fd3,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4763672624275995354, guid: 0ef6054bd8fedcc48837450d62d04fd3,
         type: 3}
@@ -931,22 +875,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1015381836}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1015381838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1015381837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a9b2236adc4184d8a01aa12fe92f66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerDir: {x: 0, y: 0, z: 0}
-  PreviousPlayerDir: {x: 0, y: 0, z: 0}
-  speed_: 5
-  movementVector: {x: 0, y: 0, z: 0}
 --- !u!4 &1015381841 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4763672624275995354, guid: 0ef6054bd8fedcc48837450d62d04fd3,
@@ -974,6 +902,33 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1015381845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015381837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d64d881dad2eb4a9ee4e48cc0a6eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DevilName: 
+  devilData_:
+    <DevilName>k__BackingField: 
+    <Attack>k__BackingField: 0
+    <HP>k__BackingField: 0
+    <Speed>k__BackingField: 0
+    <ExpEffect>k__BackingField: 0
+    <AbsorbExpRange>k__BackingField: 0
+    <DamageCut>k__BackingField: 0
+    <Recovery>k__BackingField: 0
+    <DropRate>k__BackingField: 0
+    <PrefabPath>k__BackingField: 
+  playerDir_: {x: 0, y: 0, z: 0}
+  previousPlayerDir_: {x: 0, y: 0, z: 0}
+  movementVector_: {x: 0, y: 0, z: 0}
 --- !u!1 &1234923804
 GameObject:
   m_ObjectHideFlags: 0

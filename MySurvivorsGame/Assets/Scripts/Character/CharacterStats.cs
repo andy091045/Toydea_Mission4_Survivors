@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
-    public DataManager dataManager_;
+    public DataManager dataManager;
+    public UnityData unityData;
+
+    protected virtual void Awake()
+    {
+
+    }
 
     protected virtual void Start()
     {
-        dataManager_ = GameContainer.Get<DataManager>();
+        dataManager = GameContainer.Get<DataManager>();
+        unityData = GameContainer.Get<UnityData>();
         SetInitValue();
     }
 
