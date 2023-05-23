@@ -10,12 +10,9 @@ public class VillagerStats : CharacterStats
     public float Attack;
     public float HP;
 
-    UnityData unityData_;
-
     protected override void Start()
     {
         base.Start();
-        unityData_ = GameContainer.Get<UnityData>();
     }
 
     protected override void SetInitValue()
@@ -27,7 +24,7 @@ public class VillagerStats : CharacterStats
 
     protected override void Move()
     {
-        var direction = unityData_.PlayerPos - transform.position;
+        var direction = unityData.PlayerPos - transform.position;
         transform.Translate(direction.normalized * Time.deltaTime * Speed, Space.World);
     }
 
