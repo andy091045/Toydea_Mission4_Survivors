@@ -12,11 +12,11 @@ public class MagicBallController : WeaponController
     protected override void Attack()
     {
         base.Attack();
-        if (pt.PreviousPlayerDir != Vector3.zero)
+        if (unityData_.PreviousPlayerDir != Vector3.zero)
         {
             GameObject spawnedMagicBall = Instantiate(Prefab);
             spawnedMagicBall.transform.position = transform.position;
-            spawnedMagicBall.GetComponent<MagicBallBehaviour>().DirectionChecker(pt.PlayerDir, pt.PreviousPlayerDir);
+            spawnedMagicBall.GetComponent<MagicBallBehaviour>().DirectionChecker();
         }        
     }
 }

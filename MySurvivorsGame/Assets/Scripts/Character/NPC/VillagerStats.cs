@@ -9,11 +9,13 @@ public class VillagerStats : CharacterStats
     public float Speed;
     public float Attack;
     public float HP;
-    Transform target_;
+
+    UnityData unityData_;
+
     protected override void Start()
     {
         base.Start();
-        target_ = FindObjectOfType<PlayerTest>().transform;
+        unityData_ = GameContainer.Get<UnityData>();
     }
 
     protected override void SetInitValue()
@@ -25,7 +27,7 @@ public class VillagerStats : CharacterStats
 
     protected override void Move()
     {
-        var direction = target_.position - transform.position;
+        var direction = unityData_.PlayerPos - transform.position;
         transform.Translate(direction.normalized * Time.deltaTime * Speed, Space.World);
     }
 

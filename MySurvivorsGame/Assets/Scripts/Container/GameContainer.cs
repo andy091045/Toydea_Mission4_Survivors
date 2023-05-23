@@ -7,6 +7,7 @@ public class GameContainer : Architecture<GameContainer>
     {
         Register(new ExcelReadWrite());
         Register(new DataManager());
+        Register(new UnityData());
         Register(new ObjectPoolGroup());
     }
 }

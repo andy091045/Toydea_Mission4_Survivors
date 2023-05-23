@@ -21,7 +21,7 @@ public class DevilStats : CharacterStats
             if (DevilsData[i].DevilName == DevilName)
             {
                 devilData = DevilsData[i];
-                Debug.Log("設定" + devilData.DevilName + "數值");
+                //Debug.Log("設定" + devilData.DevilName + "數值");
                 break;
             }
         }

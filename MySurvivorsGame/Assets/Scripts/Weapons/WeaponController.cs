@@ -15,11 +15,15 @@ public class WeaponController : MonoBehaviour
     public int Pierce;
     float currentCooldown_;
 
-    protected PlayerTest pt;
+    public UnityData unityData_;
     
+    protected virtual void Awake()
+    {
+        unityData_ = GameContainer.Get<UnityData>();
+    }
+
     protected virtual void Start()
     {
-        pt = FindObjectOfType<PlayerTest>();
         currentCooldown_ = CooldownDuration;
     }
 

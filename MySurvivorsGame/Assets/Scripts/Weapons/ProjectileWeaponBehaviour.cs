@@ -8,20 +8,27 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
     protected Vector3 previousDirection;
     public float DestroyAfterSeconds;
 
-    protected virtual void Start()
+    UnityData unityData_;
+
+    protected virtual void Awake()
     {
+        unityData_ = GameContainer.Get<UnityData>();
+    }
+
+    protected virtual void Start()
+    {        
         Destroy(gameObject, DestroyAfterSeconds);
     }
 
-    public void DirectionChecker(Vector3 dir, Vector3 previousDir)
+    public void DirectionChecker()
     {
-        if(dir != Vector3.zero)
+        if(unityData_.PlayerDir != Vector3.zero)
         {
-            direction = dir;
+            direction = unityData_.PlayerDir;
         }
         else
         {
-            direction = previousDir;
+            direction = unityData_.PreviousPlayerDir;
         }
 
         SetPrefabRotate();

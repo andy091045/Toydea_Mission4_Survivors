@@ -10,6 +10,8 @@ public class PlayerTest : MonoBehaviour
     [SerializeField] private float speed_;
     [SerializeField] private Vector3 movementVector;
     Rigidbody2D rgbd2d_;
+
+    UnityData unityData_;
     
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class PlayerTest : MonoBehaviour
 
     void Start()
     {
+        unityData_ = GameContainer.Get<UnityData>();
         var dataInit = GameContainer.Get<DataManager>();
         speed_ = dataInit.dataGroup.realTimePlayerData.Speed;
 
@@ -53,7 +56,10 @@ public class PlayerTest : MonoBehaviour
         {
             PreviousPlayerDir = PlayerDir;
         }
+        unityData_.PlayerDir = PlayerDir;
+        unityData_.PreviousPlayerDir = PreviousPlayerDir;
+        unityData_.PlayerPos = transform.position;
 
-        rgbd2d_.velocity = new Vector2(PlayerDir.x * speed_, PlayerDir.y * speed_);
+        rgbd2d_.velocity = new Vector2(PlayerDir.x * speed_, PlayerDir.y * speed_);        
     }
 }

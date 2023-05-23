@@ -863,6 +863,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Reaper
       objectReference: {fileID: 0}
+    - target: {fileID: 4763672624275995353, guid: 0ef6054bd8fedcc48837450d62d04fd3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4763672624275995354, guid: 0ef6054bd8fedcc48837450d62d04fd3,
         type: 3}
       propertyPath: m_RootOrder
