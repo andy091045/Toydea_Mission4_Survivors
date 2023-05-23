@@ -123,6 +123,62 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &415445282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 415445284}
+  - component: {fileID: 415445283}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &415445283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415445282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d64d881dad2eb4a9ee4e48cc0a6eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DevilName: 
+  devilData:
+    <DevilName>k__BackingField: 
+    <Attack>k__BackingField: 0
+    <HP>k__BackingField: 0
+    <Speed>k__BackingField: 0
+    <ExpEffect>k__BackingField: 0
+    <AbsorbExpRange>k__BackingField: 0
+    <DamageCut>k__BackingField: 0
+    <Recovery>k__BackingField: 0
+    <DropRate>k__BackingField: 0
+    <PrefabPath>k__BackingField: 
+--- !u!4 &415445284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415445282}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.7303998, y: 0.6753212, z: 0.031264663}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &423104557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,7 +1078,7 @@ PrefabInstance:
     - target: {fileID: 197821279907121870, guid: 9dcc56e40edd5904fa713e1451726c93,
         type: 3}
       propertyPath: m_Name
-      value: Warrior
+      value: Villager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dcc56e40edd5904fa713e1451726c93, type: 3}
@@ -1032,7 +1088,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1646808280}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1646808282
+--- !u!114 &1646808286
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1041,7 +1097,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1646808281}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a1c8044b1bf324fb15b98d76ae2782, type: 3}
+  m_Script: {fileID: 11500000, guid: 60f7262113a57a54794709dfe631932c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 0
