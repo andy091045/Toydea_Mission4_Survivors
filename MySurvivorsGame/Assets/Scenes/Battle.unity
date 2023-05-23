@@ -685,6 +685,19 @@ MonoBehaviour:
   Speed: 10
   CooldownDuration: 1
   Pierce: 0
+  WeaponName: MagicBall
+  weaponData:
+    <WeaponName>k__BackingField: 
+    <WeaponPrefabPath>k__BackingField: 
+    <Level1Hurt>k__BackingField: 0
+    <Level1Number>k__BackingField: 0
+    <Level2Hurt>k__BackingField: 0
+    <Level2Number>k__BackingField: 0
+    <Level3Hurt>k__BackingField: 0
+    <Level3Number>k__BackingField: 0
+    <Level4Hurt>k__BackingField: 0
+    <Level4Number>k__BackingField: 0
+    <NowWeaponLevel>k__BackingField: 0
 --- !u!1 &793782768
 GameObject:
   m_ObjectHideFlags: 0

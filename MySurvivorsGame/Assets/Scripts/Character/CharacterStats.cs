@@ -26,6 +26,11 @@ public class CharacterStats : MonoBehaviour
 
     protected virtual void SetInitValue()
     {
+        SetInitSkill();
+    }
+
+    protected virtual void SetInitSkill()
+    {
         
     }
 

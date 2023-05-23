@@ -11,7 +11,7 @@ public class VillagerStats : CharacterStats
     public float Attack;
     public float HP;
     public float CooldownDuration;
-    bool canAttackDevil_ = true;
+    bool canAttackDevil_ = false;
     float currentCooldown_;
 
     protected override void Start()

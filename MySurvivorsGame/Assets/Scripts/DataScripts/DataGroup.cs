@@ -9,9 +9,15 @@ namespace DataDefinition
     public class DataGroup
     {
         public List<DatasPath> datasPath = new List<DatasPath>();
+
         public List<DevilData> devilsData = new List<DevilData>();
-        public RealTimeData realTimeData = new RealTimeData();
         public DevilData realTimePlayerData = new DevilData();
+
+        public List<WeaponData> weaponsData = new List<WeaponData>();
+        //public List<WeaponData> RealTimeWeaponsData = new List<WeaponData>();
+
+        public RealTimeData realTimeData = new RealTimeData();
+        
     }
 
     [Serializable]
@@ -41,5 +47,22 @@ namespace DataDefinition
         [field: SerializeField] public float Recovery { get; set; }
         [field: SerializeField] public float DropRate { get; set; }
         [field: SerializeField] public string PrefabPath { get; set; }
+        [field: SerializeField] public string InitWeapon { get; set; }
+    }
+
+    [Serializable]
+    public class WeaponData
+    {
+        [field: SerializeField] public string WeaponName { get; set; }
+        [field: SerializeField] public string WeaponPrefabPath { get; set; }
+        [field: SerializeField] public float Level1Hurt { get; set; }
+        [field: SerializeField] public int Level1Number { get; set; }
+        [field: SerializeField] public float Level2Hurt { get; set; }
+        [field: SerializeField] public int Level2Number { get; set; }
+        [field: SerializeField] public float Level3Hurt { get; set; }
+        [field: SerializeField] public int Level3Number { get; set; }
+        [field: SerializeField] public float Level4Hurt { get; set; }
+        [field: SerializeField] public int Level4Number { get; set; }
+        [field: SerializeField] public int NowWeaponLevel { get; set; }
     }
 }

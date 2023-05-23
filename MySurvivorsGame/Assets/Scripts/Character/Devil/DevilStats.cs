@@ -40,6 +40,20 @@ public class DevilStats : CharacterStats
     protected override void SetInitValue()
     {
         devilData_ = GameContainer.Get<DataManager>().dataGroup.realTimePlayerData;
+        base.SetInitValue();
+    }
+
+    protected override void SetInitSkill()
+    {
+        var type = System.Type.GetType(devilData_.InitWeapon);
+        AddWeaponController(devilData_.InitWeapon, type);
+    }
+
+    void AddWeaponController(string name, System.Type weaponType)
+    {
+        GameObject weaponController = new GameObject(name);
+        weaponController.transform.parent = transform;
+        weaponController.AddComponent(weaponType);
     }
 
     protected override void Move()
@@ -55,17 +69,6 @@ public class DevilStats : CharacterStats
         unityData.PlayerPos = transform.position;
 
         rgbd2d_.velocity = new Vector2(playerDir_.x * devilData_.Speed, playerDir_.y * devilData_.Speed);
-    }
-
-    public override void TakeDamage(float damage)
-    {
-        devilData_.HP -= damage;
-        Debug.Log("玩家受傷，剩餘HP為: " + devilData_.HP);
-        if (devilData_.HP <= 0)
-        {
-            Debug.Log("玩家死亡");
-            Dead();
-        }
     }
 
     protected override void Dead()
