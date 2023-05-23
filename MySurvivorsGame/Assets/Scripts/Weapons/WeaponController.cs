@@ -11,10 +11,10 @@ public class WeaponController : MonoBehaviour
 {
     [Header("Weapon Stats")]
     public GameObject Prefab;
-    public float Damage;
-    public float Speed;
-    public float CooldownDuration;
-    public int Pierce;
+    //public float Damage;
+    //public float Speed;
+    //public float CooldownDuration;
+    //public int Pierce;
     float currentCooldown_;    
 
     public DataManager dataManager;
@@ -30,9 +30,9 @@ public class WeaponController : MonoBehaviour
     }
 
     protected virtual void Start()
-    {
-        currentCooldown_ = CooldownDuration;
+    {        
         InstantiateWeapon();
+        currentCooldown_ = weaponData.LevelList[0].Cooldown;
     }
 
     private async void InstantiateWeapon()
@@ -47,7 +47,7 @@ public class WeaponController : MonoBehaviour
             }
         }
 
-        if (weaponData.Level1Hurt == 0)
+        if (weaponData.SheetName == "")
         {
             Debug.LogWarning("ùQïsìû" + WeaponName + "ìIéëóø");
         }
@@ -66,6 +66,6 @@ public class WeaponController : MonoBehaviour
 
     protected virtual void Attack()
     {
-        currentCooldown_ = CooldownDuration;
+        currentCooldown_ = weaponData.LevelList[0].Cooldown;
     }
 }

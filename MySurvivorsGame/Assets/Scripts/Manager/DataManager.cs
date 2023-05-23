@@ -39,6 +39,11 @@ public class DataManager
         excelSheetName = dataGroup.datasPath[4].Name;
         excelRowData = excelReadWrite.ReadExcel(excelPath, excelSheetName);
         dataGroup.weaponsData = excelReadWrite.ParseListDataJson<WeaponData>(excelRowData);
+        for(int i = 0; i < dataGroup.weaponsData.Count; i++)
+        {
+            excelRowData = excelReadWrite.ReadExcel(excelPath, dataGroup.weaponsData[i].SheetName);
+            dataGroup.weaponsData[i].LevelList = excelReadWrite.ParseListDataJson<WeaponLevelData>(excelRowData);
+        }
     }
 
     public void StoreDataGroup()

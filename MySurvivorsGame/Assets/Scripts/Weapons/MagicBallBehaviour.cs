@@ -15,6 +15,6 @@ public class MagicBallBehaviour : ProjectileWeaponBehaviour
     
     void Update()
     {
-        transform.position += direction * mc.Speed * Time.deltaTime;
+        transform.position += direction * mc.weaponData.LevelList[0].Speed * Time.deltaTime;
     }
 }

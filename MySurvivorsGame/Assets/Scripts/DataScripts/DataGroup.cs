@@ -55,14 +55,20 @@ namespace DataDefinition
     {
         [field: SerializeField] public string WeaponName { get; set; }
         [field: SerializeField] public string WeaponPrefabPath { get; set; }
-        [field: SerializeField] public float Level1Hurt { get; set; }
-        [field: SerializeField] public int Level1Number { get; set; }
-        [field: SerializeField] public float Level2Hurt { get; set; }
-        [field: SerializeField] public int Level2Number { get; set; }
-        [field: SerializeField] public float Level3Hurt { get; set; }
-        [field: SerializeField] public int Level3Number { get; set; }
-        [field: SerializeField] public float Level4Hurt { get; set; }
-        [field: SerializeField] public int Level4Number { get; set; }
+        [field: SerializeField] public string SheetName { get; set; }
         [field: SerializeField] public int NowWeaponLevel { get; set; }
+        [field: SerializeField] public List<WeaponLevelData> LevelList { get; set; }
+    }
+
+    [Serializable]
+    public class WeaponLevelData
+    {        
+        [field: SerializeField] public int Level { get; set; }
+        [field: SerializeField] public float Hurt { get; set; }
+        [field: SerializeField] public int Number { get; set; }
+        [field: SerializeField] public float Speed { get; set; }
+        [field: SerializeField] public float Cooldown { get; set; }
+        [field: SerializeField] public float Duration { get; set; }
+
     }
 }
