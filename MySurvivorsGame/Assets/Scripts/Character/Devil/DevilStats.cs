@@ -39,21 +39,7 @@ public class DevilStats : CharacterStats
 
     protected override void SetInitValue()
     {
-        var DevilsData = dataManager.dataGroup.devilsData;
-        for (int i = 0; i < DevilsData.Count; i++)
-        {
-            if (DevilsData[i].DevilName == DevilName)
-            {
-                devilData_ = DevilsData[i];
-                //Debug.Log("設定" + devilData.DevilName + "數值");
-                break;
-            }
-        }
-
-        if (devilData_.HP == 0)
-        {
-            Debug.LogWarning("找不到" + devilData_.DevilName + "的資料");
-        }
+        devilData_ = GameContainer.Get<DataManager>().dataGroup.realTimePlayerData;
     }
 
     protected override void Move()
@@ -69,6 +55,17 @@ public class DevilStats : CharacterStats
         unityData.PlayerPos = transform.position;
 
         rgbd2d_.velocity = new Vector2(playerDir_.x * devilData_.Speed, playerDir_.y * devilData_.Speed);
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        devilData_.HP -= damage;
+        Debug.Log("玩家受傷，剩餘HP為: " + devilData_.HP);
+        if (devilData_.HP <= 0)
+        {
+            Debug.Log("玩家死亡");
+            Dead();
+        }
     }
 
     protected override void Dead()

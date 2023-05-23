@@ -11,7 +11,7 @@ namespace DataDefinition
         public List<DatasPath> datasPath = new List<DatasPath>();
         public List<DevilData> devilsData = new List<DevilData>();
         public RealTimeData realTimeData = new RealTimeData();
-        public RealTimePlayerData realTimePlayerData = new RealTimePlayerData();
+        public DevilData realTimePlayerData = new DevilData();
     }
 
     [Serializable]
@@ -26,22 +26,7 @@ namespace DataDefinition
     {
         [field: SerializeField] public float Volume { get; set; }
         [field: SerializeField] public int KillNumber { get; set; }
-    }
-
-    [Serializable]
-    public class RealTimePlayerData
-    {
-        [field: SerializeField] public float Speed { get; set; }
-        [field: SerializeField] public float Exp { get; set; }
-        [field: SerializeField] public float AbsorbExpRange { get; set; }
-        [field: SerializeField] public float DamageCut { get; set; }
-        [field: SerializeField] public float Recovery { get; set; }
-        [field: SerializeField] public float DropRate { get; set; }
-        [field: SerializeField] public int SoulNumber { get; set; }
-        [field: SerializeField] public string ChooseDevil { get; set; }
-        [field: SerializeField] public string PrefabPath { get; set; }
-
-    }
+    }    
 
     [Serializable]
     public class DevilData

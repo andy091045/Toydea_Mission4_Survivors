@@ -396,6 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07bd4c43d171bd64aa8cfecadaa13221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CameraPosZ: -10
   target_: {fileID: 0}
   smoothTime_: 0.3
   velocity_: {x: 0, y: 0, z: 0}
@@ -902,33 +903,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1015381845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1015381837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d64d881dad2eb4a9ee4e48cc0a6eff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DevilName: 
-  devilData_:
-    <DevilName>k__BackingField: 
-    <Attack>k__BackingField: 0
-    <HP>k__BackingField: 0
-    <Speed>k__BackingField: 0
-    <ExpEffect>k__BackingField: 0
-    <AbsorbExpRange>k__BackingField: 0
-    <DamageCut>k__BackingField: 0
-    <Recovery>k__BackingField: 0
-    <DropRate>k__BackingField: 0
-    <PrefabPath>k__BackingField: 
-  playerDir_: {x: 0, y: 0, z: 0}
-  previousPlayerDir_: {x: 0, y: 0, z: 0}
-  movementVector_: {x: 0, y: 0, z: 0}
 --- !u!1 &1234923804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,6 +1037,7 @@ MonoBehaviour:
   Speed: 0
   Attack: 0
   HP: 0
+  CooldownDuration: 1
 --- !u!1 &2055453196
 GameObject:
   m_ObjectHideFlags: 0
