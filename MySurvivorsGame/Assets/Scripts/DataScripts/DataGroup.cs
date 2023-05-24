@@ -14,7 +14,6 @@ namespace DataDefinition
         public DevilData realTimePlayerData = new DevilData();
 
         public List<WeaponData> weaponsData = new List<WeaponData>();
-        //public List<WeaponData> RealTimeWeaponsData = new List<WeaponData>();
 
         public RealTimeData realTimeData = new RealTimeData();
 
@@ -82,5 +81,20 @@ namespace DataDefinition
                 Duration = Duration,
             };            
         }
+    }
+
+    [Serializable]
+    public class SceneProcessData
+    {
+        [field: SerializeField] public float Min { get; set; }
+        [field: SerializeField] public float Sec { get; set; }
+        [field: SerializeField] public int VillagerACount { get; set; }
+        [field: SerializeField] public int VillagerBCount { get; set; }
+        [field: SerializeField] public int VillagerCCount { get; set; }
+        [field: SerializeField] public int SoldierACount { get; set; }
+        [field: SerializeField] public int SoldierBCount { get; set; }
+        [field: SerializeField] public int RPGKnightCount { get; set; }
+        [field: SerializeField] public int RPGMageCount { get; set; }
+        [field: SerializeField] public int WarriorCount { get; set; }
     }
 }

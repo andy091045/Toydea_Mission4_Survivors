@@ -1,12 +1,7 @@
-using DataProcess;
 using HD.Pooling;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.Port;
-using static UnityEditor.MaterialProperty;
 
-public class BulletPool : MonoBehaviour
+public class BasicPool : MonoBehaviour
 {
     public GameObject Prototype;
     public int capacity;

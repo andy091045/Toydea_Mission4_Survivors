@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ObjectPoolGroup
 {
-    public List<BulletPool> objectPools_ = new List<BulletPool>();    
-    public void AddPool(BulletPool objectPool)
+    public List<BasicPool> objectPools_ = new List<BasicPool>();    
+    public void AddPool(BasicPool objectPool)
     {
         objectPools_.Add(objectPool);
     }
