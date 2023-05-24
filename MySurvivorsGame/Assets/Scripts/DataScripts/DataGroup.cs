@@ -17,7 +17,7 @@ namespace DataDefinition
         //public List<WeaponData> RealTimeWeaponsData = new List<WeaponData>();
 
         public RealTimeData realTimeData = new RealTimeData();
-        
+
     }
 
     [Serializable]
@@ -32,7 +32,7 @@ namespace DataDefinition
     {
         [field: SerializeField] public float Volume { get; set; }
         [field: SerializeField] public int KillNumber { get; set; }
-    }    
+    }
 
     [Serializable]
     public class DevilData
@@ -62,7 +62,7 @@ namespace DataDefinition
 
     [Serializable]
     public class WeaponLevelData
-    {        
+    {
         [field: SerializeField] public int Level { get; set; }
         [field: SerializeField] public float Hurt { get; set; }
         [field: SerializeField] public int Number { get; set; }
@@ -70,5 +70,17 @@ namespace DataDefinition
         [field: SerializeField] public float Cooldown { get; set; }
         [field: SerializeField] public float Duration { get; set; }
 
+        public WeaponLevelData Clone()
+        {
+            return new WeaponLevelData()
+            {
+                Level = Level,
+                Hurt = Hurt,
+                Number = Number,
+                Speed = Speed,
+                Cooldown = Cooldown,
+                Duration = Duration,
+            };            
+        }
     }
 }

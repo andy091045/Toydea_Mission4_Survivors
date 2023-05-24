@@ -20,9 +20,12 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         Destroy(gameObject, DestroyAfterSeconds);
     }
 
-    public void DirectionChecker()
+    public void DirectionChecker(int weaponCount, int currentWeaponNumber)
     {
-        if(unityData_.PlayerDir != Vector3.zero)
+        float angleIncrement = 360f / weaponCount;
+        float angle = currentWeaponNumber * angleIncrement;
+
+        if (unityData_.PlayerDir != Vector3.zero)
         {
             direction = unityData_.PlayerDir;
         }
@@ -31,23 +34,25 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
             direction = unityData_.PreviousPlayerDir;
         }
 
+        direction = Quaternion.Euler(0, 0, angle) * direction;
+
         SetPrefabRotate();
     }
 
     void SetPrefabRotate()
     {
-        float dirx = direction.x;
-        float diry = direction.y;
+        int dirx = Mathf.RoundToInt(direction.x);
+        int diry = Mathf.RoundToInt(direction.y);
 
         Vector3 scale = transform.localScale;
         Vector3 rotation = transform.rotation.eulerAngles;
 
-        if(dirx < 0 && diry == 0) // left
+        if (dirx < 0 && diry == 0) // left
         {
             scale.x = scale.x * -1;
             scale.y = scale.y * -1;
         }
-        else if (dirx == 0 && diry < 0) // 
+        else if (dirx == 0 && diry < 0) // down
         {
             scale.y = scale.y * -1;
         }

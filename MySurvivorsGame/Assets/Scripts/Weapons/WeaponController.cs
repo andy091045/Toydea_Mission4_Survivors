@@ -15,13 +15,14 @@ public class WeaponController : MonoBehaviour
     //public float Speed;
     //public float CooldownDuration;
     //public int Pierce;
-    float currentCooldown_;    
 
     public DataManager dataManager;
     public UnityData unityData;
 
     public string WeaponName = "";
     public WeaponData weaponData;
+    public WeaponLevelData CurrentWeaponLevelData;
+    public int WeaponLevel = 1;
 
     protected virtual void Awake()
     {
@@ -32,7 +33,6 @@ public class WeaponController : MonoBehaviour
     protected virtual void Start()
     {        
         InstantiateWeapon();
-        currentCooldown_ = weaponData.LevelList[0].Cooldown;
     }
 
     private async void InstantiateWeapon()
@@ -43,6 +43,7 @@ public class WeaponController : MonoBehaviour
             if (dataManager.dataGroup.weaponsData[i].WeaponName == WeaponName)
             {
                 weaponData = dataManager.dataGroup.weaponsData[i];
+                CurrentWeaponLevelData = weaponData.LevelList[0].Clone();
                 break;
             }
         }
@@ -57,8 +58,8 @@ public class WeaponController : MonoBehaviour
 
     protected virtual void Update()
     {
-        currentCooldown_ -= Time.deltaTime;
-        if(currentCooldown_ < 0)
+        CurrentWeaponLevelData.Cooldown -= Time.deltaTime;
+        if(CurrentWeaponLevelData.Cooldown < 0)
         {
             Attack();
         }
@@ -66,6 +67,12 @@ public class WeaponController : MonoBehaviour
 
     protected virtual void Attack()
     {
-        currentCooldown_ = weaponData.LevelList[0].Cooldown;
+        CurrentWeaponLevelData.Cooldown = weaponData.LevelList[WeaponLevel-1].Clone().Cooldown;        
+    }
+
+    public virtual void WeaponUpdate()
+    {
+        WeaponLevel++;
+        CurrentWeaponLevelData = weaponData.LevelList[WeaponLevel - 1].Clone();
     }
 }

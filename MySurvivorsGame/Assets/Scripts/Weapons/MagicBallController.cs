@@ -16,9 +16,12 @@ public class MagicBallController : WeaponController
         base.Attack();
         if (unityData.PreviousPlayerDir != Vector3.zero)
         {
-            GameObject spawnedMagicBall = Instantiate(Prefab);
-            spawnedMagicBall.transform.position = transform.position;
-            spawnedMagicBall.GetComponent<MagicBallBehaviour>().DirectionChecker();
+            for(int i = 0; i < CurrentWeaponLevelData.Number; i++)
+            {
+                GameObject spawnedMagicBall = Instantiate(Prefab);
+                spawnedMagicBall.transform.position = transform.position;
+                spawnedMagicBall.GetComponent<MagicBallBehaviour>().DirectionChecker(CurrentWeaponLevelData.Number, i);
+            }            
         }        
     }
 }
