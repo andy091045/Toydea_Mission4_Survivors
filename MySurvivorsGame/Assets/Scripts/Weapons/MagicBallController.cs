@@ -21,6 +21,7 @@ public class MagicBallController : WeaponController
                 GameObject spawnedMagicBall = Instantiate(Prefab);
                 spawnedMagicBall.transform.position = transform.position;
                 spawnedMagicBall.GetComponent<MagicBallBehaviour>().DirectionChecker(CurrentWeaponLevelData.Number, i);
+                spawnedMagicBall.GetComponent<MagicBallBehaviour>().weaponLevelData = CurrentWeaponLevelData;
             }            
         }        
     }

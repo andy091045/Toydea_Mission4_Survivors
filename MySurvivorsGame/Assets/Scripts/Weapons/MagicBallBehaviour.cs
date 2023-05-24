@@ -4,17 +4,8 @@ using UnityEngine;
 
 public class MagicBallBehaviour : ProjectileWeaponBehaviour
 {
-    MagicBallController mc;
-
-    protected override void Start()
-    {
-        base.Start();
-        mc = FindObjectOfType<MagicBallController>();
-    }
-
-    
     void Update()
     {
-        transform.position += direction * mc.CurrentWeaponLevelData.Speed * Time.deltaTime;
+        transform.position += direction *  weaponLevelData.Speed * Time.deltaTime;
     }
 }

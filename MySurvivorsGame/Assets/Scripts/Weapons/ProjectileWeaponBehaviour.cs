@@ -1,3 +1,4 @@
+using DataDefinition;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
 {
     protected Vector3 direction;
     protected Vector3 previousDirection;
-    public float DestroyAfterSeconds;
+    public WeaponLevelData weaponLevelData;
 
     UnityData unityData_;
 
@@ -17,7 +18,7 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
 
     protected virtual void Start()
     {        
-        Destroy(gameObject, DestroyAfterSeconds);
+        Destroy(gameObject, weaponLevelData.Duration);
     }
 
     public void DirectionChecker(int weaponCount, int currentWeaponNumber)
