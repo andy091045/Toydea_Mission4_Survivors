@@ -53,6 +53,7 @@ public class DevilStats : CharacterStats
     {
         GameObject weaponController = new GameObject(name);
         weaponController.transform.parent = transform;
+        weaponController.transform.position = transform.position;
         weaponController.AddComponent(weaponType);
     }
 
