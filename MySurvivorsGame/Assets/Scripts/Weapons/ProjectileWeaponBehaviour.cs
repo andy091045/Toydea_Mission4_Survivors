@@ -21,6 +21,14 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         Destroy(gameObject, weaponLevelData.Duration);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("NPC"))
+        {
+            collision.gameObject.GetComponent<CharacterStats>().TakeDamage(weaponLevelData.Hurt);
+        }
+    }
+
     public void DirectionChecker(int weaponCount, int currentWeaponNumber)
     {
         float angleIncrement = 360f / weaponCount;

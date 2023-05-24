@@ -51,7 +51,7 @@ public class VillagerStats : CharacterStats
     {
         if (other.CompareTag("Devil"))
         {
-            Debug.Log("不可攻擊");
+            //Debug.Log("不可攻擊");
             canAttackDevil_ = false;
             currentCooldown_ = 0;
         }
@@ -72,8 +72,18 @@ public class VillagerStats : CharacterStats
         transform.Translate(direction.normalized * Time.deltaTime * Speed, Space.World);
     }
 
+    public override void TakeDamage(float damage)
+    {
+        HP -= damage;
+        if (HP <= 0)
+        {
+            Dead();
+        }
+    }
+
     protected override void Dead()
     {
-
+        Debug.Log("村民死了");
+        Destroy(gameObject);
     }
 }
