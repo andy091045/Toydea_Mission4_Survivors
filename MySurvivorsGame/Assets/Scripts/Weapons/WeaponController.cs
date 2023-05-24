@@ -43,7 +43,7 @@ public class WeaponController : MonoBehaviour
             if (dataManager.dataGroup.weaponsData[i].WeaponName == WeaponName)
             {
                 weaponData = dataManager.dataGroup.weaponsData[i];
-                CurrentWeaponLevelData = weaponData.LevelList[3].Clone();
+                CurrentWeaponLevelData = weaponData.LevelList[0].Clone();
                 break;
             }
         }

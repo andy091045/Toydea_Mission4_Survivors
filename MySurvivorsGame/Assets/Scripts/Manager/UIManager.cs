@@ -8,11 +8,11 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        data_ = GameContainer.Get<DataManager>();
+        data_ = GameContainer.Get<DataManager>();        
     }
 
     public void ChooseDevil(string devilName)
     {
         data_.ChooseDevil(devilName);
-    }
+    }    
 }

@@ -74,6 +74,7 @@ public class VillagerStats : CharacterStats
 
     public override void TakeDamage(float damage)
     {
+        EventManager.OccurNPCGetHurt(damage.ToString(), transform.position);
         HP -= damage;
         if (HP <= 0)
         {

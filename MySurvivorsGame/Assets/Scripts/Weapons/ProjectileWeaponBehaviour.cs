@@ -61,6 +61,10 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
             scale.x = scale.x * -1;
             scale.y = scale.y * -1;
         }
+        else if (dirx > 0 && diry == 0) // right
+        {
+            
+        }
         else if (dirx == 0 && diry < 0) // down
         {
             scale.y = scale.y * -1;
