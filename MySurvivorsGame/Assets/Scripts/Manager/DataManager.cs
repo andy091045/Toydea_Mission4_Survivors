@@ -48,7 +48,7 @@ public class DataManager
         excelPath = Path.Combine(Application.streamingAssetsPath, dataGroup.datasPath[6].Path);
         excelSheetName = dataGroup.datasPath[6].Name;
         excelRowData = excelReadWrite.ReadExcel(excelPath, excelSheetName);
-        dataGroup.poolsData = excelReadWrite.ParseListDataJson<PoolData>(excelRowData);
+        dataGroup.npcPoolsData = excelReadWrite.ParseListDataJson<NPCPoolData>(excelRowData);
     }
 
     public void StoreDataGroup()

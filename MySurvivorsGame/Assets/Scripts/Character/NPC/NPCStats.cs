@@ -1,18 +1,14 @@
+using DataDefinition;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCStats : MonoBehaviour
+public class NPCStats : CharacterStats
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public NPCPoolData npcPoolData;
 
-    // Update is called once per frame
-    void Update()
+    public void SetNPCValue(NPCPoolData data)
     {
-        
+        npcPoolData = data;
     }
 }

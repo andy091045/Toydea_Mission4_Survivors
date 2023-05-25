@@ -1,16 +1,13 @@
 ﻿using Codice.CM.Common;
+using DataDefinition;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using static PlasticPipe.Server.MonitorStats;
 
-public class VillagerStats : CharacterStats
+public class VillagerStats : NPCStats
 {
-    public float Speed;
-    public float Attack;
-    public float HP;
-    public float CooldownDuration;
     bool canAttackDevil_ = false;
     float currentCooldown_;
 
@@ -26,16 +23,8 @@ public class VillagerStats : CharacterStats
         if (currentCooldown_ <= 0)
         {            
             TryAttack();
-            currentCooldown_ = CooldownDuration;
+            currentCooldown_ = npcPoolData.CooldownDuration;
         }
-    }
-
-    
-    protected override void SetInitValue()
-    {
-        Speed = 2f;
-        HP = 30f;
-        Attack = 3f;
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)
@@ -61,7 +50,7 @@ public class VillagerStats : CharacterStats
     {
         if (canAttackDevil_)
         {
-            dataManager.dataGroup.realTimePlayerData.HP -= Attack;
+            dataManager.dataGroup.realTimePlayerData.HP -= npcPoolData.Attack;
             Debug.Log("玩家血量: " + dataManager.dataGroup.realTimePlayerData.HP);
         }
     }
@@ -69,14 +58,14 @@ public class VillagerStats : CharacterStats
     protected override void Move()
     {
         var direction = unityData.PlayerPos - transform.position;
-        transform.Translate(direction.normalized * Time.deltaTime * Speed, Space.World);
+        transform.Translate(direction.normalized * Time.deltaTime * npcPoolData.Speed, Space.World);
     }
 
     public override void TakeDamage(float damage)
     {
         EventManager.OccurNPCGetHurt(damage.ToString(), transform.position);
-        HP -= damage;
-        if (HP <= 0)
+        npcPoolData.HP -= damage;
+        if (npcPoolData.HP <= 0)
         {
             Dead();
         }
@@ -85,6 +74,6 @@ public class VillagerStats : CharacterStats
     protected override void Dead()
     {
         Debug.Log("村民死了");
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

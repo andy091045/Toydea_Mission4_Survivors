@@ -9,13 +9,13 @@ public class NPCSpawner : MonoBehaviour
     DataManager data_;
     ObjectPoolGroup objectPoolGroup_;
 
-    List<PoolData> poolData_ = new List<PoolData>();
+    List<NPCPoolData> poolData_ = new List<NPCPoolData>();
 
     private void Start()
     {
         data_ = GameContainer.Get<DataManager>();
-        
-        poolData_ = data_.dataGroup.poolsData;
+        objectPoolGroup_ = GameContainer.Get<ObjectPoolGroup>();
+        poolData_ = data_.dataGroup.npcPoolsData;
         InitializePools();       
     }
 
@@ -26,6 +26,8 @@ public class NPCSpawner : MonoBehaviour
             GameObject pool = new GameObject(poolData_[i].CharacterName + "Pool");
             pool.AddComponent<BasicPool>();
             pool.GetComponent<BasicPool>().Prefab = await Addressables.LoadAssetAsync<GameObject>(poolData_[i].ObjectPrefabPath).Task;
+            //System.Type type = System.Type.GetType(poolData_[i].ClassName);
+            //pool.GetComponent<BasicPool>().Prefab.AddComponent();
             pool.GetComponent<BasicPool>().Count = poolData_[i].CharacterCount;
             pool.GetComponent<BasicPool>().InstantiateAndAddToGroup();
             pool.transform.parent = transform;
@@ -35,11 +37,11 @@ public class NPCSpawner : MonoBehaviour
 
     void AddPrefabToGame()
     {
-        objectPoolGroup_ = GameContainer.Get<ObjectPoolGroup>();
         if (objectPoolGroup_.objectPools_.Count != 0)
         {
             Debug.Log(objectPoolGroup_.objectPools_[0].Count);
-            objectPoolGroup_.objectPools_[0].Pool.GetInstance();
+            var apple = objectPoolGroup_.objectPools_[0].Pool.GetInstance();
+            apple.GetComponent<VillagerStats>().SetNPCValue(poolData_[0]);
         }
     }
 }

@@ -1,3 +1,4 @@
+using log4net.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace DataDefinition
 
         public RealTimeData realTimeData = new RealTimeData();
 
-        public List<PoolData> poolsData = new List<PoolData>();
+        public List<NPCPoolData> npcPoolsData = new List<NPCPoolData>();
     }
 
     [Serializable]
@@ -100,10 +101,32 @@ namespace DataDefinition
     }
 
     [Serializable]
-    public class PoolData
+    public class NPCPoolData
     {
         [field: SerializeField] public string CharacterName { get; set; }
         [field: SerializeField] public int CharacterCount { get; set; }
         [field: SerializeField] public string ObjectPrefabPath { get; set; }
+        [field: SerializeField] public string ClassName { get; set; }
+        [field: SerializeField] public float HP { get; set; }
+        [field: SerializeField] public float Attack { get; set; }
+        [field: SerializeField] public float Speed { get; set; }
+        [field: SerializeField] public float CooldownDuration { get; set; }
+        [field: SerializeField] public string SheetName { get; set; }
+
+        //public NPCPoolData Clone()
+        //{
+        //    return new NPCPoolData()
+        //    {
+        //        CharacterName = CharacterName,
+        //        CharacterCount = CharacterCount,
+        //        ObjectPrefabPath = ObjectPrefabPath,
+        //        ClassName = ClassName,
+        //        HP = HP,
+        //        Attack = Attack,
+        //        Speed = Speed,
+        //        CooldownDuration = CooldownDuration,
+        //        SheetName = SheetName
+        //    };
+        //}
     }
 }
