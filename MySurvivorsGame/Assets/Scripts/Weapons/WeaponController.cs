@@ -37,7 +37,6 @@ public class WeaponController : MonoBehaviour
 
     private async void InstantiateWeapon()
     {
-        Debug.Log(dataManager.dataGroup.weaponsData);
         for (int i = 0; i < dataManager.dataGroup.weaponsData.Count; i++)
         {
             if (dataManager.dataGroup.weaponsData[i].WeaponName == WeaponName)

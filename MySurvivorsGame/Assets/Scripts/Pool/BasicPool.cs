@@ -3,20 +3,20 @@ using UnityEngine;
 
 public class BasicPool : MonoBehaviour
 {
-    public GameObject Prototype;
-    public int capacity;
+    public GameObject Prefab;
+    public int Count;
     public IPool<GameObject> Pool { get; private set; }
 
-    ObjectPoolGroup objectPoolGroup;
+    ObjectPoolGroup objectPoolGroup_;
     
     private void Awake()
     {
-        objectPoolGroup =  GameContainer.Get<ObjectPoolGroup>();
-        Pool = new ListPool<GameObject>(() => Instantiate(Prototype), capacity, g => g.activeInHierarchy, true);
+        objectPoolGroup_ = GameContainer.Get<ObjectPoolGroup>();
     }
 
-    void Start()
+    public void InstantiateAndAddToGroup()
     {
-        objectPoolGroup.AddPool(this);
+        Pool = new ListPool<GameObject>(() => Instantiate(Prefab), Count, g => g.activeInHierarchy, true);
+        objectPoolGroup_.AddPool(this);
     }
 }
