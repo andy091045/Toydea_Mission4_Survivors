@@ -34,7 +34,7 @@ public class VillagerStats : CharacterStats
     protected override void SetInitValue()
     {
         Speed = 2f;
-        HP = 10f;
+        HP = 30f;
         Attack = 3f;
     }
 

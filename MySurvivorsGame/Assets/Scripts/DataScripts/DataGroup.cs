@@ -17,6 +17,7 @@ namespace DataDefinition
 
         public RealTimeData realTimeData = new RealTimeData();
 
+        public List<PoolData> poolsData = new List<PoolData>();
     }
 
     [Serializable]
@@ -96,5 +97,13 @@ namespace DataDefinition
         [field: SerializeField] public int RPGKnightCount { get; set; }
         [field: SerializeField] public int RPGMageCount { get; set; }
         [field: SerializeField] public int WarriorCount { get; set; }
+    }
+
+    [Serializable]
+    public class PoolData
+    {
+        [field: SerializeField] public string CharacterName { get; set; }
+        [field: SerializeField] public int CharacterCount { get; set; }
+        [field: SerializeField] public string ObjectPrefabPath { get; set; }
     }
 }

@@ -12,7 +12,14 @@ public class CharacterManager : MonoBehaviour
     void Start()
     {
         data_ = GameContainer.Get<DataManager>();
+        InstantiateGameObjectComponent();
         InstantiateDevil();
+    }
+
+    void InstantiateGameObjectComponent()
+    {
+        GameObject npcSpawner = new GameObject("NPCSpawner");
+        npcSpawner.AddComponent<NPCSpawner>();
     }
 
     private async void InstantiateDevil()
