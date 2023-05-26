@@ -130,16 +130,19 @@ public class NPCSpawner : MonoBehaviour
         //    apple.GetComponent<VillagerStats>().SetNPCValue(poolData_[0]);
         //    Debug.Log("444444444444444");
         //}
-
-        while (unityData_.npcNumber < sceneProcessData_.VillagerACount)
+        if (objectPoolGroup_.objectPools_.Count != 0)
         {
-            Vector3 pos = GetNPCPosition();
-            Debug.Log(pos);
-            var apple = objectPoolGroup_.objectPools_[0].Pool.GetInstance();
-            apple.transform.position = pos;
-            apple.GetComponent<VillagerStats>().SetNPCValue(poolData_[0]);
-            unityData_.npcNumber++;
+            while (unityData_.npcNumber < sceneProcessData_.VillagerACount)
+            {
+                Debug.Log("unityData_.npcNumber");
+                Vector3 pos = GetNPCPosition();
+                var apple = objectPoolGroup_.objectPools_[0].Pool.GetInstance();
+                apple.transform.position = pos;
+                apple.GetComponent<VillagerStats>().SetNPCValue(poolData_[0]);
+                unityData_.npcNumber++;
+            }
         }
+            
     }
 
     Vector3 GetNPCPosition()

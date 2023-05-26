@@ -13,6 +13,7 @@ namespace DataProcess
     {
         public DataRowCollection ReadExcel(string excelPath, string excelSheet)
         {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (FileStream fileStream = File.Open(excelPath, FileMode.Open, FileAccess.Read))
             {
                 IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(fileStream);
