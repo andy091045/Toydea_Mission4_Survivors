@@ -45,6 +45,11 @@ public class DataManager
             dataGroup.weaponsData[i].LevelList = excelReadWrite.ParseListDataJson<WeaponLevelData>(excelRowData);
         }
         //------------------------------------------------------------------------------------
+        excelPath = Path.Combine(Application.streamingAssetsPath, dataGroup.datasPath[5].Path);
+        excelSheetName = dataGroup.datasPath[5].Name;
+        excelRowData = excelReadWrite.ReadExcel(excelPath, excelSheetName);
+        dataGroup.sceneProcessData = excelReadWrite.ParseListDataJson<SceneProcessData>(excelRowData);
+        //------------------------------------------------------------------------------------
         excelPath = Path.Combine(Application.streamingAssetsPath, dataGroup.datasPath[6].Path);
         excelSheetName = dataGroup.datasPath[6].Name;
         excelRowData = excelReadWrite.ReadExcel(excelPath, excelSheetName);

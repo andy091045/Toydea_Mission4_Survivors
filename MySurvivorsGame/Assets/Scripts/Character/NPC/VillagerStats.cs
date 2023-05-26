@@ -73,7 +73,8 @@ public class VillagerStats : NPCStats
 
     protected override void Dead()
     {
-        Debug.Log("村民死了");
+        //Debug.Log("村民死了");
+        unityData.npcNumber--;
         gameObject.SetActive(false);
     }
 }

@@ -18,6 +18,8 @@ namespace DataDefinition
 
         public RealTimeData realTimeData = new RealTimeData();
 
+        public List<SceneProcessData> sceneProcessData = new List<SceneProcessData>();
+
         public List<NPCPoolData> npcPoolsData = new List<NPCPoolData>();
     }
 
@@ -128,5 +130,5 @@ namespace DataDefinition
         //        SheetName = SheetName
         //    };
         //}
-    }
+    }    
 }
