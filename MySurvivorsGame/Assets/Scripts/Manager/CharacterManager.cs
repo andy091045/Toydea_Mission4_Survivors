@@ -44,5 +44,6 @@ public class CharacterManager : MonoBehaviour
         
         devilObject.AddComponent<DevilStats>();
         devilObject.GetComponent<DevilStats>().DevilName = data_.dataGroup.realTimePlayerData.DevilName;
+        EventManager.OccurInstantiateDevil.Invoke();
     }
 }
