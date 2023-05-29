@@ -63,7 +63,12 @@ public class VillagerStats : NPCStats
 
     public override void TakeDamage(float damage)
     {
+        if(npcPoolData.HP <= 0)
+        {
+            return;
+        }
         EventManager.OccurNPCGetHurt(damage.ToString(), transform.position);
+
         npcPoolData.HP -= damage;
         if (npcPoolData.HP <= 0)
         {
