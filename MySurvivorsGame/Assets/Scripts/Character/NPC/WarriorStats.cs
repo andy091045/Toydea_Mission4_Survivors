@@ -76,7 +76,7 @@ public class WarriorStats : NPCStats
     protected override void Dead()
     {
         //Debug.Log("村民死了");
-        unityData.npcBNumber--;
+        unityData.WarriorsNumber--;
         gameObject.SetActive(false);
     }
 }

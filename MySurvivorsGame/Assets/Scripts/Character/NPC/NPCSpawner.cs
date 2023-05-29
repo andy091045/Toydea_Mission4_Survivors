@@ -18,8 +18,6 @@ public class NPCSpawner : MonoBehaviour
     [SerializeField] private int targetTimeNum_ = 0;
     [SerializeField] private SceneProcessData sceneProcessData_;
 
-    bool isPoolsComplete = false;
-
     private void Start()
     {
         data_ = GameContainer.Get<DataManager>();
@@ -34,11 +32,7 @@ public class NPCSpawner : MonoBehaviour
     {
         totalTime_ += Time.deltaTime;        
         UpdateSceneProcessData();
-
-        if (isPoolsComplete)
-        {
-            AddPrefabToGame();
-        }        
+        AddPrefabToGame();   
     }
 
     async void InitializePools()
@@ -55,7 +49,6 @@ public class NPCSpawner : MonoBehaviour
             pool.transform.parent = transform;
         }        
         UpdateSceneProcessData();
-        isPoolsComplete = true;
         //AddPrefabToGame();
     }
 
@@ -85,27 +78,57 @@ public class NPCSpawner : MonoBehaviour
         //}
         if (objectPoolGroup_.objectPools_.Count != 0)
         {
-            while (unityData_.npcNumber < sceneProcessData_.VillagerACount)
-            {                
-                Vector3 pos = npcField_.GetComponent<CreateNPCField>().GetNPCPosition();
-                var apple = objectPoolGroup_.objectPools_[0].Pool.GetInstance();
-                apple.transform.position = pos;
-                //apple.name = $"{Count++}{apple.name}";
-                apple.GetComponent<VillagerStats>().SetNPCValue(poolData_[0].Clone());
-                apple.SetActive(true);
-                Debug.Log("村民" + unityData_.npcNumber + "的位置在: " + pos + "血量: " + apple.GetComponent<VillagerStats>().npcPoolData.HP);
-                unityData_.npcNumber++;
-            }
+            //int maxNumber = 0;
+            //for (int i = 0; i < poolData_.Count; i++)
+            //{
+            //    switch(poolData_[i].CharacterName)
+            //    {
+            //        case "VillagerA":
+            //            maxNumber = sceneProcessData_.VillagerACount;
+            //            break;
+            //        case "Warrior":
+            //            maxNumber = sceneProcessData_.WarriorCount;
+            //            break;
+            //        default: break;
+            //    }
 
-            while (unityData_.npcBNumber < sceneProcessData_.VillagerBCount)
+            //    while (unityData_.npcNumber[i] < maxNumber)
+            //    {
+            //        Vector3 pos = npcField_.GetComponent<CreateNPCField>().GetNPCPosition();
+            //        var apple = objectPoolGroup_.objectPools_[0].Pool.GetInstance();
+            //        apple.transform.position = pos;
+            //        //apple.name = $"{Count++}{apple.name}";
+            //        System.Type type = System.Type.GetType(poolData_[i].ClassName);                    
+            //        apple.GetComponent(type).SetNPCValue(poolData_[i].Clone());
+            //        apple.SetActive(true);
+            //        Debug.Log("村民" + unityData_.npcNumber + "的位置在: " + pos + "血量: " + apple.GetComponent<VillagerStats>().npcPoolData.HP);
+            //        unityData_.npcNumber[i]++;
+            //    }
+            //}
+
+            //村民生成
+            while (unityData_.VillagersNumber < sceneProcessData_.VillagerACount)
             {
                 Vector3 pos = npcField_.GetComponent<CreateNPCField>().GetNPCPosition();
-                var apple = objectPoolGroup_.objectPools_[1].Pool.GetInstance();
-                apple.transform.position = pos;
+                var npc = objectPoolGroup_.objectPools_[0].Pool.GetInstance();
+                npc.transform.position = pos;
                 //apple.name = $"{Count++}{apple.name}";
-                apple.GetComponent<WarriorStats>().SetNPCValue(poolData_[1].Clone());
-                apple.SetActive(true);                
-                unityData_.npcBNumber++;
+                npc.GetComponent<VillagerStats>().SetNPCValue(poolData_[0].Clone());
+                npc.SetActive(true);
+                //Debug.Log("村民" + unityData_.VillagersNumber + "的位置在: " + pos + "血量: " + apple.GetComponent<VillagerStats>().npcPoolData.HP);
+                unityData_.VillagersNumber++;
+            }
+
+            //勇者生成
+            while (unityData_.WarriorsNumber < sceneProcessData_.WarriorCount)
+            {
+                Vector3 pos = npcField_.GetComponent<CreateNPCField>().GetNPCPosition();
+                var npc = objectPoolGroup_.objectPools_[1].Pool.GetInstance();
+                npc.transform.position = pos;
+                //apple.name = $"{Count++}{apple.name}";
+                npc.GetComponent<WarriorStats>().SetNPCValue(poolData_[1].Clone());
+                npc.SetActive(true);
+                unityData_.WarriorsNumber++;
             }
         }       
     }    
