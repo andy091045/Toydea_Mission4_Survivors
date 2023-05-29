@@ -70,7 +70,7 @@ public class NPCSpawner : MonoBehaviour
         }
         UpdateCreateNPCFieldPos();
         UpdateSceneProcessData();
-        AddPrefabToGame();
+        //AddPrefabToGame();
     }
 
     void UpdateSceneProcessData()
@@ -133,12 +133,13 @@ public class NPCSpawner : MonoBehaviour
         if (objectPoolGroup_.objectPools_.Count != 0)
         {
             while (unityData_.npcNumber < sceneProcessData_.VillagerACount)
-            {
-                Debug.Log("unityData_.npcNumber");
+            {                
                 Vector3 pos = GetNPCPosition();
                 var apple = objectPoolGroup_.objectPools_[0].Pool.GetInstance();
                 apple.transform.position = pos;
-                apple.GetComponent<VillagerStats>().SetNPCValue(poolData_[0]);
+                apple.GetComponent<VillagerStats>().SetNPCValue(poolData_[0].Clone());
+                apple.SetActive(true);
+                Debug.Log("村民" + unityData_.npcNumber + "的位置在: " + pos + "血量: " + apple.GetComponent<VillagerStats>().npcPoolData.HP);
                 unityData_.npcNumber++;
             }
         }

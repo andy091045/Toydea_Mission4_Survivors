@@ -115,20 +115,20 @@ namespace DataDefinition
         [field: SerializeField] public float CooldownDuration { get; set; }
         [field: SerializeField] public string SheetName { get; set; }
 
-        //public NPCPoolData Clone()
-        //{
-        //    return new NPCPoolData()
-        //    {
-        //        CharacterName = CharacterName,
-        //        CharacterCount = CharacterCount,
-        //        ObjectPrefabPath = ObjectPrefabPath,
-        //        ClassName = ClassName,
-        //        HP = HP,
-        //        Attack = Attack,
-        //        Speed = Speed,
-        //        CooldownDuration = CooldownDuration,
-        //        SheetName = SheetName
-        //    };
-        //}
+        public NPCPoolData Clone()
+        {
+            return new NPCPoolData()
+            {
+                CharacterName = CharacterName,
+                CharacterCount = CharacterCount,
+                ObjectPrefabPath = ObjectPrefabPath,
+                ClassName = ClassName,
+                HP = HP,
+                Attack = Attack,
+                Speed = Speed,
+                CooldownDuration = CooldownDuration,
+                SheetName = SheetName
+            };
+        }
     }    
 }
