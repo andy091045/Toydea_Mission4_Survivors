@@ -9,4 +9,5 @@ public class UnityData
     public Vector3 PlayerPos = Vector3.zero;
 
     public int npcNumber = 0;
+    public int npcBNumber = 0;
 }

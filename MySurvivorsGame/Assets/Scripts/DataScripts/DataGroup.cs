@@ -1,8 +1,10 @@
+using Codice.CM.Common;
 using log4net.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlasticPipe.Server.MonitorStats;
 
 namespace DataDefinition
 {
@@ -100,6 +102,23 @@ namespace DataDefinition
         [field: SerializeField] public int RPGKnightCount { get; set; }
         [field: SerializeField] public int RPGMageCount { get; set; }
         [field: SerializeField] public int WarriorCount { get; set; }
+
+        public SceneProcessData Clone()
+        {
+            return new SceneProcessData()
+            {
+                Min = Min,
+                Sec = Sec,
+                VillagerACount = VillagerACount,
+                VillagerBCount = VillagerBCount,
+                VillagerCCount = VillagerCCount,
+                SoldierACount = SoldierACount,
+                SoldierBCount = SoldierBCount,
+                RPGKnightCount = RPGKnightCount,
+                RPGMageCount = RPGMageCount,
+                WarriorCount = WarriorCount
+            };
+        }
     }
 
     [Serializable]
