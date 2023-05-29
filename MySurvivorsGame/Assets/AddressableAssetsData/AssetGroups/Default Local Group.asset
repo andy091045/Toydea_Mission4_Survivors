@@ -41,6 +41,10 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/NPC/VillagerA.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 6bf4e69b5db54b841ab230f2834971d4
+    m_Address: Assets/Prefabs/Skill/Fire.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 931cdc787f575bf43a3ad17aea3455d3, type: 2}
   m_SchemaSet:

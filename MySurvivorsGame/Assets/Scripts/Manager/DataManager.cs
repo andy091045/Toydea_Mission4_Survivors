@@ -80,11 +80,12 @@ public class DataManager
         
         if(DevilName == "Reaper")
         {
-            dataGroup.realTimePlayerData.PrefabPath = "Assets/Prefabs/Devils/Reaper.prefab";
+            dataGroup.realTimePlayerData = dataGroup.devilsData[1];
+            Debug.Log(dataGroup.realTimePlayerData.Attack);
         }
         else if(DevilName == "BoneMan")
         {
-            dataGroup.realTimePlayerData.PrefabPath = "Assets/Prefabs/Devils/BoneMan.prefab";
+            dataGroup.realTimePlayerData = dataGroup.devilsData[0];
         }
         Debug.Log("ëIù¢" + dataGroup.realTimePlayerData.DevilName);
         Debug.Log("òHúl" + dataGroup.realTimePlayerData.PrefabPath);

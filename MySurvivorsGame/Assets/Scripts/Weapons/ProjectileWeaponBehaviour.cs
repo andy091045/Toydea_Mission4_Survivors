@@ -9,6 +9,7 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
     protected Vector3 previousDirection;
     public WeaponLevelData weaponLevelData;
 
+    DataManager dataManager_;
     UnityData unityData_;
 
     protected virtual void Awake()
@@ -18,6 +19,7 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
 
     protected virtual void Start()
     {        
+        dataManager_ = GameContainer.Get<DataManager>();
         Destroy(gameObject, weaponLevelData.Duration);
     }
 
@@ -25,7 +27,7 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
     {
         if (collision.CompareTag("NPC"))
         {
-            collision.gameObject.GetComponent<CharacterStats>().TakeDamage(weaponLevelData.Hurt);
+            collision.gameObject.GetComponent<CharacterStats>().TakeDamage(weaponLevelData.Hurt * dataManager_.dataGroup.realTimePlayerData.Attack);
         }
     }
 

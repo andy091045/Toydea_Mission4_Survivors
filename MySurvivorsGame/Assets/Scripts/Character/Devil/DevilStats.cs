@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DataDefinition;
+using UnityEngine.AddressableAssets;
 
 public class DevilStats : CharacterStats
 {
@@ -11,20 +12,27 @@ public class DevilStats : CharacterStats
     [SerializeField] private Vector3 playerDir_ = Vector3.zero;
     [SerializeField] private Vector3 previousPlayerDir_ = Vector3.zero;
     [SerializeField] private Vector3 movementVector_;
-    Rigidbody2D rgbd2d_;
+    Rigidbody2D rgbd2d_;   
 
     protected override void Awake()
     {
         base.Awake();
         rgbd2d_ = GetComponent<Rigidbody2D>();
-        movementVector_ = new Vector3();
+        movementVector_ = new Vector3();        
     }
+
+    
 
     protected override void Start()
     {
         base .Start();
         KeyInputManager.Instance.onHorizontalMoveEvent.AddListener(GetHorizontalValue);
-        KeyInputManager.Instance.onVerticalMoveEvent.AddListener(GetVerticalValue);
+        KeyInputManager.Instance.onVerticalMoveEvent.AddListener(GetVerticalValue);        
+    }
+
+    protected override void Update()
+    {
+        base.Update();        
     }
 
     void GetHorizontalValue(float h)
@@ -39,7 +47,7 @@ public class DevilStats : CharacterStats
 
     protected override void SetInitValue()
     {
-        devilData_ = GameContainer.Get<DataManager>().dataGroup.realTimePlayerData;
+        devilData_ = GameContainer.Get<DataManager>().dataGroup.realTimePlayerData;        
         base.SetInitValue();
     }
 
@@ -47,6 +55,9 @@ public class DevilStats : CharacterStats
     {
         var type = System.Type.GetType(devilData_.InitWeapon);
         AddWeaponController(devilData_.InitWeapon, type);
+
+        type = System.Type.GetType("NirvanaController");
+        AddWeaponController("NirvanaController", type);
     }
 
     void AddWeaponController(string name, System.Type weaponType)
@@ -70,7 +81,7 @@ public class DevilStats : CharacterStats
         unityData.PlayerPos = transform.position;
 
         rgbd2d_.velocity = new Vector2(playerDir_.x * devilData_.Speed, playerDir_.y * devilData_.Speed);
-    }
+    }   
 
     protected override void Dead()
     {

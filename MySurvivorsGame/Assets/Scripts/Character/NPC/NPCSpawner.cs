@@ -69,13 +69,6 @@ public class NPCSpawner : MonoBehaviour
 
     void AddPrefabToGame()
     {
-        //if (objectPoolGroup_.objectPools_.Count != 0)
-        //{
-        //    Debug.Log(objectPoolGroup_.objectPools_[0].Count);
-        //    var apple = objectPoolGroup_.objectPools_[0].Pool.GetInstance();
-        //    apple.GetComponent<VillagerStats>().SetNPCValue(poolData_[0]);
-        //    Debug.Log("444444444444444");
-        //}
         if (objectPoolGroup_.objectPools_.Count != 0)
         {
             //int maxNumber = 0;
