@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     {
         data_ = GameContainer.Get<DataManager>();
         InstantiateUIComponent();
+
     }
 
     void InstantiateUIComponent()

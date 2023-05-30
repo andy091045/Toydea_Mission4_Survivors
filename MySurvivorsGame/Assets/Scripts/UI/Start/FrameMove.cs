@@ -1,11 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class FrameMove : MonoBehaviour
 {
     Transform target_;
     [SerializeField] private float speed = 5f;
+
+    private void Start()
+    {
+        DataManager data = GameContainer.Get<DataManager>();    
+
+        if(data.dataGroup.realTimePlayerData.DevilName == "Reaper")
+        {
+            target_ = GameObject.Find("Reaper").transform;
+            MoveToTartgetPos(target_);
+        }
+        else if (data.dataGroup.realTimePlayerData.DevilName == "BoneMan")
+        {
+            target_ = GameObject.Find("BoneMan").transform;
+            MoveToTartgetPos(target_);
+        }
+    }
 
     public void MoveToTartgetPos(Transform target)
     {
