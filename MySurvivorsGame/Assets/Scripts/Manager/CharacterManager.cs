@@ -8,10 +8,12 @@ using UnityEngine.AddressableAssets;
 public class CharacterManager : MonoBehaviour
 {
     DataManager data_;
+    UnityData unitydata_;
 
     void Start()
     {
         data_ = GameContainer.Get<DataManager>();
+        unitydata_ = GameContainer.Get<UnityData>();
         InstantiateGameObjectComponent();
         InstantiateDevil();
     }
@@ -29,7 +31,8 @@ public class CharacterManager : MonoBehaviour
         {
             if (DevilsData[i].DevilName == data_.dataGroup.realTimePlayerData.DevilName)
             {
-                data_.dataGroup.realTimePlayerData = DevilsData[i];
+                data_.dataGroup.realTimePlayerData = DevilsData[i].Clone();
+                unitydata_.NowDevilData = DevilsData[i].Clone();
                 break;
             }
         }

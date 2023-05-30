@@ -10,4 +10,8 @@ public class EventManager : MonoBehaviour
 
     public delegate void OccurNPCGetHurtEventHandler(string damage, Vector3 worldPos);
     public static OccurNPCGetHurtEventHandler OccurNPCGetHurt;
+
+    //
+    public delegate void OccurRealTimePlayerDataChangeEventHandler();
+    public static OccurRealTimePlayerDataChangeEventHandler OccurRealTimePlayerDataChange;
 }

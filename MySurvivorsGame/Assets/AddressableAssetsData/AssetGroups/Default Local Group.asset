@@ -45,6 +45,10 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/Skill/Fire.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 66b1af1729779ac488f70d53b0826b15
+    m_Address: Assets/Prefabs/Devils/HP.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 931cdc787f575bf43a3ad17aea3455d3, type: 2}
   m_SchemaSet:

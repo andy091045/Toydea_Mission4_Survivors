@@ -4,7 +4,7 @@ using UnityEngine;
 using DataDefinition;
 using UnityEngine.AddressableAssets;
 
-public class DevilStats : CharacterStats
+public class DevilStats : CharacterStats, IHaveHPBar    
 {
     public string DevilName = "";
 
@@ -19,15 +19,14 @@ public class DevilStats : CharacterStats
         base.Awake();
         rgbd2d_ = GetComponent<Rigidbody2D>();
         movementVector_ = new Vector3();        
-    }
-
-    
+    }    
 
     protected override void Start()
     {
         base .Start();
         KeyInputManager.Instance.onHorizontalMoveEvent.AddListener(GetHorizontalValue);
-        KeyInputManager.Instance.onVerticalMoveEvent.AddListener(GetVerticalValue);        
+        KeyInputManager.Instance.onVerticalMoveEvent.AddListener(GetVerticalValue);
+        CreateHPBar();
     }
 
     protected override void Update()
@@ -86,5 +85,13 @@ public class DevilStats : CharacterStats
     protected override void Dead()
     {
 
+    }
+
+    public async void CreateHPBar()
+    {
+        GameObject HPPrefab = await Addressables.LoadAssetAsync<GameObject>("Assets/Prefabs/Devils/HP.prefab").Task;
+        GameObject obj = Instantiate(HPPrefab);
+        obj.transform.parent = transform;
+        obj.transform.position = new Vector3(transform.position.x, transform.position.y + 1.0f , 0);
     }
 }

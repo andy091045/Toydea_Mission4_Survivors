@@ -50,8 +50,9 @@ public class VillagerStats : NPCStats
     {
         if (canAttackDevil_)
         {
-            dataManager.dataGroup.realTimePlayerData.HP -= npcPoolData.Attack;
-            Debug.Log("玩家血量: " + dataManager.dataGroup.realTimePlayerData.HP);
+            unityData.NowDevilData.HP -= npcPoolData.Attack;
+            EventManager.OccurRealTimePlayerDataChange.Invoke();
+            Debug.Log("玩家血量: " + unityData.NowDevilData.HP);
         }
     }
 

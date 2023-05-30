@@ -53,6 +53,24 @@ namespace DataDefinition
         [field: SerializeField] public float DropRate { get; set; }
         [field: SerializeField] public string PrefabPath { get; set; }
         [field: SerializeField] public string InitWeapon { get; set; }
+
+        public DevilData Clone()
+        {
+            return new DevilData()
+            {
+                DevilName = DevilName,
+                Attack = Attack,
+                HP = HP,
+                Speed = Speed,
+                ExpEffect = ExpEffect,
+                AbsorbExpRange = AbsorbExpRange,
+                DamageCut = DamageCut,
+                Recovery = Recovery,
+                DropRate = DropRate,
+                PrefabPath = PrefabPath,
+                InitWeapon = InitWeapon                
+            };
+        }
     }
 
     [Serializable]
