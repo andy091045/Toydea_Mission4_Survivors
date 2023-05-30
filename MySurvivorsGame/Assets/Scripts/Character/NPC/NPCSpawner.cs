@@ -1,6 +1,9 @@
-﻿using DataDefinition;
+﻿using System;
+using DataDefinition;
 using System.Collections;
 using System.Collections.Generic;
+using Codice.CM.SEIDInfo;
+using HD.Pooling;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -8,9 +11,9 @@ public class NPCSpawner : MonoBehaviour
 {
     DataManager data_;
     ObjectPoolGroup objectPoolGroup_;
-    UnityData unityData_;    
+    UnityData unityData_;
     GameObject npcField_;
-    
+
 
     List<NPCPoolData> poolData_ = new List<NPCPoolData>();
 
@@ -18,11 +21,16 @@ public class NPCSpawner : MonoBehaviour
     [SerializeField] private int targetTimeNum_ = 0;
     [SerializeField] private SceneProcessData sceneProcessData_;
 
+    /// <summary>
+    /// 生成データのリスト
+    /// </summary>
+    List<SpawnStrategyInfo> spawnStrategyInfos_ = new();
+
     private void Start()
     {
         data_ = GameContainer.Get<DataManager>();
         objectPoolGroup_ = GameContainer.Get<ObjectPoolGroup>();
-        unityData_ = GameContainer.Get<UnityData>();        
+        unityData_ = GameContainer.Get<UnityData>();
         npcField_ = GameObject.Find("createNPCField");
         poolData_ = data_.dataGroup.npcPoolsData;
         InitializePools();        
@@ -30,15 +38,15 @@ public class NPCSpawner : MonoBehaviour
 
     void Update()
     {
-        totalTime_ += Time.deltaTime;        
+        totalTime_ += Time.deltaTime;
         UpdateSceneProcessData();
-        AddPrefabToGame();   
+        AddPrefabToGame();
     }
 
     async void InitializePools()
     {
         for (int i = 0; i < poolData_.Count; i++)
-        {            
+        {
             GameObject pool = new GameObject(poolData_[i].CharacterName + "Pool");
             pool.AddComponent<BasicPool>();
             pool.GetComponent<BasicPool>().Prefab = await Addressables.LoadAssetAsync<GameObject>(poolData_[i].ObjectPrefabPath).Task;
@@ -47,10 +55,10 @@ public class NPCSpawner : MonoBehaviour
             pool.GetComponent<BasicPool>().Count = poolData_[i].CharacterCount;
             pool.GetComponent<BasicPool>().InstantiateAndAddToGroup();
             pool.transform.parent = transform;
-        }        
+        }
         UpdateSceneProcessData();
         //AddPrefabToGame();
-    }
+    }       
 
     void UpdateSceneProcessData()
     {
@@ -61,68 +69,129 @@ public class NPCSpawner : MonoBehaviour
             if (targetTimeNum_ < data_.dataGroup.sceneProcessData.Count - 1)
             {
                 targetTimeNum_++;
-            }            
-        }       
-    }    
+            }
+        }
+    }
 
     //int Count = 0;
 
     void AddPrefabToGame()
     {
-        if (objectPoolGroup_.objectPools_.Count != 0)
+        if (objectPoolGroup_.objectPools_.Count == poolData_.Count)
+        {           
+            initSpawnInfoList();
+
+            foreach (var info in spawnStrategyInfos_)
+            {
+                spawnNpc(info);
+            }
+        }
+    }
+
+    void initSpawnInfoList()
+    {
+        // 村人のデータ
+        spawnStrategyInfos_.Add(getSpawnStrategyInfo<VillagerStats>());
+
+        // 勇者のデータ
+        spawnStrategyInfos_.Add(getSpawnStrategyInfo<WarriorStats>());
+    }
+
+    /// <summary>
+    /// Npc生成実処理
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    void spawnNpc(SpawnStrategyInfo spawnInfo)
+    {
+        // 作成必要ですか
+        while (spawnInfo.NeedSpawn)
         {
-            //int maxNumber = 0;
-            //for (int i = 0; i < poolData_.Count; i++)
-            //{
-            //    switch(poolData_[i].CharacterName)
-            //    {
-            //        case "VillagerA":
-            //            maxNumber = sceneProcessData_.VillagerACount;
-            //            break;
-            //        case "Warrior":
-            //            maxNumber = sceneProcessData_.WarriorCount;
-            //            break;
-            //        default: break;
-            //    }
+            Vector3 pos = npcField_.GetComponent<CreateNPCField>().GetNPCPosition();
 
-            //    while (unityData_.npcNumber[i] < maxNumber)
-            //    {
-            //        Vector3 pos = npcField_.GetComponent<CreateNPCField>().GetNPCPosition();
-            //        var apple = objectPoolGroup_.objectPools_[0].Pool.GetInstance();
-            //        apple.transform.position = pos;
-            //        //apple.name = $"{Count++}{apple.name}";
-            //        System.Type type = System.Type.GetType(poolData_[i].ClassName);                    
-            //        apple.GetComponent(type).SetNPCValue(poolData_[i].Clone());
-            //        apple.SetActive(true);
-            //        Debug.Log("村民" + unityData_.npcNumber + "的位置在: " + pos + "血量: " + apple.GetComponent<VillagerStats>().npcPoolData.HP);
-            //        unityData_.npcNumber[i]++;
-            //    }
-            //}
+            // PoolからInstanceを取る
+            var npc = spawnInfo.Pool.GetInstance();
 
-            //村民生成
-            while (unityData_.VillagersNumber < sceneProcessData_.VillagerACount)
-            {
-                Vector3 pos = npcField_.GetComponent<CreateNPCField>().GetNPCPosition();
-                var npc = objectPoolGroup_.objectPools_[0].Pool.GetInstance();
-                npc.transform.position = pos;
-                //apple.name = $"{Count++}{apple.name}";
-                npc.GetComponent<VillagerStats>().SetNPCValue(poolData_[0].Clone());
-                npc.SetActive(true);
-                //Debug.Log("村民" + unityData_.VillagersNumber + "的位置在: " + pos + "血量: " + apple.GetComponent<VillagerStats>().npcPoolData.HP);
-                unityData_.VillagersNumber++;
-            }
+            npc.transform.position = pos;
 
-            //勇者生成
-            while (unityData_.WarriorsNumber < sceneProcessData_.WarriorCount)
-            {
-                Vector3 pos = npcField_.GetComponent<CreateNPCField>().GetNPCPosition();
-                var npc = objectPoolGroup_.objectPools_[1].Pool.GetInstance();
-                npc.transform.position = pos;
-                //apple.name = $"{Count++}{apple.name}";
-                npc.GetComponent<WarriorStats>().SetNPCValue(poolData_[1].Clone());
-                npc.SetActive(true);
-                unityData_.WarriorsNumber++;
-            }
-        }       
-    }    
+            // 　Npcにデータを設定する
+            spawnInfo.GetComponentFunc.Invoke(npc).SetNPCValue(spawnInfo.PoolData.Clone());
+
+            npc.SetActive(true);
+
+            // 量を更新する
+            var newCount = spawnInfo.GetCurrentNumber.Invoke() + 1;
+            spawnInfo.SetCurrentNumber.Invoke(newCount);
+        }
+    }
+
+    /// <summary>
+    /// 生成必要な設定を取る
+    /// </summary>
+    /// <returns></returns>
+    SpawnStrategyInfo getSpawnStrategyInfo<T>() where T : NPCStats
+    {
+        var info = new SpawnStrategyInfo();
+        info.GetComponentFunc = o => o.GetComponent<T>();
+        // 村人生成必要なもの
+        if (typeof(T) == typeof(VillagerStats))
+        {
+            info.GetCurrentNumber = () => unityData_.VillagersNumber;
+            info.SetCurrentNumber = newNum => unityData_.VillagersNumber = newNum;
+            info.GetGoalNumber = () => sceneProcessData_.VillagerACount;
+            info.Pool = objectPoolGroup_.objectPools_[0].Pool;
+            info.PoolData = poolData_[0];
+            return info;
+        }
+
+        // 勇者生成必要なもの
+        if (typeof(T) == typeof(WarriorStats))
+        {
+            info.GetCurrentNumber = () => unityData_.WarriorsNumber;
+            info.SetCurrentNumber = newNum => unityData_.WarriorsNumber = newNum;
+            info.GetGoalNumber = () => sceneProcessData_.WarriorCount;
+            info.Pool = objectPoolGroup_.objectPools_[1].Pool;
+            info.PoolData = poolData_[1];
+            return info;
+        }
+
+        throw new UnityException($"Npc作成データを取得エラー: {typeof(T)}");
+    }
+
+    /// <summary>
+    /// 生成必要な設定
+    /// </summary>
+    class SpawnStrategyInfo
+    {
+        /// <summary>
+        /// 今の量を取る方法
+        /// </summary>
+        public Func<int> GetCurrentNumber;
+
+        /// <summary>
+        /// 今の量を設定する方法
+        /// </summary>
+        public Action<int> SetCurrentNumber;
+
+        /// <summary>
+        /// 目標の量を取る方法
+        /// </summary>
+        public Func<int> GetGoalNumber;
+
+        /// <summary>
+        /// データ
+        /// </summary>
+        public NPCPoolData PoolData;
+
+        /// <summary>
+        /// Objectを作る必要なPool
+        /// </summary>
+        public IPool<GameObject> Pool;
+
+        public Func<GameObject, NPCStats> GetComponentFunc;
+
+        /// <summary>
+        /// 作成必要ですか
+        /// </summary>
+        public bool NeedSpawn => GetCurrentNumber.Invoke() < GetGoalNumber.Invoke();
+    }
 }
