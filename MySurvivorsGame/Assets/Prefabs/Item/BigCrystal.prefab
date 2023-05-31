@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5033744946626949354}
   - component: {fileID: 8075177563170086014}
-  - component: {fileID: -8034021294295456744}
+  - component: {fileID: -8717881743413324718}
   m_Layer: 0
   m_Name: BigCrystal
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-8034021294295456744
+--- !u!114 &-8717881743413324718
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,6 +94,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1081641123046683299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32fe050105fc324428d6f03fafafac63, type: 3}
+  m_Script: {fileID: 11500000, guid: fec9b53cd027a0e45bd39cdd29da3102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

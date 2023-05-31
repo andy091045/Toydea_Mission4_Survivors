@@ -14,4 +14,8 @@ public class EventManager : MonoBehaviour
     //
     public delegate void OccurRealTimePlayerDataChangeEventHandler();
     public static OccurRealTimePlayerDataChangeEventHandler OccurRealTimePlayerDataChange;
+
+    //EXPBar.cs instance
+    public delegate void OccurDevilGetEXPStalEventHandler();
+    public static OccurDevilGetEXPStalEventHandler OccurDevilGetEXPStal;
 }

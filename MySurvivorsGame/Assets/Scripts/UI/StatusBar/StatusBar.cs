@@ -6,12 +6,11 @@ public class StatusBar : MonoBehaviour
 {
     public DataManager dataManager;
     public UnityData unityData;
-
-    [SerializeField] Transform bar;
+    public GameObject bar;
 
     protected virtual void Awake()
     {
-        bar = transform;
+        bar = gameObject;
     }
 
     protected virtual void Start()

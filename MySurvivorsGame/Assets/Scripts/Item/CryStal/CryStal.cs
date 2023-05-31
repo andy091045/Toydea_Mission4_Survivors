@@ -54,6 +54,7 @@ public class CryStal : MonoBehaviour
     void RemoveCrystal()
     {
         unityData_.EXP += expValue;
+        EventManager.OccurDevilGetEXPStal.Invoke();
         canMove_ = false;
         gameObject.SetActive(false);
     }
