@@ -1,9 +1,11 @@
 using DataDefinition;
 using DataProcess;
+using log4net.Core;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class DataManager
 {
@@ -103,5 +105,20 @@ public class DataManager
         }
         Debug.Log("‘I¢" + dataGroup.realTimePlayerData.DevilName);
         Debug.Log("˜Hœl" + dataGroup.realTimePlayerData.PrefabPath);
+
+        
     }
+
+    /// <summary>
+    /// –‚‰¤‚ÌƒŒƒxƒ‹‘—¿‚ğŒvZ‚·‚é
+    /// </summary>
+    //public (int , float)  CalculateDevilLevel(int level, float exp)
+    //{
+    //    int resultlevel = 1;
+    //    float ramainEx = 1.2f;
+    //    return (resultlevel, ramainEx);
+    //}
+    //var(level, exp) = CalculateDevilLevel(1, 1.2f);
+    //int i = level;
+
 }

@@ -34,12 +34,12 @@ public class NirvanaController : WeaponController
     private IEnumerator PlayNirvana()
     {
         nirvana_.SetActive(true);
-        dataManager.dataGroup.realTimePlayerData.Attack *= 2;
+        unityData.NowDevilData.Attack *= 2;
         canMoveNirvana_ = true;
         nirvana_.transform.position = unityData.PlayerPos;
         yield return new WaitForSeconds(nirvanaTime_);
         nirvana_.SetActive(false);
-        dataManager.dataGroup.realTimePlayerData.Attack /= 2;
+        unityData.NowDevilData.Attack /= 2;
         canMoveNirvana_ = false;
     }
 

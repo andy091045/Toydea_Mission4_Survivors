@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using DataDefinition;
 using UnityEngine.AddressableAssets;
+using NaughtyAttributes;
 
 public class DevilStats : CharacterStats, IHaveHPBar    
 {
-    public string DevilName = "";
-
+    [Label("イニシャル魔王資料")]
     [SerializeField] private DevilData devilData_;
-    [SerializeField] private Vector3 playerDir_ = Vector3.zero;
-    [SerializeField] private Vector3 previousPlayerDir_ = Vector3.zero;
-    [SerializeField] private Vector3 movementVector_;
+
+    [Label("魔王ランク")]
+    [SerializeField] private int devilLevel_ = 0;
+
+    Vector3 playerDir_ = Vector3.zero;
+    Vector3 previousPlayerDir_ = Vector3.zero;
+    Vector3 movementVector_;
     Rigidbody2D rgbd2d_;   
 
     protected override void Awake()
@@ -31,7 +35,7 @@ public class DevilStats : CharacterStats, IHaveHPBar
 
     protected override void Update()
     {
-        base.Update();        
+        base.Update();             
     }
 
     void GetHorizontalValue(float h)

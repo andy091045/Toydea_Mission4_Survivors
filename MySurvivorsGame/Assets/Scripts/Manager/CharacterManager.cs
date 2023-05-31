@@ -45,8 +45,7 @@ public class CharacterManager : MonoBehaviour
         GameObject prefabObj = await Addressables.LoadAssetAsync<GameObject>(data_.dataGroup.realTimePlayerData.PrefabPath).Task;
         GameObject devilObject = Instantiate(prefabObj);
         
-        devilObject.AddComponent<DevilStats>();
-        devilObject.GetComponent<DevilStats>().DevilName = data_.dataGroup.realTimePlayerData.DevilName;
+        devilObject.AddComponent<DevilStats>();        
         EventManager.OccurInstantiateDevil.Invoke();
     }
 }

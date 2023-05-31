@@ -27,7 +27,7 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
     {
         if (collision.CompareTag("NPC"))
         {
-            collision.gameObject.GetComponent<CharacterStats>().TakeDamage(weaponLevelData.Hurt * dataManager_.dataGroup.realTimePlayerData.Attack);
+            collision.gameObject.GetComponent<CharacterStats>().TakeDamage(weaponLevelData.Hurt * unityData_.NowDevilData.Attack);
         }
     }
 

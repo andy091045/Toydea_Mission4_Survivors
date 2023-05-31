@@ -14,5 +14,9 @@ public class UnityData
     public int VillagersNumber = 0;
     public int WarriorsNumber = 0;
 
-    public float TotalEXP = 0;
+    /// <summary>
+    /// –‚‰¤‚ÌƒŒƒxƒ‹Ž‘—¿
+    /// </summary>
+    public float EXP = 0;
+    public int DevilLevel = 0;
 }
