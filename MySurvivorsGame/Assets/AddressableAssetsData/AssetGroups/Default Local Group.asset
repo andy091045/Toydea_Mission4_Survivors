@@ -61,6 +61,10 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/Item/SmallCrystal.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 1139f3d0ad53ca0448344d8cb66e7e75
+    m_Address: Assets/Prefabs/UI/Exp_Bar.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 931cdc787f575bf43a3ad17aea3455d3, type: 2}
   m_SchemaSet:
