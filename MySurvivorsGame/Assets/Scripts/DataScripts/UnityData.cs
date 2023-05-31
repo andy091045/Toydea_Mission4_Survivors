@@ -13,4 +13,6 @@ public class UnityData
 
     public int VillagersNumber = 0;
     public int WarriorsNumber = 0;
+
+    public float TotalEXP = 0;
 }

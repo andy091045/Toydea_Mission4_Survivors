@@ -2,12 +2,20 @@ using DataDefinition;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class NPCStats : CharacterStats
 {
     public NPCsData npcPoolData;
 
+    ObjectPoolGroup objectPoolGroup_;
     float maxLengthWithDevil = 20.0f;
+
+    protected override void Start()
+    {
+        base.Start();
+        objectPoolGroup_ = GameContainer.Get<ObjectPoolGroup>();
+    }
 
     protected override void Update()
     {
@@ -34,5 +42,27 @@ public class NPCStats : CharacterStats
     public void SetNPCValue(NPCsData data)
     {
         npcPoolData = data;
+    }
+
+    protected override void Dead()
+    {
+        int value = -100;
+        for (int i = 0; i < objectPoolGroup_.CrystalPools.Count; i++)
+        {
+            if (objectPoolGroup_.CrystalPools[i].ObjectName == npcPoolData.DropCrystalType)
+            {
+                value = i; break;
+            }
+        }
+
+        if(value == -100)
+        {
+            Debug.LogError("–¢Q“ž‘Š›”œä“Ipool");
+        }
+
+        GameObject crystal = objectPoolGroup_.CrystalPools[value].Pool.GetInstance();
+        crystal.transform.position = transform.position;
+        crystal.SetActive(true);
+        base.Dead();
     }
 }

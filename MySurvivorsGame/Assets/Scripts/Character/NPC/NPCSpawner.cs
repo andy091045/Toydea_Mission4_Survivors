@@ -48,12 +48,11 @@ public class NPCSpawner : MonoBehaviour
         for (int i = 0; i < poolData_.Count; i++)
         {
             GameObject pool = new GameObject(poolData_[i].CharacterName + "Pool");
-            pool.AddComponent<BasicPool>();
-            pool.GetComponent<BasicPool>().Prefab = await Addressables.LoadAssetAsync<GameObject>(poolData_[i].ObjectPrefabPath).Task;
-            //System.Type type = System.Type.GetType(poolData_[i].ClassName);
-            //pool.GetComponent<BasicPool>().Prefab.AddComponent();
-            pool.GetComponent<BasicPool>().Count = poolData_[i].CharacterCount;
-            pool.GetComponent<BasicPool>().InstantiateAndAddToGroup();
+            BasicPool basicPool = pool.AddComponent<BasicPool>();
+            GameObject prefab = await Addressables.LoadAssetAsync<GameObject>(poolData_[i].ObjectPrefabPath).Task;            
+            int count = poolData_[i].CharacterCount;
+            basicPool.InstantiatePool(poolData_[i].Clone().CharacterName, prefab, count);
+            objectPoolGroup_.AddNPCPool(basicPool);
             pool.transform.parent = transform;
         }
         UpdateSceneProcessData();

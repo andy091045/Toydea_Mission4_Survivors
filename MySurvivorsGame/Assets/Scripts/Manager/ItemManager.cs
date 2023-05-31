@@ -6,10 +6,12 @@ using UnityEngine.AddressableAssets;
 public class ItemManager : MonoBehaviour
 {
     DataManager dataManager_;
+    ObjectPoolGroup objectPoolGroup_;
 
     private void Start()
     {
         dataManager_ = GameContainer.Get<DataManager>();
+        objectPoolGroup_ = GameContainer.Get<ObjectPoolGroup>();
         InitializeCrystalPools();
     }
 
@@ -17,12 +19,14 @@ public class ItemManager : MonoBehaviour
     {
         for (int i = 0; i < dataManager_.dataGroup.crystalsData.Count; i++)
         {
-            GameObject crystalPool = new GameObject(dataManager_.dataGroup.crystalsData[i].CrystalName + "Pool");
-            crystalPool.AddComponent<BasicPool>();
-            crystalPool.GetComponent<BasicPool>().Prefab = await Addressables.LoadAssetAsync<GameObject>(dataManager_.dataGroup.crystalsData[i].PrefabPath).Task;
+            GameObject obj = new GameObject(dataManager_.dataGroup.crystalsData[i].CrystalName + "Pool");
+            CrystalPool crystalPool = obj.AddComponent<CrystalPool>();
 
-            crystalPool.GetComponent<BasicPool>().Count = dataManager_.dataGroup.crystalsData[i].Count;
-            crystalPool.GetComponent<BasicPool>().InstantiateAndAddToGroup();
+            string crystalName = dataManager_.dataGroup.crystalsData[i].Clone().CrystalName;
+            GameObject prefab = await Addressables.LoadAssetAsync<GameObject>(dataManager_.dataGroup.crystalsData[i].PrefabPath).Task;
+            int count = dataManager_.dataGroup.crystalsData[i].Clone().Count;
+            crystalPool.InstantiatePool(crystalName, prefab, count);
+            crystalPool.AddToGroup();
         }
     }
 }

@@ -1,22 +1,27 @@
 using HD.Pooling;
+using UnityEditor;
 using UnityEngine;
 
 public class BasicPool : MonoBehaviour
 {
-    public GameObject Prefab;
-    public int Count;
+    public string ObjectName = "";
     public IPool<GameObject> Pool { get; private set; }
 
-    ObjectPoolGroup objectPoolGroup_;
+    public ObjectPoolGroup objectPoolGroup_;
     
-    private void Awake()
+    protected virtual void Awake()
     {
         objectPoolGroup_ = GameContainer.Get<ObjectPoolGroup>();
     }
 
-    public void InstantiateAndAddToGroup()
+    public virtual void InstantiatePool(string name, GameObject obj, int count)
     {
-        Pool = new ListPool<GameObject>(() => Instantiate(Prefab), Count, g => g.activeInHierarchy, true);
-        objectPoolGroup_.AddNPCPool(this);
+        ObjectName = name;
+        Pool = new ListPool<GameObject>(() => Instantiate(obj), count, g => g.activeInHierarchy, true);
+    }
+
+    public virtual void AddToGroup()
+    {
+        //objectPoolGroup_.AddNPCPool(this);
     }
 }

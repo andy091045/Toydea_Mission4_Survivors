@@ -52,7 +52,7 @@ public class VillagerStats : NPCStats
         {
             unityData.NowDevilData.HP -= npcPoolData.Attack;
             EventManager.OccurRealTimePlayerDataChange.Invoke();
-            Debug.Log("玩家血量: " + unityData.NowDevilData.HP);
+            //Debug.Log("玩家血量: " + unityData.NowDevilData.HP);
         }
     }
 
@@ -79,6 +79,7 @@ public class VillagerStats : NPCStats
 
     protected override void Dead()
     {
+        base.Dead();
         //Debug.Log("村民死了");
         unityData.VillagersNumber--;
         gameObject.SetActive(false);

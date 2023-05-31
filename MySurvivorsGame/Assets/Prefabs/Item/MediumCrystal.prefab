@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8203111668880609783}
   - component: {fileID: 4005713470875575168}
+  - component: {fileID: -5147553523831292099}
   m_Layer: 0
   m_Name: MediumCrystal
   m_TagString: Untagged
@@ -84,3 +85,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-5147553523831292099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5919460474100417731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32fe050105fc324428d6f03fafafac63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
