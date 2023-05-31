@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ObjectPoolGroup
 {
-    public List<BasicPool> objectPools_ = new List<BasicPool>();    
-    public void AddPool(BasicPool objectPool)
+    public List<BasicPool> NPCPools= new List<BasicPool>();    
+    public void AddNPCPool(BasicPool objectPool)
     {
-        objectPools_.Add(objectPool);
+        NPCPools.Add(objectPool);
     }
 }

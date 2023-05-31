@@ -49,6 +49,18 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/Devils/HP.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: fd09111e9530b024cb4dff8c4c751a42
+    m_Address: Assets/Prefabs/Item/BigCrystal.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b0a6e490baabeb542885f80dc05badc0
+    m_Address: Assets/Prefabs/Item/MediumCrystal.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d42b75f19f382dd4f83dea7f8d80e10f
+    m_Address: Assets/Prefabs/Item/SmallCrystal.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 931cdc787f575bf43a3ad17aea3455d3, type: 2}
   m_SchemaSet:

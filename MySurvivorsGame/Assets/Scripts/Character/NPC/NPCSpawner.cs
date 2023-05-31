@@ -15,7 +15,7 @@ public class NPCSpawner : MonoBehaviour
     GameObject npcField_;
 
 
-    List<NPCPoolData> poolData_ = new List<NPCPoolData>();
+    List<NPCsData> poolData_ = new List<NPCsData>();
 
     [SerializeField] private float totalTime_ = 0;
     [SerializeField] private int targetTimeNum_ = 0;
@@ -32,7 +32,7 @@ public class NPCSpawner : MonoBehaviour
         objectPoolGroup_ = GameContainer.Get<ObjectPoolGroup>();
         unityData_ = GameContainer.Get<UnityData>();
         npcField_ = GameObject.Find("createNPCField");
-        poolData_ = data_.dataGroup.npcPoolsData;
+        poolData_ = data_.dataGroup.npcsData;
         InitializePools();        
     }
 
@@ -77,7 +77,7 @@ public class NPCSpawner : MonoBehaviour
 
     void AddPrefabToGame()
     {
-        if (objectPoolGroup_.objectPools_.Count == poolData_.Count)
+        if (objectPoolGroup_.NPCPools.Count == poolData_.Count)
         {           
             initSpawnInfoList();
 
@@ -138,7 +138,7 @@ public class NPCSpawner : MonoBehaviour
             info.GetCurrentNumber = () => unityData_.VillagersNumber;
             info.SetCurrentNumber = newNum => unityData_.VillagersNumber = newNum;
             info.GetGoalNumber = () => sceneProcessData_.VillagerACount;
-            info.Pool = objectPoolGroup_.objectPools_[0].Pool;
+            info.Pool = objectPoolGroup_.NPCPools[0].Pool;
             info.PoolData = poolData_[0];
             return info;
         }
@@ -149,7 +149,7 @@ public class NPCSpawner : MonoBehaviour
             info.GetCurrentNumber = () => unityData_.WarriorsNumber;
             info.SetCurrentNumber = newNum => unityData_.WarriorsNumber = newNum;
             info.GetGoalNumber = () => sceneProcessData_.WarriorCount;
-            info.Pool = objectPoolGroup_.objectPools_[1].Pool;
+            info.Pool = objectPoolGroup_.NPCPools[1].Pool;
             info.PoolData = poolData_[1];
             return info;
         }
@@ -180,7 +180,7 @@ public class NPCSpawner : MonoBehaviour
         /// <summary>
         /// データ
         /// </summary>
-        public NPCPoolData PoolData;
+        public NPCsData PoolData;
 
         /// <summary>
         /// Objectを作る必要なPool

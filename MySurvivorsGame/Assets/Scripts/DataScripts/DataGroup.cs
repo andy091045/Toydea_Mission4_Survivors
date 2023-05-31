@@ -12,17 +12,14 @@ namespace DataDefinition
     public class DataGroup
     {
         public List<DatasPath> datasPath = new List<DatasPath>();
-
         public List<DevilData> devilsData = new List<DevilData>();
         public DevilData realTimePlayerData = new DevilData();
-
         public List<WeaponData> weaponsData = new List<WeaponData>();
-
         public RealTimeData realTimeData = new RealTimeData();
-
         public List<SceneProcessData> sceneProcessData = new List<SceneProcessData>();
-
-        public List<NPCPoolData> npcPoolsData = new List<NPCPoolData>();
+        public List<NPCsData> npcsData = new List<NPCsData>();
+        public List<CrystalsData> crystalsData = new List<CrystalsData>();
+        public List<LevelData> levelData = new List<LevelData>();
     }
 
     [Serializable]
@@ -140,7 +137,7 @@ namespace DataDefinition
     }
 
     [Serializable]
-    public class NPCPoolData
+    public class NPCsData
     {
         [field: SerializeField] public string CharacterName { get; set; }
         [field: SerializeField] public int CharacterCount { get; set; }
@@ -151,10 +148,11 @@ namespace DataDefinition
         [field: SerializeField] public float Speed { get; set; }
         [field: SerializeField] public float CooldownDuration { get; set; }
         [field: SerializeField] public string SheetName { get; set; }
+        [field: SerializeField] public string DropCrystalType { get; set; }
 
-        public NPCPoolData Clone()
+        public NPCsData Clone()
         {
-            return new NPCPoolData()
+            return new NPCsData()
             {
                 CharacterName = CharacterName,
                 CharacterCount = CharacterCount,
@@ -164,8 +162,45 @@ namespace DataDefinition
                 Attack = Attack,
                 Speed = Speed,
                 CooldownDuration = CooldownDuration,
-                SheetName = SheetName
+                SheetName = SheetName,
+                DropCrystalType = DropCrystalType
             };
         }
-    }    
+    }
+
+    [Serializable]
+    public class CrystalsData
+    {
+        [field: SerializeField] public string CrystalName { get; set; }
+        [field: SerializeField] public string PrefabPath { get; set; }        
+        [field: SerializeField] public float EXPValue { get; set; }
+        [field: SerializeField] public int Count { get; set; }
+
+        public CrystalsData Clone()
+        {
+            return new CrystalsData()
+            {
+                CrystalName = CrystalName,
+                PrefabPath = PrefabPath,
+                EXPValue = EXPValue,
+                Count = Count
+            };
+        }
+    }
+
+    [Serializable]
+    public class LevelData
+    {
+        [field: SerializeField] public int Level { get; set; }
+        [field: SerializeField] public float NeedEXP { get; set; }
+
+        public LevelData Clone()
+        {
+            return new LevelData()
+            {
+                Level = Level,
+                NeedEXP = NeedEXP
+            };
+        }
+    }
 }

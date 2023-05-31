@@ -17,6 +17,6 @@ public class BasicPool : MonoBehaviour
     public void InstantiateAndAddToGroup()
     {
         Pool = new ListPool<GameObject>(() => Instantiate(Prefab), Count, g => g.activeInHierarchy, true);
-        objectPoolGroup_.AddPool(this);
+        objectPoolGroup_.AddNPCPool(this);
     }
 }

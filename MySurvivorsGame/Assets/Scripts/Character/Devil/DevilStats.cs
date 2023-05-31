@@ -92,6 +92,6 @@ public class DevilStats : CharacterStats, IHaveHPBar
         GameObject HPPrefab = await Addressables.LoadAssetAsync<GameObject>("Assets/Prefabs/Devils/HP.prefab").Task;
         GameObject obj = Instantiate(HPPrefab);
         obj.transform.parent = transform;
-        obj.transform.position = new Vector3(transform.position.x, transform.position.y + 1.0f , 0);
+        obj.transform.position = new Vector3(transform.position.x -0.9f, transform.position.y + 1.2f , 0);
     }
 }

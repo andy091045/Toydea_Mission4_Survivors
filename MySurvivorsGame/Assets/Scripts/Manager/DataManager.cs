@@ -53,7 +53,21 @@ public class DataManager
         excelPath = Path.Combine(Application.streamingAssetsPath, dataGroup.datasPath[6].Path);
         excelSheetName = dataGroup.datasPath[6].Name;
         excelRowData = excelReadWrite.ReadExcel(excelPath, excelSheetName);
-        dataGroup.npcPoolsData = excelReadWrite.ParseListDataJson<NPCPoolData>(excelRowData);
+        dataGroup.npcsData = excelReadWrite.ParseListDataJson<NPCsData>(excelRowData);
+        //------------------------------------------------------------------------------------
+
+        //CrystalsData
+        excelPath = Path.Combine(Application.streamingAssetsPath, dataGroup.datasPath[7].Path);
+        excelSheetName = dataGroup.datasPath[7].Name;
+        excelRowData = excelReadWrite.ReadExcel(excelPath, excelSheetName);
+        dataGroup.crystalsData = excelReadWrite.ParseListDataJson<CrystalsData>(excelRowData);
+        //------------------------------------------------------------------------------------
+
+        //LevelData
+        excelPath = Path.Combine(Application.streamingAssetsPath, dataGroup.datasPath[8].Path);
+        excelSheetName = dataGroup.datasPath[8].Name;
+        excelRowData = excelReadWrite.ReadExcel(excelPath, excelSheetName);
+        dataGroup.levelData = excelReadWrite.ParseListDataJson<LevelData>(excelRowData);
     }
 
     public void StoreDataGroup()

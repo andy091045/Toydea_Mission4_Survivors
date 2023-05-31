@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class NPCStats : CharacterStats
 {
-    public NPCPoolData npcPoolData;
+    public NPCsData npcPoolData;
 
     float maxLengthWithDevil = 20.0f;
 
@@ -31,7 +31,7 @@ public class NPCStats : CharacterStats
         return Mathf.Sqrt(measuredLength);
     }
 
-    public void SetNPCValue(NPCPoolData data)
+    public void SetNPCValue(NPCsData data)
     {
         npcPoolData = data;
     }
