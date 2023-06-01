@@ -59,11 +59,14 @@ public class WeaponController : MonoBehaviour
 
     protected virtual void Update()
     {
-        CurrentWeaponLevelData.Cooldown -= Time.deltaTime;
-        if(CurrentWeaponLevelData.Cooldown < 0)
+        if(CurrentWeaponLevelData != null)
         {
-            Attack();
-        }
+            CurrentWeaponLevelData.Cooldown -= Time.deltaTime;
+            if (CurrentWeaponLevelData.Cooldown < 0)
+            {
+                Attack();
+            }
+        }        
     }
 
     protected virtual void Attack()
