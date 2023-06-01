@@ -14,8 +14,8 @@ public class UnityData
     public int VillagersNumber = 0;
     public int WarriorsNumber = 0;
 
-    public List<ItemsType> HoldItems = new List<ItemsType>();
-    public List<WeaponsType> HoldWeapons = new List<WeaponsType>();
+    public List<string> HoldItems = new List<string>();
+    public List<string> HoldWeapons = new List<string>();
 
     public BindableProperty<bool> IsInNirvanaTime = new BindableProperty<bool>();
     public BindableProperty<float> EXP = new BindableProperty<float>();
@@ -27,14 +27,4 @@ public class UnityData
         EXP.Value = 0;
         DevilLevel.Value = 0;
     }
-}
-
-public enum ItemsType
-{
-    Speed, AbsorbExpRange
-}
-
-public enum WeaponsType
-{
-    MagicBall
 }

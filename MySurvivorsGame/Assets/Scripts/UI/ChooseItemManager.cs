@@ -4,28 +4,43 @@ using UnityEngine;
 
 public class ChooseItemManager : MonoBehaviour
 {
-    [SerializeField] public Transform Button1;
-    [SerializeField] public Transform Button2;
-    [SerializeField] public Transform Button3;
+    public GameObject Button1;
+    public GameObject Button2;
+    public GameObject Button3;
 
     UnityData unityData_;
 
     private void Start()
     {
         unityData_ = GameContainer.Get<UnityData>();
-        Debug.Log("ˆÂçä1ˆÊ’u: " + Button1.position);
-        Debug.Log("ˆÂçä2ˆÊ’u: " + Button2.position);
-        Debug.Log("ˆÂçä3ˆÊ’u: " + Button3.position);
+        unityData_.DevilLevel.OnValueChanged += ButtonSet;
+        CloseButton();
     }
 
-    public void ChooseItem(ItemsType itemsType)
+    void CloseButton()
     {
-        unityData_.HoldItems.Add(itemsType);
+        Button1.SetActive(false);
+        Button2.SetActive(false);
+        Button3.SetActive(false);
     }
 
-    public void ChooseWeapon(WeaponsType weaponsType)
+    void ButtonSet(int level)
     {
-        unityData_.HoldWeapons.Add(weaponsType);
+        Button1.SetActive(true);
+        Button2.SetActive(true);
+        Button3.SetActive(true);
+    }
+
+    public void ChooseItem(string itemName)
+    {
+        //unityData_.HoldItems.Add(itemsType);
+        CloseButton();
+    }
+
+    public void ChooseWeapon(string WeaponName)
+    {
+        //unityData_.HoldWeapons.Add(weaponsType);
+        CloseButton();
     }
 }
 
