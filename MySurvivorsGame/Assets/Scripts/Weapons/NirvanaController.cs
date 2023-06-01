@@ -13,7 +13,7 @@ public class NirvanaController : WeaponController
     {
         //Nirvana
         InitNirvana();
-        KeyInputManager.Instance.onNirvanaUseEvent.AddListener(UseNirvana);
+        KeyInputManager.Instance.IsInNirvanaTime.OnValueChanged += UseNirvana;
     }
 
     async void InitNirvana()
@@ -32,12 +32,21 @@ public class NirvanaController : WeaponController
         nirvana_.transform.position = unityData.PlayerPos;
         yield return new WaitForSeconds(nirvanaTime_);
         nirvana_.SetActive(false);
+        KeyInputManager.Instance.IsInNirvanaTime.Value = false;
         unityData.NowDevilData.Attack /= 5;
         unityData.NowDevilData.AttackCooldown *= 10;
     }
 
-    private void UseNirvana()
+    private void UseNirvana(bool isUseNirvana)
     {
-        StartCoroutine(PlayNirvana());
+        if (isUseNirvana)
+        {
+            StartCoroutine(PlayNirvana());
+        }        
+    }
+
+    private void OnDestroy()
+    {
+        KeyInputManager.Instance.IsInNirvanaTime.OnValueChanged -= UseNirvana;
     }
 }

@@ -1,3 +1,4 @@
+using HD.FrameworkDesign;
 using HD.Singleton;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +11,8 @@ public class KeyInputManager : TSingletonMonoBehavior<KeyInputManager>
     [Header("PlayerMoveEvent")]
     public UnityEvent<float> onHorizontalMoveEvent = new UnityEvent<float>();
     public UnityEvent<float> onVerticalMoveEvent = new UnityEvent<float>();
-    public UnityEvent onNirvanaUseEvent = new UnityEvent();
+    //public UnityEvent onNirvanaUseEvent = new UnityEvent();
+    public BindableProperty<bool> IsInNirvanaTime = new BindableProperty<bool>();
 
     private void Update()
     {
@@ -24,7 +26,7 @@ public class KeyInputManager : TSingletonMonoBehavior<KeyInputManager>
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            onNirvanaUseEvent.Invoke();
+            IsInNirvanaTime.Value = true;
         }
     }
 
@@ -32,6 +34,5 @@ public class KeyInputManager : TSingletonMonoBehavior<KeyInputManager>
     {
         onHorizontalMoveEvent.RemoveAllListeners();
         onVerticalMoveEvent.RemoveAllListeners();
-        onNirvanaUseEvent.RemoveAllListeners();
     }
 }

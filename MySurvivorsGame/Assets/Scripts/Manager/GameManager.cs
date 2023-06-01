@@ -13,9 +13,8 @@ public class GameManager : MonoBehaviour
         dataReadStore_ = GameContainer.Get<DataManager>();
         unityData_ = GameContainer.Get<UnityData>();
         dataReadStore_.SetDataGroup();
-        unityData_.DevilLevel.Value = 0;
-        unityData_.EXP.Value = 0;
-    }
+        unityData_.SetUnityData();
+    }    
 
     public void LoadScene(int i)
     {

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.U2D;
 
 /// <summary>
 /// Base script for all weapon controllers
@@ -24,6 +25,7 @@ public class WeaponController : MonoBehaviour
     public WeaponLevelData CurrentWeaponLevelData;
     public int WeaponLevel = 1;
 
+
     protected virtual void Awake()
     {
         unityData = GameContainer.Get<UnityData>();
@@ -33,7 +35,7 @@ public class WeaponController : MonoBehaviour
     protected virtual void Start()
     {        
         InstantiateWeapon();
-        KeyInputManager.Instance.onNirvanaUseEvent.AddListener(ResetCooldown);
+        KeyInputManager.Instance.IsInNirvanaTime.OnValueChanged += ResetCooldown;        
     }
 
     private async void InstantiateWeapon()
@@ -86,8 +88,22 @@ public class WeaponController : MonoBehaviour
         CurrentWeaponLevelData.Cooldown *= unityData.NowDevilData.AttackCooldown;
     }
 
-    void ResetCooldown()
+    void ResetCooldown(bool isUseNirvana)
     {
-        CurrentWeaponLevelData.Cooldown = 0;
+        if (isUseNirvana)
+        {
+            CurrentWeaponLevelData.Cooldown = 0;
+            Prefab.GetComponent<Light2DBase>().enabled = true;
+        }
+        else
+        {
+            Prefab.GetComponent<Light2DBase>().enabled = false;
+        }        
+    }
+
+    private void OnDestroy()
+    {
+        KeyInputManager.Instance.IsInNirvanaTime.OnValueChanged -= ResetCooldown;
+        Prefab.GetComponent<Light2DBase>().enabled = false;
     }
 }
