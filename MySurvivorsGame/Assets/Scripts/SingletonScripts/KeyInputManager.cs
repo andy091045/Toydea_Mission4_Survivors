@@ -11,8 +11,8 @@ public class KeyInputManager : TSingletonMonoBehavior<KeyInputManager>
     [Header("PlayerMoveEvent")]
     public UnityEvent<float> onHorizontalMoveEvent = new UnityEvent<float>();
     public UnityEvent<float> onVerticalMoveEvent = new UnityEvent<float>();
-    //public UnityEvent onNirvanaUseEvent = new UnityEvent();
-    public BindableProperty<bool> IsInNirvanaTime = new BindableProperty<bool>();
+    public UnityEvent onNirvanaUseEvent = new UnityEvent();
+    
 
     private void Update()
     {
@@ -26,7 +26,7 @@ public class KeyInputManager : TSingletonMonoBehavior<KeyInputManager>
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            IsInNirvanaTime.Value = true;
+            onNirvanaUseEvent.Invoke();
         }
     }
 
@@ -34,5 +34,6 @@ public class KeyInputManager : TSingletonMonoBehavior<KeyInputManager>
     {
         onHorizontalMoveEvent.RemoveAllListeners();
         onVerticalMoveEvent.RemoveAllListeners();
+        onNirvanaUseEvent.RemoveAllListeners();
     }
 }

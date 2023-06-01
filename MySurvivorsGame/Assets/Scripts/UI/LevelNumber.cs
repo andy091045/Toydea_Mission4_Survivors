@@ -12,7 +12,7 @@ public class LevelNumber : MonoBehaviour
     void Start()
     {
         unityData_ = GameContainer.Get<UnityData>();
-        unityData_.DevilLevel.OnValueChanged += ChangeText;
+        EventManager.DevilLevel.OnValueChanged += ChangeText;
     }
 
     void ChangeText(int level)
@@ -22,6 +22,6 @@ public class LevelNumber : MonoBehaviour
 
     private void OnDestroy()
     {
-        unityData_.DevilLevel.OnValueChanged -= ChangeText;
+        EventManager.DevilLevel.OnValueChanged -= ChangeText;
     }
 }

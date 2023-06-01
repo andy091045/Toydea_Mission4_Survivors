@@ -19,13 +19,4 @@ public class UnityData
     /// </summary>
     //public float EXP = 0;
     //public int DevilLevel = 0;
-
-    public BindableProperty<float> EXP = new BindableProperty<float>();
-    public BindableProperty<int> DevilLevel = new BindableProperty<int>();    
-
-    public void SetUnityData()
-    {
-        DevilLevel.Value = 0;
-        EXP.Value = 0;
-    }
 }

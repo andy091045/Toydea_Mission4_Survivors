@@ -13,7 +13,7 @@ public class NirvanaController : WeaponController
     {
         //Nirvana
         InitNirvana();
-        KeyInputManager.Instance.IsInNirvanaTime.OnValueChanged += UseNirvana;
+        EventManager.IsInNirvanaTime.OnValueChanged += UseNirvana;
     }
 
     async void InitNirvana()
@@ -32,7 +32,7 @@ public class NirvanaController : WeaponController
         nirvana_.transform.position = unityData.PlayerPos;
         yield return new WaitForSeconds(nirvanaTime_);
         nirvana_.SetActive(false);
-        KeyInputManager.Instance.IsInNirvanaTime.Value = false;
+        EventManager.IsInNirvanaTime.Value = false;
         unityData.NowDevilData.Attack /= 5;
         unityData.NowDevilData.AttackCooldown *= 10;
     }
@@ -47,6 +47,6 @@ public class NirvanaController : WeaponController
 
     private void OnDestroy()
     {
-        KeyInputManager.Instance.IsInNirvanaTime.OnValueChanged -= UseNirvana;
+        EventManager.IsInNirvanaTime.OnValueChanged -= UseNirvana;
     }
 }
