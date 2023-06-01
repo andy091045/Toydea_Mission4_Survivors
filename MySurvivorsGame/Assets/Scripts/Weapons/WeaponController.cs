@@ -35,7 +35,7 @@ public class WeaponController : MonoBehaviour
     protected virtual void Start()
     {        
         InstantiateWeapon();
-        EventManager.IsInNirvanaTime.OnValueChanged += ResetCooldown;        
+        unityData.IsInNirvanaTime.OnValueChanged += ResetCooldown;        
     }
 
     private async void InstantiateWeapon()
@@ -103,7 +103,7 @@ public class WeaponController : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventManager.IsInNirvanaTime.OnValueChanged -= ResetCooldown;
+        unityData.IsInNirvanaTime.OnValueChanged -= ResetCooldown;
         Prefab.GetComponent<Light2DBase>().enabled = false;
     }
 }

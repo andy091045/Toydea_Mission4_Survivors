@@ -8,21 +8,21 @@ public class EXPBar : StatusBar
     protected override void Start()
     {
         base.Start();
-        EventManager.EXP.OnValueChanged += UpdateEXPBar;
-        UpdateEXPBar(EventManager.EXP.Value);
+        unityData.EXP.OnValueChanged += UpdateEXPBar;
+        UpdateEXPBar(unityData.EXP.Value);
     }
 
     void UpdateEXPBar(float exp)
     {
         float length = exp;
-        float maxLength = dataManager.dataGroup.levelData[EventManager.DevilLevel.Value].Clone().NeedEXP;
+        float maxLength = dataManager.dataGroup.levelData[unityData.DevilLevel.Value].Clone().NeedEXP;
         length = length / maxLength >= 1 ? 0 : length / maxLength;
         bar.GetComponent<Image>().fillAmount = length;
     }
 
     private void OnDestroy()
     {
-        EventManager.EXP.OnValueChanged += UpdateEXPBar;
+        unityData.EXP.OnValueChanged += UpdateEXPBar;
     }
 }
 
