@@ -15,7 +15,7 @@ public class UnityData
     public int WarriorsNumber = 0;
 
     public List<ItemsType> HoldItems = new List<ItemsType>();
-    public List<WeaponsType> HoldWeapons = new List<WeaponsType>();
+    public List<WeaponsType> HoldWeapons = new List<WeaponsType>();    
 }
 
 public enum ItemsType

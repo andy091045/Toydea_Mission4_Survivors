@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace HD.Math
 {
@@ -197,6 +198,29 @@ namespace HD.FrameworkDesign
             }
         }
         public Action<T> OnValueChanged;
+    }
+
+    public class OnPropertyChange<T>
+    {
+        private Func<T> getter_;
+
+        private T lastValue_;
+        public Action<T> OnValueChanged;
+
+        public OnPropertyChange(Func<T> getter)
+        {
+            getter_ = getter;
+            lastValue_ = getter_.Invoke();
+        }
+
+        public void Update()
+        {
+            if (!lastValue_.Equals(getter_.Invoke()))
+            {
+                lastValue_ = getter_.Invoke();
+                OnValueChanged?.Invoke(lastValue_);
+            }
+        }
     }
 
     public class IOCContainer
