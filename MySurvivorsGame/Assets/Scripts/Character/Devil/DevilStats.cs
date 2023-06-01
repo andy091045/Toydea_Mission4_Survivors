@@ -25,7 +25,7 @@ public class DevilStats : CharacterStats, IHaveHPBar
     Material flashMaterial_;
     Material originalMaterial_;
     Coroutine flashRoutine_;
-    float flashDuration_ = 0.1f;
+    float flashDuration_ = 0.06f;
     
 
     protected override void Awake()
