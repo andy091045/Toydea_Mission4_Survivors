@@ -19,7 +19,7 @@ public class NirvanaController : WeaponController
 
     async void InitNirvana()
     {
-        nirvana_ = Instantiate(await Addressables.LoadAssetAsync<GameObject>("Assets/Prefabs/Skill/Fire.prefab").Task);
+        nirvana_ = Instantiate(await Addressables.LoadAssetAsync<GameObject>("Assets/Prefabs/Skill/Fire2_6.prefab").Task);
         nirvana_.SetActive(false);
     }
 

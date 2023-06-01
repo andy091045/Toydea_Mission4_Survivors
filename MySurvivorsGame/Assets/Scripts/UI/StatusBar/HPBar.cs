@@ -7,7 +7,7 @@ public class HPBar : StatusBar
     protected override void Start()
     {
         base.Start();
-        EventManager.OccurRealTimePlayerDataChange += AdjustHP;
+        EventManager.OccurDevilGetHurt += AdjustHP;
     }
 
     void AdjustHP()
@@ -17,6 +17,6 @@ public class HPBar : StatusBar
 
     private void OnDestroy()
     {
-        EventManager.OccurRealTimePlayerDataChange -= AdjustHP;
+        EventManager.OccurDevilGetHurt -= AdjustHP;
     }
 }

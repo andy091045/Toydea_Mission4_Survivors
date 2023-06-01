@@ -48,7 +48,7 @@ public class WarriorStats : NPCStats
         if (canAttackDevil_)
         {
             unityData.NowDevilData.HP -= npcPoolData.Attack;
-            EventManager.OccurRealTimePlayerDataChange.Invoke();
+            EventManager.OccurDevilGetHurt.Invoke();
             Debug.Log("玩家血量: " + unityData.NowDevilData.HP);
         }
     }

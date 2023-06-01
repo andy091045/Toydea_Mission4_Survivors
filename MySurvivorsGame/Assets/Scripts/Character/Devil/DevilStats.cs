@@ -16,7 +16,17 @@ public class DevilStats : CharacterStats, IHaveHPBar
     Vector3 playerDir_ = Vector3.zero;
     Vector3 previousPlayerDir_ = Vector3.zero;
     Vector3 movementVector_;
-    Rigidbody2D rgbd2d_;   
+    Rigidbody2D rgbd2d_;
+
+    /// <summary>
+    /// 負傷
+    /// </summary>
+    SpriteRenderer spriteRenderer_;
+    Material flashMaterial_;
+    Material originalMaterial_;
+    Coroutine flashRoutine_;
+    float flashDuration_ = 0.1f;
+    
 
     protected override void Awake()
     {
@@ -30,7 +40,12 @@ public class DevilStats : CharacterStats, IHaveHPBar
         base .Start();
         KeyInputManager.Instance.onHorizontalMoveEvent.AddListener(GetHorizontalValue);
         KeyInputManager.Instance.onVerticalMoveEvent.AddListener(GetVerticalValue);
+        EventManager.OccurDevilGetHurt += Flash;
         CreateHPBar();
+
+        spriteRenderer_ = GetComponentInChildren<SpriteRenderer>();
+        originalMaterial_ = spriteRenderer_.material;
+        AddFlashMaterial();
     }
 
     protected override void Update()
@@ -97,5 +112,36 @@ public class DevilStats : CharacterStats, IHaveHPBar
         GameObject obj = Instantiate(HPPrefab);
         obj.transform.parent = transform;
         obj.transform.position = new Vector3(transform.position.x -0.9f, transform.position.y + 1f , 0);
+    }
+
+    async void AddFlashMaterial()
+    {
+        flashMaterial_ = await Addressables.LoadAssetAsync<Material>("Assets/Materials/FlashMaterial.mat").Task;
+    }
+
+    void Flash()
+    {
+        if(flashRoutine_ != null)
+        {
+            StopCoroutine(flashRoutine_);
+        }
+        flashRoutine_ = StartCoroutine(FlashRoutine());
+    }
+
+    private IEnumerator FlashRoutine()
+    {
+        spriteRenderer_.material = flashMaterial_;
+        Color newColor;
+        ColorUtility.TryParseHtmlString("#c2dbe0", out newColor);
+        flashMaterial_.color = newColor;
+
+        yield return new WaitForSeconds(flashDuration_);
+        spriteRenderer_.material = originalMaterial_;
+        flashRoutine_ = null;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.OccurDevilGetHurt -= Flash;
     }
 }
