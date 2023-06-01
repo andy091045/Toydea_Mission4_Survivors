@@ -2,7 +2,7 @@ using DataDefinition;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using HD.FrameworkDesign;
 public class UnityData
 {
     public DevilData NowDevilData = new DevilData();  
@@ -17,6 +17,10 @@ public class UnityData
     /// <summary>
     /// –‚‰¤‚ÌƒŒƒxƒ‹Ž‘—¿
     /// </summary>
-    public float EXP = 0;
-    public int DevilLevel = 0;
+    //public float EXP = 0;
+    //public int DevilLevel = 0;
+
+    public BindableProperty<float> EXP = new BindableProperty<float>();
+    public BindableProperty<int> DevilLevel = new BindableProperty<int>();
+
 }

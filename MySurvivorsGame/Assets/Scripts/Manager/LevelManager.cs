@@ -11,23 +11,23 @@ public class LevelManager : MonoBehaviour
     {
         dataManager_ = GameContainer.Get<DataManager>();
         unityData_ = GameContainer.Get<UnityData>();
-        EventManager.OccurDevilGetEXPStal += UpdateDevilLevel;
+        unityData_.EXP.OnValueChanged += UpdateDevilLevel;
     }
 
 
-    private void UpdateDevilLevel()
+    private void UpdateDevilLevel(float exp)
     {
-        float needEXP = dataManager_.dataGroup.levelData[unityData_.DevilLevel].NeedEXP;
-        if(needEXP > unityData_.EXP)
+        float needEXP = dataManager_.dataGroup.levelData[unityData_.DevilLevel.Value].NeedEXP;
+        if(needEXP > exp)
         {
             return;
         }
-        unityData_.EXP = unityData_.EXP - needEXP;
-        unityData_.DevilLevel++;
+        unityData_.EXP.Value = exp - needEXP;
+        unityData_.DevilLevel.Value++;
     }
 
     private void OnDestroy()
     {
-        EventManager.OccurDevilGetEXPStal -= UpdateDevilLevel;
+        unityData_.EXP.OnValueChanged -= UpdateDevilLevel;
     }
 }

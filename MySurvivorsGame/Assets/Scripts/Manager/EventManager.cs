@@ -13,8 +13,4 @@ public class EventManager : MonoBehaviour
 
     public delegate void OccurDevilGetHurtEventHandler();
     public static OccurDevilGetHurtEventHandler OccurDevilGetHurt;
-
-    //EXPBar.cs instance
-    public delegate void OccurDevilGetEXPStalEventHandler();
-    public static OccurDevilGetEXPStalEventHandler OccurDevilGetEXPStal;
 }
