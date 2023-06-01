@@ -8,7 +8,6 @@ public class NirvanaController : WeaponController
     //Nirvana
     float nirvanaTime_ = 10.0f;
     GameObject nirvana_;
-    bool canMoveNirvana_ = false;
 
     protected override void Start()
     {
@@ -20,29 +19,21 @@ public class NirvanaController : WeaponController
     async void InitNirvana()
     {
         nirvana_ = Instantiate(await Addressables.LoadAssetAsync<GameObject>("Assets/Prefabs/Skill/Fire2_6.prefab").Task);
+        nirvana_.transform.parent = transform.parent;
         nirvana_.SetActive(false);
     }
 
-    protected override void Update()
-    {
-        if (canMoveNirvana_)
-        {
-            nirvana_.transform.position = unityData.PlayerPos;
-        }
-    }
 
     private IEnumerator PlayNirvana()
     {
         nirvana_.SetActive(true);
         unityData.NowDevilData.Attack *= 5;
         unityData.NowDevilData.AttackCooldown /= 10;
-        canMoveNirvana_ = true;
         nirvana_.transform.position = unityData.PlayerPos;
         yield return new WaitForSeconds(nirvanaTime_);
         nirvana_.SetActive(false);
         unityData.NowDevilData.Attack /= 5;
         unityData.NowDevilData.AttackCooldown *= 10;
-        canMoveNirvana_ = false;
     }
 
     private void UseNirvana()
