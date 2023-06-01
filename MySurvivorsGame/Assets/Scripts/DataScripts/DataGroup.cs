@@ -48,6 +48,7 @@ namespace DataDefinition
         [field: SerializeField] public float DamageCut { get; set; }
         [field: SerializeField] public float Recovery { get; set; }
         [field: SerializeField] public float DropRate { get; set; }
+        [field: SerializeField] public float AttackCooldown { get; set; }
         [field: SerializeField] public string PrefabPath { get; set; }
         [field: SerializeField] public string InitWeapon { get; set; }
 
@@ -64,6 +65,7 @@ namespace DataDefinition
                 DamageCut = DamageCut,
                 Recovery = Recovery,
                 DropRate = DropRate,
+                AttackCooldown = AttackCooldown,
                 PrefabPath = PrefabPath,
                 InitWeapon = InitWeapon                
             };

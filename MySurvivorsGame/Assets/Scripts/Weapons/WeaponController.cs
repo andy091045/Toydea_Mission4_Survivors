@@ -33,6 +33,7 @@ public class WeaponController : MonoBehaviour
     protected virtual void Start()
     {        
         InstantiateWeapon();
+        KeyInputManager.Instance.onNirvanaUseEvent.AddListener(ResetCooldown);
     }
 
     private async void InstantiateWeapon()
@@ -42,7 +43,7 @@ public class WeaponController : MonoBehaviour
             if (dataManager.dataGroup.weaponsData[i].WeaponName == WeaponName)
             {
                 weaponData = dataManager.dataGroup.weaponsData[i];
-                CurrentWeaponLevelData = weaponData.LevelList[0].Clone();
+                SetCurrentWeaponLevelData();
                 break;
             }
         }
@@ -53,6 +54,7 @@ public class WeaponController : MonoBehaviour
         }
 
         Prefab = await Addressables.LoadAssetAsync<GameObject>(weaponData.WeaponPrefabPath).Task;
+        CurrentWeaponLevelData.Cooldown *= unityData.NowDevilData.AttackCooldown;
     }
 
     protected virtual void Update()
@@ -66,12 +68,23 @@ public class WeaponController : MonoBehaviour
 
     protected virtual void Attack()
     {
-        CurrentWeaponLevelData.Cooldown = weaponData.LevelList[WeaponLevel-1].Clone().Cooldown;        
-    }
+        //CurrentWeaponLevelData.Cooldown = weaponData.LevelList[WeaponLevel-1].Clone().Cooldown * unityData.NowDevilData.AttackCooldown;        
+        SetCurrentWeaponLevelData();
+    }   
 
     public virtual void WeaponUpdate()
     {
         WeaponLevel++;
+        SetCurrentWeaponLevelData();
+    }
+    void SetCurrentWeaponLevelData()
+    {
         CurrentWeaponLevelData = weaponData.LevelList[WeaponLevel - 1].Clone();
+        CurrentWeaponLevelData.Cooldown *= unityData.NowDevilData.AttackCooldown;
+    }
+
+    void ResetCooldown()
+    {
+        CurrentWeaponLevelData.Cooldown = 0;
     }
 }
