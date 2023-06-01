@@ -14,9 +14,16 @@ public class UnityData
     public int VillagersNumber = 0;
     public int WarriorsNumber = 0;
 
-    /// <summary>
-    /// –‚‰¤‚ÌƒŒƒxƒ‹Ž‘—¿
-    /// </summary>
-    //public float EXP = 0;
-    //public int DevilLevel = 0;
+    public List<ItemsType> HoldItems = new List<ItemsType>();
+    public List<WeaponsType> HoldWeapons = new List<WeaponsType>();
+}
+
+public enum ItemsType
+{
+    Speed, AbsorbExpRange
+}
+
+public enum WeaponsType
+{
+    MagicBall
 }
