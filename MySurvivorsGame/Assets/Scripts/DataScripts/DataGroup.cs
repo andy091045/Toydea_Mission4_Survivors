@@ -79,6 +79,8 @@ namespace DataDefinition
         [field: SerializeField] public string WeaponPrefabPath { get; set; }
         [field: SerializeField] public string SheetName { get; set; }
         [field: SerializeField] public int NowWeaponLevel { get; set; }
+        [field: SerializeField] public string UIPath { get; set; }
+        [field: SerializeField] public string Description { get; set; }
         [field: SerializeField] public List<WeaponLevelData> LevelList { get; set; }
     }
 
