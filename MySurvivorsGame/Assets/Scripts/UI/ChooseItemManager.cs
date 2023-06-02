@@ -40,16 +40,12 @@ public class ChooseItemManager : MonoBehaviour
     void ResetRandomList()
     {
         randomList.Clear();
-        if (unityData_.HoldItems.Count <= 0)
-        {
-            unityData_.HoldItems = dataManager_.dataGroup.itemsData;
-        }
 
-        for (int i = 0; i < unityData_.HoldItems.Count; i++)
+        for (int i = 0; i < dataManager_.dataGroup.itemsData.Count; i++)
         {
-            if (unityData_.HoldItems[i].NowItemLevel != 4)
+            if (dataManager_.dataGroup.itemsData[i].NowItemLevel != 4)
             {
-                randomList.Add(unityData_.HoldItems[i].ItemName);
+                randomList.Add(dataManager_.dataGroup.itemsData[i].ItemName);
             }
         }
     }
@@ -79,9 +75,9 @@ public class ChooseItemManager : MonoBehaviour
         int selectedIndex = UnityEngine.Random.Range(0, randomList.Count-1);
         string itemName = randomList[selectedIndex];
 
-        for (int i = 0; i < unityData_.HoldItems.Count; i++)
+        for (int i = 0; i < dataManager_.dataGroup.itemsData.Count; i++)
         {
-            if (itemName == unityData_.HoldItems[i].ItemName)
+            if (itemName == dataManager_.dataGroup.itemsData[i].ItemName)
             {
                 target = new AssetReferenceSprite(dataManager_.dataGroup.itemsData[i].UIPath);
                 target.SubObjectName = dataManager_.dataGroup.itemsData[i].UIName;

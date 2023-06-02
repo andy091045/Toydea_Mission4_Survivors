@@ -79,6 +79,7 @@ public class WarriorStats : NPCStats
         base.Dead();
         //Debug.Log("村民死了");
         unityData.WarriorsNumber--;
+        canAttackDevil_ = false;
         gameObject.SetActive(false);
     }
 }

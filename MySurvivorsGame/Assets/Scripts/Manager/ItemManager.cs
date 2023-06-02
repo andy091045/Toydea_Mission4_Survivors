@@ -14,14 +14,14 @@ public class ItemManager : MonoBehaviour
         dataManager_ = GameContainer.Get<DataManager>();
         unityData_ = GameContainer.Get<UnityData>();
         objectPoolGroup_ = GameContainer.Get<ObjectPoolGroup>();
-        Initialize_UnityData_HoldItems();
+        //Initialize_UnityData_HoldItems();
         InitializeCrystalPools();
     }
 
-    void Initialize_UnityData_HoldItems()
-    {
-        unityData_.HoldItems = dataManager_.dataGroup.itemsData;
-    }
+    //void Initialize_UnityData_HoldItems()
+    //{
+    //    unityData_.HoldItems = dataManager_.dataGroup.itemsData;
+    //}
 
     async void InitializeCrystalPools()
     {
