@@ -71,8 +71,16 @@ public class DevilStats : CharacterStats, IHaveHPBar
 
     protected override void SetInitSkill()
     {
-        var type = System.Type.GetType(devilData_.InitWeapon);
-        AddWeaponController(devilData_.InitWeapon, type);
+        System.Type type;
+        for (int i = 0; i < dataManager.dataGroup.weaponsData.Count; i++)
+        {
+            if(devilData_.InitWeapon == dataManager.dataGroup.weaponsData[i].WeaponName)
+            {
+                dataManager.dataGroup.weaponsData[i].NowWeaponLevel++;
+                type = System.Type.GetType(dataManager.dataGroup.weaponsData[i].ScriptName);
+                AddWeaponController(devilData_.InitWeapon, type);
+            }
+        }        
 
         type = System.Type.GetType("NirvanaController");
         AddWeaponController("NirvanaController", type);

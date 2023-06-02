@@ -84,6 +84,7 @@ namespace DataDefinition
         [field: SerializeField] public string UIPath { get; set; }
         [field: SerializeField] public string UIName { get; set; }
         [field: SerializeField] public string Description { get; set; }
+        [field: SerializeField] public string ScriptName { get; set; }
         [field: SerializeField] public List<WeaponLevelData> LevelList { get; set; }
     }
 
