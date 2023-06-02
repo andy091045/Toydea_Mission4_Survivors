@@ -14,7 +14,7 @@ public class UnityData
     public int VillagersNumber = 0;
     public int WarriorsNumber = 0;
 
-    public List<string> HoldItems = new List<string>();
+    public List<ItemData> HoldItems = new List<ItemData>();
     public List<string> HoldWeapons = new List<string>();
 
     public BindableProperty<bool> IsInNirvanaTime = new BindableProperty<bool>();

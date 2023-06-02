@@ -37,6 +37,8 @@ public class DataManager
         excelRowData = excelReadWrite.ReadExcel(excelPath, excelSheetName);
         dataGroup.realTimePlayerData = excelReadWrite.ParseDataJson<DevilData>(excelRowData);
         //------------------------------------------------------------------------------------
+
+        // WeaponData
         excelPath = Path.Combine(Application.streamingAssetsPath, dataGroup.datasPath[4].Path);
         excelSheetName = dataGroup.datasPath[4].Name;
         excelRowData = excelReadWrite.ReadExcel(excelPath, excelSheetName);
@@ -70,6 +72,19 @@ public class DataManager
         excelSheetName = dataGroup.datasPath[8].Name;
         excelRowData = excelReadWrite.ReadExcel(excelPath, excelSheetName);
         dataGroup.levelData = excelReadWrite.ParseListDataJson<LevelData>(excelRowData);
+
+        //------------------------------------------------------------------------------------
+
+        // LevelData
+        excelPath = Path.Combine(Application.streamingAssetsPath, dataGroup.datasPath[9].Path);
+        excelSheetName = dataGroup.datasPath[9].Name;
+        excelRowData = excelReadWrite.ReadExcel(excelPath, excelSheetName);
+        dataGroup.itemsData = excelReadWrite.ParseListDataJson<ItemData>(excelRowData);
+        for (int i = 0; i < dataGroup.itemsData.Count; i++)
+        {
+            excelRowData = excelReadWrite.ReadExcel(excelPath, dataGroup.itemsData[i].SheetName);
+            dataGroup.itemsData[i].LevelList = excelReadWrite.ParseListDataJson<ItemLevelData>(excelRowData);
+        }
     }
 
     public void StoreDataGroup()

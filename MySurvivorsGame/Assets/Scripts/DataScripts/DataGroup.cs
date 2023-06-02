@@ -3,6 +3,7 @@ using log4net.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
 using static PlasticPipe.Server.MonitorStats;
 
@@ -20,6 +21,7 @@ namespace DataDefinition
         public List<NPCsData> npcsData = new List<NPCsData>();
         public List<CrystalsData> crystalsData = new List<CrystalsData>();
         public List<LevelData> levelData = new List<LevelData>();
+        public List<ItemData> itemsData = new List<ItemData>();
     }
 
     [Serializable]
@@ -80,6 +82,7 @@ namespace DataDefinition
         [field: SerializeField] public string SheetName { get; set; }
         [field: SerializeField] public int NowWeaponLevel { get; set; }
         [field: SerializeField] public string UIPath { get; set; }
+        [field: SerializeField] public string UIName { get; set; }
         [field: SerializeField] public string Description { get; set; }
         [field: SerializeField] public List<WeaponLevelData> LevelList { get; set; }
     }
@@ -204,6 +207,48 @@ namespace DataDefinition
             {
                 Level = Level,
                 NeedEXP = NeedEXP
+            };
+        }
+    }
+
+    [Serializable]
+    public class ItemData
+    {
+        [field: SerializeField] public string ItemName { get; set; }
+        [field: SerializeField] public string SheetName { get; set; }
+        [field: SerializeField] public int NowItemLevel { get; set; }
+        [field: SerializeField] public string UIPath { get; set; }
+        [field: SerializeField] public string UIName { get; set; }
+        [field: SerializeField] public string Description { get; set; }
+        [field: SerializeField] public List<ItemLevelData> LevelList { get; set; }
+
+        public ItemData Clone()
+        {
+            return new ItemData()
+            {
+                ItemName = ItemName,
+                SheetName = SheetName,
+                NowItemLevel = NowItemLevel,
+                UIPath = UIPath,
+                UIName = UIName,
+                Description = Description,
+                LevelList = LevelList
+            };
+        }
+    }
+
+    [Serializable]
+    public class ItemLevelData
+    {
+        [field: SerializeField] public int Level { get; set; }
+        [field: SerializeField] public float Value { get; set; }
+
+        public ItemLevelData Clone()
+        {
+            return new ItemLevelData()
+            {
+                Level = Level,
+                Value = Value
             };
         }
     }

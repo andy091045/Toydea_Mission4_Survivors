@@ -6,13 +6,21 @@ using UnityEngine.AddressableAssets;
 public class ItemManager : MonoBehaviour
 {
     DataManager dataManager_;
+    UnityData unityData_;
     ObjectPoolGroup objectPoolGroup_;
 
     private void Start()
     {
         dataManager_ = GameContainer.Get<DataManager>();
+        unityData_ = GameContainer.Get<UnityData>();
         objectPoolGroup_ = GameContainer.Get<ObjectPoolGroup>();
+        Initialize_UnityData_HoldItems();
         InitializeCrystalPools();
+    }
+
+    void Initialize_UnityData_HoldItems()
+    {
+        unityData_.HoldItems = dataManager_.dataGroup.itemsData;
     }
 
     async void InitializeCrystalPools()

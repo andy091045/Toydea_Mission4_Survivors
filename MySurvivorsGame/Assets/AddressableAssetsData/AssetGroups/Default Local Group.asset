@@ -77,6 +77,10 @@ MonoBehaviour:
     m_Address: Assets/ArtResources/Weapons/Weapons Sprite Sheet.png
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: acfb845e5b6c49f419927c1f38c72beb
+    m_Address: Assets/ArtResources/MySelf/UI/HP_Bar.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 931cdc787f575bf43a3ad17aea3455d3, type: 2}
   m_SchemaSet:
