@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.U2D;
@@ -11,6 +13,15 @@ public class ChooseItemManager : MonoBehaviour
     public GameObject Button1;
     public GameObject Button2;
     public GameObject Button3;
+
+    //class t
+    //{
+    //    Button b;
+    //    Image i;
+    //    public void SetImage(Sprite s) => i.sprite = s;
+    //}
+
+    //List<t> buttonList_;
 
     public Image[] ImageGroup;
 
@@ -60,24 +71,45 @@ public class ChooseItemManager : MonoBehaviour
         }
     }
 
-    void SetButton(int level)
+    async void SetButton(int level)
     {
-        SetButtonImage(0, GetRandomObjectInItemAndWeapon());
-        SetButtonImage(1, GetRandomObjectInItemAndWeapon());
-        SetButtonImage(2, GetRandomObjectInItemAndWeapon());
+        var references = new List<AssetReference>();
+
+        for(int i = 0; i < 3; i++) {
+            references.Add(GetRandomObjectInItemAndWeapon());
+        }
+
+        var sprites = await GetSprites(references);
+
+        for (int i = 0; i < 3; i++)
+        {
+            ImageGroup[i].sprite = sprites[i];
+        }
+
         Button1.SetActive(true);
         Button2.SetActive(true);
         Button3.SetActive(true);        
+
         ResetRandomList();
     }
 
-    public async void SetButtonImage(int imageNumber, AssetReference target)
+    public async Task<List<Sprite>> GetSprites(List<AssetReference> targets)
     {
-        var handle = Addressables.LoadAssetAsync<Sprite>(target);
-        await handle.Task;
-
-        ImageGroup[imageNumber].sprite = handle.Result;
+        List<Sprite> sprites = new List<Sprite>();
+        foreach (var item in targets)
+        {
+            var handle = Addressables.LoadAssetAsync<Sprite>(item);
+            await handle.Task;
+            sprites.Add(handle.Result);
+        }        
+        return sprites;
+        //ImageGroup[imageNumber].sprite = handle.Result;
     }
+
+    //void SetButtonImage(Image image, Sprite sprite)
+    //{
+    //    image.sprite = sprite;
+    //}
 
     AssetReference GetRandomObjectInItemAndWeapon()
     {
@@ -111,13 +143,25 @@ public class ChooseItemManager : MonoBehaviour
 
     public void ChooseItem(string itemName)
     {
-        //unityData_.HoldItems.Add(itemsType);
+        for (int i = 0;i < dataManager_.dataGroup.itemsData.Count; i++)
+        {
+            if (itemName == dataManager_.dataGroup.itemsData[i].ItemName)
+            {
+                dataManager_.dataGroup.itemsData[i].NowItemLevel++;                   
+            }            
+        }
         CloseButton();
     }
 
     public void ChooseWeapon(string WeaponName)
     {
-        //unityData_.HoldWeapons.Add(weaponsType);
+        for (int i = 0; i < dataManager_.dataGroup.weaponsData.Count; i++)
+        {
+            if (WeaponName == dataManager_.dataGroup.weaponsData[i].WeaponName)
+            {
+                dataManager_.dataGroup.weaponsData[i].NowWeaponLevel++;
+            }
+        }
         CloseButton();
     }
 }

@@ -16,4 +16,6 @@ public class EventManager : MonoBehaviour
 
     public delegate void OccurDevilGetHurtEventHandler();
     public static OccurDevilGetHurtEventHandler OccurDevilGetHurt;
+
+    //ChooseItemManager
 }
