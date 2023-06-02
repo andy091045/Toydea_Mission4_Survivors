@@ -6,6 +6,9 @@ public class MagicBallBehaviour : ProjectileWeaponBehaviour
 {
     void Update()
     {
-        transform.position += direction *  weaponLevelData.Speed * Time.deltaTime;
+        if (KeyInputManager.Instance.IsObjectCanMove)
+        {
+            transform.position += direction * weaponLevelData.Speed * Time.deltaTime;
+        }        
     }
 }

@@ -88,7 +88,8 @@ public class ChooseItemManager : MonoBehaviour
 
         Button1.SetActive(true);
         Button2.SetActive(true);
-        Button3.SetActive(true);        
+        Button3.SetActive(true);  
+        KeyInputManager.Instance.IsObjectCanMove = false;
 
         ResetRandomList();
     }
@@ -150,6 +151,7 @@ public class ChooseItemManager : MonoBehaviour
                 dataManager_.dataGroup.itemsData[i].NowItemLevel++;                   
             }            
         }
+        KeyInputManager.Instance.IsObjectCanMove = true;
         CloseButton();
     }
 
@@ -162,6 +164,7 @@ public class ChooseItemManager : MonoBehaviour
                 dataManager_.dataGroup.weaponsData[i].NowWeaponLevel++;
             }
         }
+        KeyInputManager.Instance.IsObjectCanMove = true;
         CloseButton();
     }
 }

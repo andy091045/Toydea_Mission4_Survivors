@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 
 public class KeyInputManager : TSingletonMonoBehavior<KeyInputManager>
 {
+    public bool IsObjectCanMove = true;
+
     [Header("PlayerMoveEvent")]
     public UnityEvent<float> onHorizontalMoveEvent = new UnityEvent<float>();
     public UnityEvent<float> onVerticalMoveEvent = new UnityEvent<float>();
@@ -16,7 +18,10 @@ public class KeyInputManager : TSingletonMonoBehavior<KeyInputManager>
 
     private void Update()
     {
-        GetKeyInput();
+        if (IsObjectCanMove)
+        {
+            GetKeyInput();
+        }        
     }
 
     private void GetKeyInput()

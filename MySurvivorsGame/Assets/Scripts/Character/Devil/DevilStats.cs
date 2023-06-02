@@ -50,7 +50,14 @@ public class DevilStats : CharacterStats, IHaveHPBar
 
     protected override void Update()
     {
-        base.Update();             
+        if (KeyInputManager.Instance.IsObjectCanMove)
+        {
+            Move();
+        }
+        else
+        {
+            rgbd2d_.velocity = Vector3.zero;
+        }        
     }
 
     void GetHorizontalValue(float h)

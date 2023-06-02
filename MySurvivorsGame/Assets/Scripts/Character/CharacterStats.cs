@@ -21,7 +21,10 @@ public class CharacterStats : MonoBehaviour
 
     protected virtual void Update()
     {
-        Move();
+        if (KeyInputManager.Instance.IsObjectCanMove)
+        {
+            Move();
+        }        
     }
 
     protected virtual void SetInitValue()
