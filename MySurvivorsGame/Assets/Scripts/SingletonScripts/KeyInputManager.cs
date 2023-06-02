@@ -19,9 +19,14 @@ public class KeyInputManager : TSingletonMonoBehavior<KeyInputManager>
     private void Update()
     {
         if (IsObjectCanMove)
+        {            
+            Time.timeScale = 1.0f;
+        }
+        else
         {
-            GetKeyInput();
-        }        
+            Time.timeScale = 0;
+        }
+        GetKeyInput();
     }
 
     private void GetKeyInput()

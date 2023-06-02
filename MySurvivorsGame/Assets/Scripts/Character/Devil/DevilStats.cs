@@ -48,18 +48,6 @@ public class DevilStats : CharacterStats, IHaveHPBar
         AddFlashMaterial();
     }
 
-    protected override void Update()
-    {
-        if (KeyInputManager.Instance.IsObjectCanMove)
-        {
-            Move();
-        }
-        else
-        {
-            rgbd2d_.velocity = Vector3.zero;
-        }        
-    }
-
     void GetHorizontalValue(float h)
     {
         movementVector_.x = h;
