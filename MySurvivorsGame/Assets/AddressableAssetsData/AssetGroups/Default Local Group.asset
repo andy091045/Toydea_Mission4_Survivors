@@ -81,6 +81,34 @@ MonoBehaviour:
     m_Address: Assets/ArtResources/MySelf/UI/HP_Bar.png
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: ebc0bab27794b5947a0eb71357073f33
+    m_Address: Assets/ArtResources/Items/AbsorbExpItem.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4a771c9adddbff44bbea3e22491eee56
+    m_Address: Assets/ArtResources/Items/Armer.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 10faff2a85dce1c4eb135f0b5f593036
+    m_Address: Assets/ArtResources/Items/Attack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a424007a700c41c44a03d26f58ef7964
+    m_Address: Assets/ArtResources/Items/Luck.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c6d938aa16de0b54e8042fcd4dcc1288
+    m_Address: Assets/ArtResources/Items/Recovery.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c2e5371b7e1390b40aab58b6ad905dac
+    m_Address: Assets/ArtResources/Items/Grow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bd1c6512674723e4a9b1d6ea3552d59e
+    m_Address: Assets/ArtResources/Items/Speed.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 931cdc787f575bf43a3ad17aea3455d3, type: 2}
   m_SchemaSet:

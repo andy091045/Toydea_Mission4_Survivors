@@ -17,8 +17,7 @@ public class ChooseItemManager : MonoBehaviour
     UnityData unityData_;
     DataManager dataManager_;
 
-    List<string> itemRandomList_ = new List<string>();
-    List<string> weaponRandomList_ = new List<string>();
+    List<string> randomList_ = new List<string>();
 
     AssetReference target_ = new AssetReference();
 
@@ -42,14 +41,13 @@ public class ChooseItemManager : MonoBehaviour
 
     void ResetRandomList()
     {
-        itemRandomList_.Clear();
-        weaponRandomList_.Clear();
+        randomList_.Clear();
 
         for (int i = 0; i < dataManager_.dataGroup.itemsData.Count; i++)
         {
             if (dataManager_.dataGroup.itemsData[i].NowItemLevel < 4)
             {
-                itemRandomList_.Add(dataManager_.dataGroup.itemsData[i].ItemName);
+                randomList_.Add(dataManager_.dataGroup.itemsData[i].ItemName);
             }
         }
 
@@ -57,7 +55,7 @@ public class ChooseItemManager : MonoBehaviour
         {
             if (dataManager_.dataGroup.weaponsData[i].NowWeaponLevel < 4)
             {
-                weaponRandomList_.Add(dataManager_.dataGroup.weaponsData[i].WeaponName);
+                randomList_.Add(dataManager_.dataGroup.weaponsData[i].WeaponName);
             }
         }
     }
@@ -83,40 +81,31 @@ public class ChooseItemManager : MonoBehaviour
 
     AssetReference GetRandomObjectInItemAndWeapon()
     {
-        int selectedIndex = UnityEngine.Random.Range(0, 2);
-        if (selectedIndex == 0)
-        {
-            selectedIndex = UnityEngine.Random.Range(0, itemRandomList_.Count);
-            string itemName = itemRandomList_[selectedIndex];
 
-            for (int i = 0; i < dataManager_.dataGroup.itemsData.Count; i++)
+        int selectedIndex = UnityEngine.Random.Range(0, randomList_.Count);
+        string name = randomList_[selectedIndex];
+
+        for (int i = 0; i < dataManager_.dataGroup.itemsData.Count; i++)
+        {
+            if (name == dataManager_.dataGroup.itemsData[i].ItemName)
             {
-                if (itemName == dataManager_.dataGroup.itemsData[i].ItemName)
-                {
-                    target_ = new AssetReferenceSprite(dataManager_.dataGroup.itemsData[i].UIPath);
-                    target_.SubObjectName = dataManager_.dataGroup.itemsData[i].UIName;
-                    itemRandomList_.RemoveAt(selectedIndex);
-                    return target_;
-                }
+                target_ = new AssetReferenceSprite(dataManager_.dataGroup.itemsData[i].UIPath);
+                target_.SubObjectName = dataManager_.dataGroup.itemsData[i].UIName;
+                randomList_.RemoveAt(selectedIndex);
+                return target_;
             }
         }
-        else
-        {
-            selectedIndex = UnityEngine.Random.Range(0, weaponRandomList_.Count);
-            string weaponName = weaponRandomList_[selectedIndex];
 
-            for (int i = 0; i < dataManager_.dataGroup.weaponsData.Count; i++)
+        for (int i = 0; i < dataManager_.dataGroup.weaponsData.Count; i++)
+        {
+            if (name == dataManager_.dataGroup.weaponsData[i].WeaponName)
             {
-                if (weaponName == dataManager_.dataGroup.weaponsData[i].WeaponName)
-                {
-                    target_ = new AssetReferenceSprite(dataManager_.dataGroup.weaponsData[i].UIPath);
-                    target_.SubObjectName = dataManager_.dataGroup.weaponsData[i].UIName;
-                    weaponRandomList_.RemoveAt(selectedIndex);
-                    return target_;
-                }
+                target_ = new AssetReferenceSprite(dataManager_.dataGroup.weaponsData[i].UIPath);
+                target_.SubObjectName = dataManager_.dataGroup.weaponsData[i].UIName;
+                randomList_.RemoveAt(selectedIndex);
+                return target_;
             }
         }
-        
         return null;        
     }
 

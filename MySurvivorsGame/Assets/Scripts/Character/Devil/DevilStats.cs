@@ -10,8 +10,8 @@ public class DevilStats : CharacterStats, IHaveHPBar
     [Label("イニシャル魔王資料")]
     [SerializeField] private DevilData devilData_;
 
-    [Label("魔王ランク")]
-    [SerializeField] private int devilLevel_ = 0;
+    //[Label("魔王ランク")]
+    //[SerializeField] private int devilLevel_ = 0;
 
     Vector3 playerDir_ = Vector3.zero;
     Vector3 previousPlayerDir_ = Vector3.zero;
