@@ -12,6 +12,9 @@ public class SmallWeaponAndItemUI : MonoBehaviour
     public Image[] WeaponUIGroup;
     public List<int> WeaponLevelGroup = new List<int>();
 
+    public GameObject[] ItemGameObjectGroup;
+    public GameObject[] WeaponGameObjectGroup;
+
     DataManager dataManager_;
     UnityData unityData_;
 
@@ -29,6 +32,7 @@ public class SmallWeaponAndItemUI : MonoBehaviour
     {
         int uiCount = unityData_.HoldItems.Count;
         var references = new List<AssetReference>();
+        ItemLevelGroup.Clear();
 
         for (int i = 0; i < uiCount; i++)
         {
@@ -48,14 +52,16 @@ public class SmallWeaponAndItemUI : MonoBehaviour
 
         for (int i = 0; i < uiCount; i++)
         {
+            ObjectLevelUI(ItemGameObjectGroup[i], ItemLevelGroup[i]);
             ItemUIGroup[i].sprite = sprites[i];
         }
     }
 
     async void UpdateWeaponUI()
-    {
+    {        
         int uiCount = unityData_.HoldWeapons.Count;
         var references = new List<AssetReference>();
+        WeaponLevelGroup.Clear();
 
         for (int i = 0; i < uiCount; i++)
         {
@@ -75,7 +81,16 @@ public class SmallWeaponAndItemUI : MonoBehaviour
 
         for (int i = 0; i < uiCount; i++)
         {
+            ObjectLevelUI(WeaponGameObjectGroup[i], WeaponLevelGroup[i]);
             WeaponUIGroup[i].sprite = sprites[i];
+        }
+    }
+
+    void ObjectLevelUI(GameObject obj, int length)
+    {        
+        for (int i = 0; i < length; i++)
+        {
+            obj.transform.GetChild(i).gameObject.SetActive(true);
         }
     }
 

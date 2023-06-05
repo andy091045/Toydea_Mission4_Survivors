@@ -196,7 +196,6 @@ public class ChooseItemManager : MonoBehaviour
 
     public void ChooseWeapon(string WeaponName)
     {
-        Debug.LogWarning(WeaponName);
         for (int i = 0; i < dataManager_.dataGroup.weaponsData.Count; i++)
         {
             if (WeaponName == dataManager_.dataGroup.weaponsData[i].WeaponName)
