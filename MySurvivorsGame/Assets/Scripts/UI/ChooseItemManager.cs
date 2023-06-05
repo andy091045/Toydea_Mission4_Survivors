@@ -220,5 +220,12 @@ public class ChooseItemManager : MonoBehaviour
         public string Type;
         public string ObjectName;
     }
+
+    struct ButtonObject
+    {
+        public Button button;
+        public Text text;
+        public Image image;
+    }
 }
 
