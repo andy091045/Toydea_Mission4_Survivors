@@ -18,4 +18,9 @@ public class EventManager : MonoBehaviour
     public static OccurDevilGetHurtEventHandler OccurDevilGetHurt;
 
     //ChooseItemManager
+    public delegate void OccurChooseWeaponEventHandler();
+    public static OccurChooseWeaponEventHandler OccurChooseWeapon;
+
+    public delegate void OccurChooseItemEventHandler();
+    public static OccurChooseItemEventHandler OccurChooseItem;
 }
