@@ -18,7 +18,7 @@ public class ChooseItemManager : MonoBehaviour
     UnityData unityData_;
     DataManager dataManager_;
 
-    List<string> randomList_ = new List<string>();
+    [SerializeField] List<string> randomList_ = new List<string>();
     ObjectType objectType_;
     List<ObjectType> objectTypes_ = new List<ObjectType>();
 
@@ -53,15 +53,63 @@ public class ChooseItemManager : MonoBehaviour
     void ResetRandomList()
     {
         randomList_.Clear();
-        objectTypes_.Clear();       
+        objectTypes_.Clear();
 
+        for (int i = 0; i < unityData_.HoldItems.Count; i++)
+        {
+            for (int j = 0; j < dataManager_.dataGroup.itemsData.Count; j++)
+            {
+                if (unityData_.HoldItems[i] == dataManager_.dataGroup.itemsData[j].ItemName)
+                {
+                    if (dataManager_.dataGroup.itemsData[j].NowItemLevel < 4)
+                    {
+                        randomList_.Add(unityData_.HoldItems[i]);
+                    }
+                }
+            }            
+        }
+
+        var remainList = new List<string>();
         for (int i = 0; i < dataManager_.dataGroup.itemsData.Count; i++)
         {
             if (dataManager_.dataGroup.itemsData[i].NowItemLevel < 4)
             {
-                randomList_.Add(dataManager_.dataGroup.itemsData[i].ItemName);
-            }
+                remainList.Add(dataManager_.dataGroup.itemsData[i].ItemName);
+            }            
         }
+
+        for (int i = 0; i < unityData_.HoldItems.Count; i++)
+        {
+            remainList.Remove(unityData_.HoldItems[i]);
+        }   
+
+        int[] numbers = new int[4 - unityData_.HoldItems.Count];
+
+        HashSet<int> generatedNumbers = new HashSet<int>();
+        for (int i = 0; i < numbers.Length; i++)
+        {
+            int randomNumber;
+            do
+            {
+                randomNumber = UnityEngine.Random.Range(0, remainList.Count);
+            } while (generatedNumbers.Contains(randomNumber));
+
+            numbers[i] = randomNumber;
+            generatedNumbers.Add(randomNumber);
+        }
+
+        for (int i = 0; i < numbers.Length; i++)
+        {
+            randomList_.Add(remainList[numbers[i]]);
+        }
+
+        //for (int i = 0; i < dataManager_.dataGroup.itemsData.Count; i++)
+        //{
+        //    if (dataManager_.dataGroup.itemsData[i].NowItemLevel < 4)
+        //    {
+        //        randomList_.Add(dataManager_.dataGroup.itemsData[i].ItemName);
+        //    }
+        //}
 
         for (int i = 0; i < dataManager_.dataGroup.weaponsData.Count; i++)
         {
@@ -77,20 +125,24 @@ public class ChooseItemManager : MonoBehaviour
     {
         var references = new List<AssetReference>();
         //var objectTypes = new List<ObjectType>();
-
-        for(int i = 0; i < ButtonGameObjects.Length; i++) {
+        int min = Mathf.Min(ButtonGameObjects.Length, randomList_.Count);
+        if(min == 0)
+        {
+            return;
+        }
+        for (int i = 0; i < min; i++) {
             references.Add(GetRandomObjectInItemAndWeapon());
             objectTypes_.Add(objectType_);
         }
 
         var sprites = await GetSprites(references);
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < min; i++)
         {
             ButtonObjects[i].image.sprite = sprites[i];
         }
 
-        for (int i = 0; i < ButtonGameObjects.Length; i++)
+        for (int i = 0; i < min; i++)
         {
             if (objectTypes_[i].Type == "Item")
             {
@@ -107,9 +159,7 @@ public class ChooseItemManager : MonoBehaviour
 
             ButtonGameObjects[i].SetActive(true);
         }
-        KeyInputManager.Instance.IsObjectCanMove = false;
-
-        ResetRandomList();
+        KeyInputManager.Instance.IsObjectCanMove = false;        
     }
 
 
@@ -123,17 +173,10 @@ public class ChooseItemManager : MonoBehaviour
             sprites.Add(handle.Result);
         }        
         return sprites;
-        //ImageGroup[imageNumber].sprite = handle.Result;
     }
 
-    //void SetButtonImage(Image image, Sprite sprite)
-    //{
-    //    image.sprite = sprite;
-    //}
-
     AssetReference GetRandomObjectInItemAndWeapon()
-    {
-
+    {        
         int selectedIndex = UnityEngine.Random.Range(0, randomList_.Count);
         string name = randomList_[selectedIndex];
 
@@ -142,7 +185,7 @@ public class ChooseItemManager : MonoBehaviour
             if (name == dataManager_.dataGroup.itemsData[i].ItemName)
             {
                 target_ = new AssetReferenceSprite(dataManager_.dataGroup.itemsData[i].UIPath);
-                target_.SubObjectName = dataManager_.dataGroup.itemsData[i].UIName;
+                target_.SubObjectName = dataManager_.dataGroup.itemsData[i].UIName;                
                 randomList_.RemoveAt(selectedIndex);
                 objectType_.Type = "Item";
                 objectType_.ObjectName = dataManager_.dataGroup.itemsData[i].ItemName;
@@ -171,8 +214,7 @@ public class ChooseItemManager : MonoBehaviour
         {
             if (itemName == dataManager_.dataGroup.itemsData[i].ItemName)
             {
-                dataManager_.dataGroup.itemsData[i].NowItemLevel++;
-
+                dataManager_.dataGroup.itemsData[i].NowItemLevel++;                
                 if (!unityData_.HoldItems.Contains(itemName) && unityData_.HoldItems.Count < 4)
                 {
                     unityData_.HoldItems.Add(itemName);
@@ -183,6 +225,7 @@ public class ChooseItemManager : MonoBehaviour
         }
         KeyInputManager.Instance.IsObjectCanMove = true;
         CloseButton();
+        ResetRandomList();
     }
 
     public void ChooseWeapon(string WeaponName)
@@ -204,6 +247,7 @@ public class ChooseItemManager : MonoBehaviour
         }
         KeyInputManager.Instance.IsObjectCanMove = true;
         CloseButton();
+        ResetRandomList();
     }
 
     struct ObjectType
