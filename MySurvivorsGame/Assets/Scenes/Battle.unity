@@ -787,14 +787,6 @@ MonoBehaviour:
   - {fileID: 1618017804}
   - {fileID: 2081514793}
   - {fileID: 1465631927}
-  buttons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  ImageGroup:
-  - {fileID: 732908610}
-  - {fileID: 1468877810}
-  - {fileID: 186392624}
 --- !u!1 &208939349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1214,15 +1206,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: MagicBall
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 36ac36531ee7fa04e8401d329ceded27, type: 2}
+  m_sharedMaterial: {fileID: 418363769471666188, guid: 36ac36531ee7fa04e8401d329ceded27,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4284566577
+  m_fontColor: {r: 0.19215687, g: 0.29803923, b: 0.38039216, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5719,15 +5712,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: MagicBall
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 36ac36531ee7fa04e8401d329ceded27, type: 2}
+  m_sharedMaterial: {fileID: 418363769471666188, guid: 36ac36531ee7fa04e8401d329ceded27,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4284566577
+  m_fontColor: {r: 0.19215687, g: 0.29803923, b: 0.38039216, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6972,15 +6966,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: MagicBall
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 36ac36531ee7fa04e8401d329ceded27, type: 2}
+  m_sharedMaterial: {fileID: 418363769471666188, guid: 36ac36531ee7fa04e8401d329ceded27,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4284566577
+  m_fontColor: {r: 0.19215687, g: 0.29803923, b: 0.38039216, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
