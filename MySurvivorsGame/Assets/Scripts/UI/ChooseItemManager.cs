@@ -12,28 +12,17 @@ using static UnityEngine.GraphicsBuffer;
 public class ChooseItemManager : MonoBehaviour
 {   
     public GameObject[] ButtonGameObjects;
-    [SerializeField] Button[] buttons = new Button[3];
 
-    //class t
-    //{
-    //    Button b;
-    //    Image i;
-    //    public void SetImage(Sprite s) => i.sprite = s;
-    //}
-
-    //List<t> buttonList_;
-
-    public Image[] ImageGroup;
+    [SerializeField] List<ButtonObject> ButtonObjects = new List<ButtonObject>();
 
     UnityData unityData_;
     DataManager dataManager_;
 
     List<string> randomList_ = new List<string>();
-    ObjectType objectType;
-    List<ObjectType> objectTypes = new List<ObjectType>();
+    ObjectType objectType_;
+    List<ObjectType> objectTypes_ = new List<ObjectType>();
 
     AssetReference target_ = new AssetReference();
-
 
     private void Start()
     {
@@ -43,7 +32,9 @@ public class ChooseItemManager : MonoBehaviour
 
         for (int i = 0; i < ButtonGameObjects.Length; i++)
         {
-            buttons[i] = ButtonGameObjects[i].GetComponent<Button>();
+            ButtonObject obj = new ButtonObject();
+            obj.SetButtonObject(ButtonGameObjects[i]);
+            ButtonObjects.Add(obj);
         }
 
         CloseButton();
@@ -62,7 +53,7 @@ public class ChooseItemManager : MonoBehaviour
     void ResetRandomList()
     {
         randomList_.Clear();
-        objectTypes.Clear();       
+        objectTypes_.Clear();       
 
         for (int i = 0; i < dataManager_.dataGroup.itemsData.Count; i++)
         {
@@ -89,29 +80,29 @@ public class ChooseItemManager : MonoBehaviour
 
         for(int i = 0; i < ButtonGameObjects.Length; i++) {
             references.Add(GetRandomObjectInItemAndWeapon());
-            objectTypes.Add(objectType);
+            objectTypes_.Add(objectType_);
         }
 
         var sprites = await GetSprites(references);
 
         for (int i = 0; i < 3; i++)
         {
-            ImageGroup[i].sprite = sprites[i];
+            ButtonObjects[i].image.sprite = sprites[i];
         }
 
         for (int i = 0; i < ButtonGameObjects.Length; i++)
         {
-            if (objectTypes[i].Type == "Item")
+            if (objectTypes_[i].Type == "Item")
             {
-                string name = objectTypes[i].ObjectName;
-                buttons[i].onClick.RemoveAllListeners();
-                buttons[i].onClick.AddListener(() => ChooseItem(name));
+                string name = objectTypes_[i].ObjectName;
+                ButtonObjects[i].button.onClick.RemoveAllListeners();
+                ButtonObjects[i].button.onClick.AddListener(() => ChooseItem(name));
             }
             else
             {
-                string name = objectTypes[i].ObjectName;
-                buttons[i].onClick.RemoveAllListeners();
-                buttons[i].onClick.AddListener(() => ChooseWeapon(name));
+                string name = objectTypes_[i].ObjectName;
+                ButtonObjects[i].button.onClick.RemoveAllListeners();
+                ButtonObjects[i].button.onClick.AddListener(() => ChooseWeapon(name));
             }
 
             ButtonGameObjects[i].SetActive(true);
@@ -153,8 +144,8 @@ public class ChooseItemManager : MonoBehaviour
                 target_ = new AssetReferenceSprite(dataManager_.dataGroup.itemsData[i].UIPath);
                 target_.SubObjectName = dataManager_.dataGroup.itemsData[i].UIName;
                 randomList_.RemoveAt(selectedIndex);
-                objectType.Type = "Item";
-                objectType.ObjectName = dataManager_.dataGroup.itemsData[i].ItemName;
+                objectType_.Type = "Item";
+                objectType_.ObjectName = dataManager_.dataGroup.itemsData[i].ItemName;
                 return target_;
             }
         }
@@ -166,8 +157,8 @@ public class ChooseItemManager : MonoBehaviour
                 target_ = new AssetReferenceSprite(dataManager_.dataGroup.weaponsData[i].UIPath);
                 target_.SubObjectName = dataManager_.dataGroup.weaponsData[i].UIName;
                 randomList_.RemoveAt(selectedIndex);
-                objectType.Type = "Weapon";
-                objectType.ObjectName = dataManager_.dataGroup.weaponsData[i].WeaponName;
+                objectType_.Type = "Weapon";
+                objectType_.ObjectName = dataManager_.dataGroup.weaponsData[i].WeaponName;
                 return target_;
             }
         }
@@ -221,11 +212,18 @@ public class ChooseItemManager : MonoBehaviour
         public string ObjectName;
     }
 
-    struct ButtonObject
+    class ButtonObject
     {
         public Button button;
         public Text text;
         public Image image;
+
+        public void SetButtonObject(GameObject obj)
+        {
+            button = obj.GetComponent<Button>();
+            text = obj.transform.GetChild(0).GetComponent<Text>();
+            image = obj.transform.GetChild(1).GetComponent<Image>();
+        }
     }
 }
 
