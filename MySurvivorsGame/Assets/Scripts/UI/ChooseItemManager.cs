@@ -15,7 +15,7 @@ public class ChooseItemManager : MonoBehaviour
     public GameObject[] ButtonGameObjects;
 
     [SerializeField] List<ButtonObject> ButtonObjects = new List<ButtonObject>();
-    TextMeshProUGUI text_ = new TextMeshProUGUI();
+    string text_ = "";
 
     UnityData unityData_;
     DataManager dataManager_;
@@ -135,7 +135,7 @@ public class ChooseItemManager : MonoBehaviour
 
         for (int i = 0; i < min; i++) {
             references.Add(GetRandomObjectInItemAndWeapon());
-            ButtonObjects[i].text.text = text_.text;
+            ButtonObjects[i].text.text = text_;
             objectTypes_.Add(objectType_);
         }
 
@@ -190,7 +190,7 @@ public class ChooseItemManager : MonoBehaviour
             {
                 target_ = new AssetReferenceSprite(dataManager_.dataGroup.itemsData[i].UIPath);
                 target_.SubObjectName = dataManager_.dataGroup.itemsData[i].UIName;
-                text_.text = dataManager_.dataGroup.itemsData[i].Description;
+                text_ = dataManager_.dataGroup.itemsData[i].Description;
                 randomList_.RemoveAt(selectedIndex);
                 objectType_.Type = "Item";
                 objectType_.ObjectName = dataManager_.dataGroup.itemsData[i].ItemName;
@@ -204,7 +204,7 @@ public class ChooseItemManager : MonoBehaviour
             {
                 target_ = new AssetReferenceSprite(dataManager_.dataGroup.weaponsData[i].UIPath);
                 target_.SubObjectName = dataManager_.dataGroup.weaponsData[i].UIName;
-                text_.text = dataManager_.dataGroup.weaponsData[i].Description;
+                text_ = dataManager_.dataGroup.weaponsData[i].Description;
                 randomList_.RemoveAt(selectedIndex);
                 objectType_.Type = "Weapon";
                 objectType_.ObjectName = dataManager_.dataGroup.weaponsData[i].WeaponName;

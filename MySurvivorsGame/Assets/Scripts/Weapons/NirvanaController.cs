@@ -30,12 +30,14 @@ public class NirvanaController : WeaponController
         nirvana_.SetActive(true);
         unityData.NowDevilData.Attack *= 5;
         unityData.NowDevilData.AttackCooldown /= 10;
+        unityData.IsInNirvana = true;
         nirvana_.transform.position = unityData.PlayerPos;
         yield return new WaitForSeconds(nirvanaTime_);
         nirvana_.SetActive(false);
         unityData.IsInNirvanaTime.Value = false;
         unityData.NowDevilData.Attack /= 5;
         unityData.NowDevilData.AttackCooldown *= 10;
+        unityData.IsInNirvana = false;
     }
 
     private void UseNirvana(bool isUseNirvana)

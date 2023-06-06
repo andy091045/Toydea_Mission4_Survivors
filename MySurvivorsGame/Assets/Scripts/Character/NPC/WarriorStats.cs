@@ -65,7 +65,8 @@ public class WarriorStats : NPCStats
         {
             return;
         }
-        EventManager.OccurNPCGetHurt(damage.ToString(), transform.position);
+        int result = (int)damage;
+        EventManager.OccurNPCGetHurt(result.ToString(), transform.position);
 
         npcPoolData.HP -= damage;
         if (npcPoolData.HP <= 0)

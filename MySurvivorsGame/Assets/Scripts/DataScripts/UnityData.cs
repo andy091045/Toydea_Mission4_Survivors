@@ -21,6 +21,8 @@ public class UnityData
     public BindableProperty<float> EXP = new BindableProperty<float>();
     public BindableProperty<int> DevilLevel = new BindableProperty<int>();
 
+    public bool IsInNirvana = false;
+
     public UnityData()
     {
         IsInNirvanaTime.Value = false;

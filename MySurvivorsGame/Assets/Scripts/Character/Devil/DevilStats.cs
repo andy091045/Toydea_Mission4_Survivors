@@ -5,7 +5,7 @@ using DataDefinition;
 using UnityEngine.AddressableAssets;
 using NaughtyAttributes;
 
-public class DevilStats : CharacterStats, IHaveHPBar    
+public class DevilStats : CharacterStats, IHaveHPBar
 {
     [Label("イニシャル魔王資料")]
     [SerializeField] private DevilData devilData_;
@@ -26,21 +26,22 @@ public class DevilStats : CharacterStats, IHaveHPBar
     Material originalMaterial_;
     Coroutine flashRoutine_;
     float flashDuration_ = 0.06f;
-    
+
 
     protected override void Awake()
     {
         base.Awake();
         rgbd2d_ = GetComponent<Rigidbody2D>();
-        movementVector_ = new Vector3();        
-    }    
+        movementVector_ = new Vector3();
+    }
 
     protected override void Start()
     {
-        base .Start();
+        base.Start();
         KeyInputManager.Instance.onHorizontalMoveEvent.AddListener(GetHorizontalValue);
         KeyInputManager.Instance.onVerticalMoveEvent.AddListener(GetVerticalValue);
         EventManager.OccurDevilGetHurt += Flash;
+        EventManager.OccurChooseItem += UpdateNowDevilDataByItem;
         CreateHPBar();
 
         spriteRenderer_ = GetComponentInChildren<SpriteRenderer>();
@@ -60,7 +61,7 @@ public class DevilStats : CharacterStats, IHaveHPBar
 
     protected override void SetInitValue()
     {
-        devilData_ = GameContainer.Get<DataManager>().dataGroup.realTimePlayerData;        
+        devilData_ = GameContainer.Get<DataManager>().dataGroup.realTimePlayerData;
         base.SetInitValue();
     }
 
@@ -69,7 +70,7 @@ public class DevilStats : CharacterStats, IHaveHPBar
         System.Type type;
         for (int i = 0; i < dataManager.dataGroup.weaponsData.Count; i++)
         {
-            if(devilData_.InitWeapon == dataManager.dataGroup.weaponsData[i].WeaponName)
+            if (devilData_.InitWeapon == dataManager.dataGroup.weaponsData[i].WeaponName)
             {
                 dataManager.dataGroup.weaponsData[i].NowWeaponLevel++;
                 type = System.Type.GetType(dataManager.dataGroup.weaponsData[i].ScriptName);
@@ -77,7 +78,7 @@ public class DevilStats : CharacterStats, IHaveHPBar
                 unityData.HoldWeapons.Add(devilData_.InitWeapon);
                 EventManager.OccurChooseWeapon.Invoke();
             }
-        }        
+        }
 
         type = System.Type.GetType("NirvanaController");
         AddWeaponController("NirvanaController", type);
@@ -103,8 +104,8 @@ public class DevilStats : CharacterStats, IHaveHPBar
         unityData.PreviousPlayerDir = previousPlayerDir_;
         unityData.PlayerPos = transform.position;
 
-        rgbd2d_.velocity = new Vector2(playerDir_.x * devilData_.Speed, playerDir_.y * devilData_.Speed);
-    }   
+        rgbd2d_.velocity = new Vector2(playerDir_.x * unityData.NowDevilData.Speed, playerDir_.y * unityData.NowDevilData.Speed);
+    }
 
     protected override void Dead()
     {
@@ -116,7 +117,7 @@ public class DevilStats : CharacterStats, IHaveHPBar
         GameObject HPPrefab = await Addressables.LoadAssetAsync<GameObject>("Assets/Prefabs/Devils/HP.prefab").Task;
         GameObject obj = Instantiate(HPPrefab);
         obj.transform.parent = transform;
-        obj.transform.position = new Vector3(transform.position.x -0.9f, transform.position.y + 1f , 0);
+        obj.transform.position = new Vector3(transform.position.x - 0.9f, transform.position.y + 1f, 0);
     }
 
     async void AddFlashMaterial()
@@ -126,7 +127,7 @@ public class DevilStats : CharacterStats, IHaveHPBar
 
     void Flash()
     {
-        if(flashRoutine_ != null)
+        if (flashRoutine_ != null)
         {
             StopCoroutine(flashRoutine_);
         }
@@ -145,8 +146,27 @@ public class DevilStats : CharacterStats, IHaveHPBar
         flashRoutine_ = null;
     }
 
+    void UpdateNowDevilDataByItem()
+    {
+        unityData.NowDevilData = dataManager.dataGroup.realTimePlayerData.Clone();
+
+        unityData.NowDevilData.AbsorbExpRange *= dataManager.dataGroup.itemsData[0].LevelList[dataManager.dataGroup.itemsData[0].NowItemLevel].Value;
+        unityData.NowDevilData.DamageCut *= dataManager.dataGroup.itemsData[1].LevelList[dataManager.dataGroup.itemsData[1].NowItemLevel].Value;
+        unityData.NowDevilData.Attack *= dataManager.dataGroup.itemsData[2].LevelList[dataManager.dataGroup.itemsData[2].NowItemLevel].Value;
+        unityData.NowDevilData.ExpEffect *= dataManager.dataGroup.itemsData[3].LevelList[dataManager.dataGroup.itemsData[3].NowItemLevel].Value;
+        unityData.NowDevilData.DropRate *= dataManager.dataGroup.itemsData[4].LevelList[dataManager.dataGroup.itemsData[4].NowItemLevel].Value;
+        unityData.NowDevilData.Recovery += dataManager.dataGroup.itemsData[5].LevelList[dataManager.dataGroup.itemsData[5].NowItemLevel].Value;
+        unityData.NowDevilData.Speed *= dataManager.dataGroup.itemsData[6].LevelList[dataManager.dataGroup.itemsData[6].NowItemLevel].Value;
+        if (unityData.IsInNirvana)
+        {
+            unityData.NowDevilData.Attack *= 5;
+            unityData.NowDevilData.AttackCooldown /= 10;
+        }
+    }
+
     private void OnDestroy()
     {
         EventManager.OccurDevilGetHurt -= Flash;
+        EventManager.OccurChooseWeapon -= UpdateNowDevilDataByItem;
     }
 }
