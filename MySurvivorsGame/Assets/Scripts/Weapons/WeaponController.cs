@@ -84,7 +84,8 @@ public class WeaponController : MonoBehaviour
     }
     void SetCurrentWeaponLevelData()
     {
-        CurrentWeaponLevelData = weaponData.LevelList[WeaponLevel - 1].Clone();
+        Debug.Log(weaponData.NowWeaponLevel);
+        CurrentWeaponLevelData = weaponData.LevelList[weaponData.NowWeaponLevel-1].Clone();
         CurrentWeaponLevelData.Cooldown *= unityData.NowDevilData.AttackCooldown;
     }
 
