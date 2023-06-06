@@ -10,11 +10,11 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
     public WeaponLevelData weaponLevelData;
 
     DataManager dataManager_;
-    UnityData unityData_;
+    public UnityData unityData;
 
     protected virtual void Awake()
     {
-        unityData_ = GameContainer.Get<UnityData>();
+        unityData = GameContainer.Get<UnityData>();
     }
 
     protected virtual void Start()
@@ -27,7 +27,7 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
     {
         if (collision.CompareTag("NPC"))
         {
-            collision.gameObject.GetComponent<CharacterStats>().TakeDamage(weaponLevelData.Hurt * unityData_.NowDevilData.Attack);
+            collision.gameObject.GetComponent<CharacterStats>().TakeDamage(weaponLevelData.Hurt * unityData.NowDevilData.Attack);
         }
     }
 
@@ -36,13 +36,13 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         float angleIncrement = 360f / weaponCount;
         float angle = currentWeaponNumber * angleIncrement;
 
-        if (unityData_.PlayerDir != Vector3.zero)
+        if (unityData.PlayerDir != Vector3.zero)
         {
-            direction = unityData_.PlayerDir;
+            direction = unityData.PlayerDir;
         }
         else
         {
-            direction = unityData_.PreviousPlayerDir;
+            direction = unityData.PreviousPlayerDir;
         }
 
         direction = Quaternion.Euler(0, 0, angle) * direction;
