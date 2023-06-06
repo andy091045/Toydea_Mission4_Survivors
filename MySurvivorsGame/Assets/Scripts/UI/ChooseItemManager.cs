@@ -241,14 +241,16 @@ public class ChooseItemManager : MonoBehaviour
             if (WeaponName == dataManager_.dataGroup.weaponsData[i].WeaponName)
             {
                 dataManager_.dataGroup.weaponsData[i].NowWeaponLevel++;
-                for (int j = 0; j < unityData_.HoldWeapons.Count; j++)
+
+                if (!unityData_.HoldWeapons.Contains(WeaponName) && unityData_.HoldWeapons.Count < 4)
                 {
-                    if (unityData_.HoldWeapons[j] != WeaponName && unityData_.HoldWeapons.Count < 4)
-                    {
-                        unityData_.HoldWeapons.Add(WeaponName);
-                    }
+                    unityData_.HoldWeapons.Add(WeaponName);
                 }
-                EventManager.OccurChooseWeapon.Invoke();
+                EventManager.OccurChooseWeapon.Invoke(dataManager_.dataGroup.weaponsData[i].ScriptName);
+                //for (int j = 0; j < unityData_.HoldWeapons.Count; j++)
+                //{
+                //    Debug.LogWarning(j + ": " + unityData_.HoldWeapons[j]);
+                //}    
             }
         }
         KeyInputManager.Instance.IsObjectCanMove = true;

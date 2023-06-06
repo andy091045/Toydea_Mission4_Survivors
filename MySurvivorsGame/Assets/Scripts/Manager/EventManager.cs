@@ -18,7 +18,7 @@ public class EventManager : MonoBehaviour
     public static OccurDevilGetHurtEventHandler OccurDevilGetHurt;
 
     //ChooseItemManager
-    public delegate void OccurChooseWeaponEventHandler();
+    public delegate void OccurChooseWeaponEventHandler(string weaponControllerName);
     public static OccurChooseWeaponEventHandler OccurChooseWeapon;
 
     public delegate void OccurChooseItemEventHandler();

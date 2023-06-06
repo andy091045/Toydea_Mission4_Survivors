@@ -57,7 +57,7 @@ public class SmallWeaponAndItemUI : MonoBehaviour
         }
     }
 
-    async void UpdateWeaponUI()
+    async void UpdateWeaponUI(string weaponControllerName)
     {        
         int uiCount = unityData_.HoldWeapons.Count;
         var references = new List<AssetReference>();

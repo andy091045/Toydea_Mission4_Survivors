@@ -75,9 +75,9 @@ public class DevilStats : CharacterStats, IHaveHPBar
             {
                 dataManager.dataGroup.weaponsData[i].NowWeaponLevel++;
                 type = System.Type.GetType(dataManager.dataGroup.weaponsData[i].ScriptName);
-                AddWeaponController(devilData_.InitWeapon, type);
+                AddWeaponController(dataManager.dataGroup.weaponsData[i].ScriptName, type);
                 unityData.HoldWeapons.Add(devilData_.InitWeapon);
-                EventManager.OccurChooseWeapon.Invoke();
+                EventManager.OccurChooseWeapon.Invoke(dataManager.dataGroup.weaponsData[i].ScriptName);
             }
         }
 
@@ -85,9 +85,21 @@ public class DevilStats : CharacterStats, IHaveHPBar
         AddWeaponController("NirvanaController", type);
     }
 
-    void AddNewWeapon()
+    void AddNewWeapon(string weaponControllerName)
     {
-        
+        Transform weaponController = transform.Find(weaponControllerName);
+        if(weaponController == null)
+        {
+            for (int i = 0; i < dataManager.dataGroup.weaponsData.Count; i++)
+            {
+                if (weaponControllerName == dataManager.dataGroup.weaponsData[i].ScriptName)
+                {
+                    System.Type type;
+                    type = System.Type.GetType(dataManager.dataGroup.weaponsData[i].ScriptName);
+                    AddWeaponController(dataManager.dataGroup.weaponsData[i].ScriptName, type);
+                }
+            }
+        }        
     }
 
     void AddWeaponController(string name, System.Type weaponType)
