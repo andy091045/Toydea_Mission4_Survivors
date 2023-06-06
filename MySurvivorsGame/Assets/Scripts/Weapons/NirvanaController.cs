@@ -9,6 +9,11 @@ public class NirvanaController : WeaponController
     float nirvanaTime_ = 10.0f;
     GameObject nirvana_;
 
+    /// <summary>
+    /// ひさつわざの使用に必要な消費量
+    /// </summary>
+    int useNirvanaComsume = 100;
+
     protected override void Start()
     {
         //Nirvana
@@ -32,6 +37,8 @@ public class NirvanaController : WeaponController
         unityData.NowDevilData.AttackCooldown /= 10;
         unityData.IsInNirvana = true;
         nirvana_.transform.position = unityData.PlayerPos;
+        //
+        unityData.TotalDeadCount.Value -= useNirvanaComsume;
         yield return new WaitForSeconds(nirvanaTime_);
         nirvana_.SetActive(false);
         unityData.IsInNirvanaTime.Value = false;
@@ -50,7 +57,10 @@ public class NirvanaController : WeaponController
 
     void IsInNirvanaTimeInvoke()
     {
-        unityData.IsInNirvanaTime.Value = true;
+        if(unityData.TotalDeadCount.Value > useNirvanaComsume)
+        {
+            unityData.IsInNirvanaTime.Value = true;
+        }        
     }
 
     private void OnDestroy()

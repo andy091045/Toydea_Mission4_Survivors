@@ -68,6 +68,7 @@ public class NPCStats : CharacterStats
         GameObject crystal = objectPoolGroup_.CrystalPools[value].Pool.GetInstance();
         crystal.transform.position = transform.position;
         crystal.SetActive(true);
+        unityData.TotalDeadCount.Value++;
         base.Dead();
     }
 }
