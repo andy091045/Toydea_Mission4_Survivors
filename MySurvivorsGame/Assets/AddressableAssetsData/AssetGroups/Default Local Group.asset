@@ -109,6 +109,14 @@ MonoBehaviour:
     m_Address: Assets/ArtResources/Items/Speed.png
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 773917e61c811a843833088c5cae82a5
+    m_Address: Assets/Prefabs/Weapons/FireBall.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9a84c97fb1759564694669d728e6051a
+    m_Address: Assets/ArtResources/Weapons/RotateFire/Effect3/1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 931cdc787f575bf43a3ad17aea3455d3, type: 2}
   m_SchemaSet:

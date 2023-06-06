@@ -45,7 +45,7 @@ public class NPCStats : CharacterStats
         if (level != 0)
         {
             npcPoolData.HP *= level;
-            Debug.LogWarning(npcPoolData.HP);
+            //Debug.LogWarning(npcPoolData.HP);
         }
     }
 
