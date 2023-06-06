@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBallController : MonoBehaviour
+public class FireBallController : WeaponController
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        
+        WeaponName = "FireBall";
+        base.Start();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Attack()
     {
-        
+        base.Attack();
+        if (unityData.PreviousPlayerDir != Vector3.zero)
+        {
+            for (int i = 0; i < CurrentWeaponLevelData.Number; i++)
+            {
+                Debug.LogWarning(Prefab.name);
+                GameObject spawnedMagicBall = Instantiate(Prefab);
+                spawnedMagicBall.transform.position = transform.position;
+                spawnedMagicBall.GetComponent<MagicBallBehaviour>().DirectionChecker(CurrentWeaponLevelData.Number, i);
+                spawnedMagicBall.GetComponent<MagicBallBehaviour>().weaponLevelData = CurrentWeaponLevelData;
+            }
+        }
     }
 }

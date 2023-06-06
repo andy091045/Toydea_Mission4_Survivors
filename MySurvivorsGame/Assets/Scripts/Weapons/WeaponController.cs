@@ -54,7 +54,6 @@ public class WeaponController : MonoBehaviour
         {
             Debug.LogWarning("Q•s“" + WeaponName + "“I‘—¿");
         }
-
         Prefab = await Addressables.LoadAssetAsync<GameObject>(weaponData.WeaponPrefabPath).Task;
         CurrentWeaponLevelData.Cooldown *= unityData.NowDevilData.AttackCooldown;
     }
