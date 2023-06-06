@@ -44,7 +44,8 @@ public class NPCStats : CharacterStats
         npcPoolData = data;
         if (level != 0)
         {
-            npcPoolData.HP *= level;
+            npcPoolData.HP *= (level * 5);
+            //npcPoolData.Attack *= (level * 0.1f);
             //Debug.LogWarning(npcPoolData.HP);
         }
     }
