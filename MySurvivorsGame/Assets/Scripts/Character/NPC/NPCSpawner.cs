@@ -113,7 +113,7 @@ public class NPCSpawner : MonoBehaviour
             npc.transform.position = pos;
 
             // 　Npcにデータを設定する
-            spawnInfo.GetComponentFunc.Invoke(npc).SetNPCValue(spawnInfo.PoolData.Clone());
+            spawnInfo.GetComponentFunc.Invoke(npc).SetNPCValue(spawnInfo.PoolData.Clone(), unityData_.DevilLevel.Value);
 
             npc.SetActive(true);
 

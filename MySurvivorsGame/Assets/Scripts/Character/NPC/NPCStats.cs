@@ -14,7 +14,7 @@ public class NPCStats : CharacterStats
     protected override void Start()
     {
         base.Start();
-        objectPoolGroup_ = GameContainer.Get<ObjectPoolGroup>();
+        objectPoolGroup_ = GameContainer.Get<ObjectPoolGroup>();     
     }
 
     protected override void Update()
@@ -39,9 +39,14 @@ public class NPCStats : CharacterStats
         return Mathf.Sqrt(measuredLength);
     }
 
-    public void SetNPCValue(NPCsData data)
+    public void SetNPCValue(NPCsData data, int level)
     {
         npcPoolData = data;
+        if (level != 0)
+        {
+            npcPoolData.HP *= level;
+            Debug.LogWarning(npcPoolData.HP);
+        }
     }
 
     protected override void Dead()

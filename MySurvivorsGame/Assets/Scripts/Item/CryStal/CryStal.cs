@@ -6,14 +6,14 @@ public class CryStal : MonoBehaviour
 {
     protected float expValue;
     protected DataManager dataManager;
-    UnityData unityData_;
+    public UnityData unityData;
 
     bool canMove_ = false;
 
     protected virtual void Start()
     {
         dataManager = GameContainer.Get<DataManager>();
-        unityData_ = GameContainer.Get<UnityData>();
+        unityData = GameContainer.Get<UnityData>();
     }
 
     void Update()
@@ -24,8 +24,8 @@ public class CryStal : MonoBehaviour
 
     void IsInAbsorbExpRange()
     {
-        float distance = Vector3.Distance(transform.position, unityData_.PlayerPos);
-        if (distance < unityData_.NowDevilData.AbsorbExpRange)
+        float distance = Vector3.Distance(transform.position, unityData.PlayerPos);
+        if (distance < unityData.NowDevilData.AbsorbExpRange)
         {
             canMove_ = true;
         }
@@ -35,7 +35,7 @@ public class CryStal : MonoBehaviour
     {
         if(canMove_)
         {
-            var direction = unityData_.PlayerPos - transform.position;
+            var direction = unityData.PlayerPos - transform.position;
 
             DevilTryGetEXP(direction);
 
@@ -53,7 +53,7 @@ public class CryStal : MonoBehaviour
 
     void RemoveCrystal()
     {
-        unityData_.EXP.Value += expValue;
+        unityData.EXP.Value += expValue;
         canMove_ = false;
         gameObject.SetActive(false);
     }

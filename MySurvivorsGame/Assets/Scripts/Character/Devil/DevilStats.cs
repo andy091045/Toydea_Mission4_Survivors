@@ -72,7 +72,6 @@ public class DevilStats : CharacterStats, IHaveHPBar
         {
             if (devilData_.InitWeapon == dataManager.dataGroup.weaponsData[i].WeaponName)
             {
-                //dataManager.dataGroup.weaponsData[i].NowWeaponLevel++;
                 type = System.Type.GetType(dataManager.dataGroup.weaponsData[i].ScriptName);
                 AddWeaponController(devilData_.InitWeapon, type);
                 unityData.HoldWeapons.Add(devilData_.InitWeapon);

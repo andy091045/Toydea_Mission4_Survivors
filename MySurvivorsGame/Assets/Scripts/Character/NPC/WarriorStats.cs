@@ -47,7 +47,10 @@ public class WarriorStats : NPCStats
     {
         if (canAttackDevil_)
         {
-            unityData.NowDevilData.HP -= npcPoolData.Attack;
+            if (unityData.NowDevilData.DamageCut < npcPoolData.Attack)
+            {
+                unityData.NowDevilData.HP = unityData.NowDevilData.HP + unityData.NowDevilData.DamageCut - npcPoolData.Attack;
+            }
             EventManager.OccurDevilGetHurt.Invoke();
             Debug.Log("玩家血量: " + unityData.NowDevilData.HP);
         }

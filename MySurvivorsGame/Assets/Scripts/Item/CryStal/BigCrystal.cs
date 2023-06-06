@@ -7,6 +7,6 @@ public class BigCrystal : CryStal
     protected override void Start()
     {
         base.Start();
-        expValue = dataManager.dataGroup.crystalsData[2].Clone().EXPValue;
+        expValue = dataManager.dataGroup.crystalsData[2].Clone().EXPValue * unityData.NowDevilData.ExpEffect;
     }
 }
