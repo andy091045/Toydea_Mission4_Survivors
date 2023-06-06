@@ -42,6 +42,7 @@ public class DevilStats : CharacterStats, IHaveHPBar
         KeyInputManager.Instance.onVerticalMoveEvent.AddListener(GetVerticalValue);
         EventManager.OccurDevilGetHurt += Flash;
         EventManager.OccurChooseItem += UpdateNowDevilDataByItem;
+        EventManager.OccurChooseWeapon += AddNewWeapon;
         CreateHPBar();
 
         spriteRenderer_ = GetComponentInChildren<SpriteRenderer>();
@@ -82,6 +83,11 @@ public class DevilStats : CharacterStats, IHaveHPBar
 
         type = System.Type.GetType("NirvanaController");
         AddWeaponController("NirvanaController", type);
+    }
+
+    void AddNewWeapon()
+    {
+        
     }
 
     void AddWeaponController(string name, System.Type weaponType)
@@ -167,6 +173,7 @@ public class DevilStats : CharacterStats, IHaveHPBar
     private void OnDestroy()
     {
         EventManager.OccurDevilGetHurt -= Flash;
-        EventManager.OccurChooseWeapon -= UpdateNowDevilDataByItem;
+        EventManager.OccurChooseItem -= UpdateNowDevilDataByItem;
+        EventManager.OccurChooseWeapon -= AddNewWeapon;
     }
 }
