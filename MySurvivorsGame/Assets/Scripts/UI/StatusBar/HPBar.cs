@@ -12,7 +12,7 @@ public class HPBar : StatusBar
 
     void AdjustHP()
     {
-        SetState(unityData.NowDevilData.HP, dataManager.dataGroup.realTimePlayerData.HP);
+        SetState(unityData.NowDevilData.HP, dataManager.dataGroup.realTimePlayerData.Clone().HP);
     }
 
     private void OnDestroy()

@@ -21,8 +21,7 @@ public class StatusBar : MonoBehaviour
 
     public void SetState(float current, float max)
     {        
-        float state = (float)current;
-        state /= (float)max;
+        float state = current/max;
         if(state < 0)
         {
             state = 0;

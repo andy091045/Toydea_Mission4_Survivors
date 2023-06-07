@@ -9,11 +9,13 @@ public class GameManager : MonoBehaviour
 {
     DataManager dataReadStore_;
     UnityData unityData_;
+    ObjectPoolGroup objectPoolGroup_;
 
     private void Awake()
     {        
         dataReadStore_ = GameContainer.Get<DataManager>();
-        unityData_ = GameContainer.Get<UnityData>();    
+        unityData_ = GameContainer.Get<UnityData>();
+        objectPoolGroup_ = GameContainer.Get<ObjectPoolGroup>();
         dataReadStore_.SetDataGroup();
     }
 
@@ -43,5 +45,8 @@ public class GameManager : MonoBehaviour
         unityData_.EXP.Value = 0;
         unityData_.DevilLevel.Value = 0;
         unityData_.TotalDeadCount.Value = 0;
+
+        objectPoolGroup_.NPCPools.Clear();
+        objectPoolGroup_.CrystalPools.Clear();
     }
 }

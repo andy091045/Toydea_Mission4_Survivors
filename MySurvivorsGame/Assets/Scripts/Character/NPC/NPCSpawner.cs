@@ -50,8 +50,8 @@ public class NPCSpawner : MonoBehaviour
         {
             GameObject pool = new GameObject(poolData_[i].CharacterName + "Pool");
             BasicPool basicPool = pool.AddComponent<BasicPool>();
-            GameObject prefab = await Addressables.LoadAssetAsync<GameObject>(poolData_[i].ObjectPrefabPath).Task;            
-            int count = poolData_[i].CharacterCount;
+            GameObject prefab = await Addressables.LoadAssetAsync<GameObject>(poolData_[i].Clone().ObjectPrefabPath).Task;            
+            int count = poolData_[i].Clone().CharacterCount;
             basicPool.InstantiatePool(poolData_[i].Clone().CharacterName, prefab, count);
             objectPoolGroup_.AddNPCPool(basicPool);
             pool.transform.parent = transform;
@@ -142,7 +142,7 @@ public class NPCSpawner : MonoBehaviour
             info.SetCurrentNumber = newNum => unityData_.VillagersNumber = newNum;
             info.GetGoalNumber = () => sceneProcessData_.VillagerACount;
             info.Pool = objectPoolGroup_.NPCPools[0].Pool;
-            info.PoolData = poolData_[0];
+            info.PoolData = poolData_[0].Clone();
             return info;
         }
 
@@ -153,7 +153,7 @@ public class NPCSpawner : MonoBehaviour
             info.SetCurrentNumber = newNum => unityData_.WarriorsNumber = newNum;
             info.GetGoalNumber = () => sceneProcessData_.WarriorCount;
             info.Pool = objectPoolGroup_.NPCPools[1].Pool;
-            info.PoolData = poolData_[1];
+            info.PoolData = poolData_[1].Clone();
             return info;
         }
 

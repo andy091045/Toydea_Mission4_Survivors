@@ -42,10 +42,10 @@ public class NPCStats : CharacterStats
     public void SetNPCValue(NPCsData data, int level)
     {
         npcPoolData = data;
-        if (level != 0)
+        if (level > 0)
         {
             npcPoolData.HP *= (level * 5);
-            //npcPoolData.Attack *= (level * 0.1f);
+            npcPoolData.Attack += level;
             //Debug.LogWarning(npcPoolData.HP);
         }
     }
