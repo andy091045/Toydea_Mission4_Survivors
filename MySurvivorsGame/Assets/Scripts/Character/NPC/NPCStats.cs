@@ -50,6 +50,16 @@ public class NPCStats : CharacterStats
         }
     }
 
+    protected override void TryFlip()
+    {
+        Vector3 direction = unityData.PlayerPos - transform.position;
+
+        if ((direction.x < 0 && isFacingRight_) || (direction.x > 0 && !isFacingRight_))
+        {
+            Flip();
+        }
+    }
+
     protected override void Dead()
     {
         int value = -100;
