@@ -8,6 +8,8 @@ using TMPro;
 public class MessageSystem : MonoBehaviour
 {
     [SerializeField] GameObject damageMessage_;
+
+    float offsetY_ = 1.0f;
     void Start()
     {
         InstantiatePrefab();
@@ -27,6 +29,7 @@ public class MessageSystem : MonoBehaviour
 
     public void PostMessage(string text, Vector3 worldPos)
     {
+        //Vector3 textPos = new Vector3(transform.position.x, transform.position.y + offsetY_, transform.position.z);
         GameObject print = Instantiate(damageMessage_, transform);
         print.transform.position = worldPos;
         print.GetComponent<TextMeshPro>().text = text;
