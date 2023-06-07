@@ -33,6 +33,7 @@ public class MagicBallController : WeaponController
                 spawnedMagicBall.transform.position = transform.position;
                 spawnedMagicBall.GetComponent<MagicBallBehaviour>().DirectionChecker(CurrentWeaponLevelData.Number, i);
                 spawnedMagicBall.GetComponent<MagicBallBehaviour>().weaponLevelData = CurrentWeaponLevelData;
+                spawnedMagicBall.GetComponent<MagicBallBehaviour>().weaponData = weaponData;
             }            
         }        
     }

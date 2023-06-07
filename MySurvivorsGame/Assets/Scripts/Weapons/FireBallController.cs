@@ -34,6 +34,7 @@ public class FireBallController : WeaponController
         fireBall.transform.parent = transform;
         //fireBall.transform.position = transform.position;
         fireBall.GetComponent<FireBallBehaviour>().weaponLevelData = CurrentWeaponLevelData;
+        fireBall.GetComponent<FireBallBehaviour>().weaponData = weaponData;
     }
 
     private Vector3 GetPositionOnCircle(float angle, float radius)

@@ -2,15 +2,19 @@ using DataDefinition;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public class ProjectileWeaponBehaviour : MonoBehaviour
 {
     protected Vector3 direction;
     protected Vector3 previousDirection;
+
+    public WeaponData weaponData;
     public WeaponLevelData weaponLevelData;
 
-    DataManager dataManager_;
     public UnityData unityData;
+
+    AudioSource audioSource_;
 
     protected virtual void Awake()
     {
@@ -19,14 +23,23 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
 
     protected virtual void Start()
     {        
-        dataManager_ = GameContainer.Get<DataManager>();
         Destroy(gameObject, weaponLevelData.Duration);
+        SetSE();
+    }
+
+    async void SetSE()
+    {
+        audioSource_ = gameObject.AddComponent<AudioSource>();
+        AudioClip clip = await Addressables.LoadAssetAsync<AudioClip>(weaponData.GetHurtSoundPath).Task;
+        audioSource_.clip = clip;
+        audioSource_.volume *= 0.1f;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("NPC"))
         {
+            audioSource_.Play();
             collision.gameObject.GetComponent<CharacterStats>().TakeDamage(weaponLevelData.Hurt * unityData.NowDevilData.Attack);
         }
     }

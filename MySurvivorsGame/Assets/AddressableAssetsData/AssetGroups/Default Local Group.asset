@@ -133,6 +133,10 @@ MonoBehaviour:
     m_Address: Assets/Music/NPC_GetHurt_By_MagicBall.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 24fb20207051fae4aa06be186dc91c42
+    m_Address: Assets/Music/NPC_GetHurt_By_FireBall.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 931cdc787f575bf43a3ad17aea3455d3, type: 2}
   m_SchemaSet:
