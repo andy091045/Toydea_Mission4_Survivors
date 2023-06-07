@@ -22,12 +22,12 @@ public class MagicBallController : WeaponController
     }
 
     protected override void Attack()
-    {
-        audioSource_.Play();
+    {        
         base.Attack();
         if (unityData.PreviousPlayerDir != Vector3.zero)
         {
-            for(int i = 0; i < CurrentWeaponLevelData.Number; i++)
+            audioSource_.Play();
+            for (int i = 0; i < CurrentWeaponLevelData.Number; i++)
             {
                 GameObject spawnedMagicBall = Instantiate(Prefab);
                 spawnedMagicBall.transform.position = transform.position;
