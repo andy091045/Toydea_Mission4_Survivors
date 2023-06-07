@@ -13,12 +13,11 @@ public class GameOverUI : MonoBehaviour
 
     void OpenGameOverUI()
     {
-        Debug.LogWarning("end");
         gameOverUI.SetActive(true);    
     }
 
     private void OnDestroy()
-    {        
+    {
         EventManager.OccurDevilDead -= OpenGameOverUI;
     }
 }

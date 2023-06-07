@@ -10,6 +10,11 @@ public class ObjectPoolGroup
         NPCPools.Add(objectPool);
     }
 
+    public void ClearNPCPool()
+    {
+        NPCPools.Clear();
+    }
+
     public List<BasicPool> CrystalPools = new List<BasicPool>();
     public void AddCrystalPool(BasicPool objectPool)
     {

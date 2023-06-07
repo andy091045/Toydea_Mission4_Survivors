@@ -12,7 +12,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class ChooseItemManager : MonoBehaviour
 {   
-    public GameObject[] ButtonGameObjects;
+    GameObject[] ButtonGameObjects = new GameObject[3];
 
     [SerializeField] List<ButtonObject> ButtonObjects = new List<ButtonObject>();
     string text_ = "";
@@ -31,6 +31,11 @@ public class ChooseItemManager : MonoBehaviour
         unityData_ = GameContainer.Get<UnityData>();
         dataManager_ = GameContainer.Get<DataManager>();
         unityData_.DevilLevel.OnValueChanged += SetButton;
+
+        ButtonGameObjects[0] = gameObject.transform.Find("Button1").gameObject;
+        ButtonGameObjects[1] = gameObject.transform.Find("Button2").gameObject;
+        ButtonGameObjects[2] = gameObject.transform.Find("Button3").gameObject;
+
 
         for (int i = 0; i < ButtonGameObjects.Length; i++)
         {
@@ -143,7 +148,10 @@ public class ChooseItemManager : MonoBehaviour
 
         for (int i = 0; i < min; i++)
         {
-            ButtonObjects[i].image.sprite = sprites[i];
+            if(ButtonObjects[i].image != null)
+            {
+                ButtonObjects[i].image.sprite = sprites[i];
+            }            
         }
 
         for (int i = 0; i < min; i++)
@@ -281,7 +289,7 @@ public class ChooseItemManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        unityData_.HoldWeapons.Clear();
+        unityData_.DevilLevel.OnValueChanged -= SetButton;
     }
 }
 

@@ -6,6 +6,7 @@ using Codice.CM.SEIDInfo;
 using HD.Pooling;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using static UnityEditor.PlayerSettings;
 
 public class NPCSpawner : MonoBehaviour
 {
@@ -64,7 +65,7 @@ public class NPCSpawner : MonoBehaviour
         float targetTotalTime = data_.dataGroup.sceneProcessData[targetTimeNum_].Min * 60 + data_.dataGroup.sceneProcessData[targetTimeNum_].Sec;
         if (totalTime_ > targetTotalTime)
         {
-            sceneProcessData_ = data_.dataGroup.sceneProcessData[targetTimeNum_];
+            sceneProcessData_ = data_.dataGroup.sceneProcessData[targetTimeNum_].Clone();
             if (targetTimeNum_ < data_.dataGroup.sceneProcessData.Count - 1)
             {
                 targetTimeNum_++;
@@ -76,6 +77,9 @@ public class NPCSpawner : MonoBehaviour
 
     void AddPrefabToGame()
     {
+        //Debug.LogWarning("objectPoolGroup_.NPCPools.Count: " + objectPoolGroup_.NPCPools.Count);
+        //Debug.LogWarning("poolData_.Count: " + poolData_.Count);
+
         if (objectPoolGroup_.NPCPools.Count == poolData_.Count)
         {           
             initSpawnInfoList();
@@ -101,7 +105,7 @@ public class NPCSpawner : MonoBehaviour
     /// </summary>
     /// <typeparam name="T"></typeparam>
     void spawnNpc(SpawnStrategyInfo spawnInfo)
-    {
+    {        
         // 作成必要ですか
         while (spawnInfo.NeedSpawn)
         {
@@ -109,7 +113,7 @@ public class NPCSpawner : MonoBehaviour
 
             // PoolからInstanceを取る
             var npc = spawnInfo.Pool.GetInstance();
-
+            //Debug.LogWarning("生成NPC在: " + pos );
             npc.transform.position = pos;
 
             // 　Npcにデータを設定する
@@ -192,5 +196,10 @@ public class NPCSpawner : MonoBehaviour
         /// 作成必要ですか
         /// </summary>
         public bool NeedSpawn => GetCurrentNumber.Invoke() < GetGoalNumber.Invoke();
+    }
+
+    private void OnDestroy()
+    {
+        objectPoolGroup_.ClearNPCPool();
     }
 }

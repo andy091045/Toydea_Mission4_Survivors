@@ -17,7 +17,10 @@ public class EXPBar : StatusBar
         float length = exp;
         float maxLength = dataManager.dataGroup.levelData[unityData.DevilLevel.Value].Clone().NeedEXP;
         length = length / maxLength >= 1 ? 0 : length / maxLength;
-        bar.GetComponent<Image>().fillAmount = length;
+        if (bar != null)
+        {
+            bar.GetComponent<Image>().fillAmount = length;
+        }        
     }
 
     private void OnDestroy()
