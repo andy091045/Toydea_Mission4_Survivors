@@ -14,7 +14,6 @@ public class KeyInputManager : TSingletonMonoBehavior<KeyInputManager>
     public UnityEvent<float> onHorizontalMoveEvent = new UnityEvent<float>();
     public UnityEvent<float> onVerticalMoveEvent = new UnityEvent<float>();
     public UnityEvent onNirvanaUseEvent = new UnityEvent();
-    
 
     private void Update()
     {

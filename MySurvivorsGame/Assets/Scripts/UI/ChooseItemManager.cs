@@ -278,5 +278,10 @@ public class ChooseItemManager : MonoBehaviour
             image = obj.transform.GetChild(1).GetComponent<Image>();
         }
     }
+
+    private void OnDestroy()
+    {
+        unityData_.HoldWeapons.Clear();
+    }
 }
 

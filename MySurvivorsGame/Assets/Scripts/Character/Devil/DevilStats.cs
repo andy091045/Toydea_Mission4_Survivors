@@ -32,22 +32,29 @@ public class DevilStats : CharacterStats, IHaveHPBar
     {
         base.Awake();
         rgbd2d_ = GetComponent<Rigidbody2D>();
-        movementVector_ = new Vector3();
-    }
-
-    protected override void Start()
-    {
-        base.Start();
         KeyInputManager.Instance.onHorizontalMoveEvent.AddListener(GetHorizontalValue);
         KeyInputManager.Instance.onVerticalMoveEvent.AddListener(GetVerticalValue);
         EventManager.OccurDevilGetHurt += Flash;
         EventManager.OccurChooseItem += UpdateNowDevilDataByItem;
         EventManager.OccurChooseWeapon += AddNewWeapon;
+        movementVector_ = new Vector3();
+
+    }
+
+    protected override void Start()
+    {
+        base.Start();        
         CreateHPBar();
 
         spriteRenderer_ = GetComponentInChildren<SpriteRenderer>();
         originalMaterial_ = spriteRenderer_.material;
         AddFlashMaterial();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        Dead();
     }
 
     void GetHorizontalValue(float h)
@@ -127,7 +134,10 @@ public class DevilStats : CharacterStats, IHaveHPBar
 
     protected override void Dead()
     {
-
+        if(unityData.NowDevilData.HP <= 0)
+        {
+            EventManager.OccurDevilDead.Invoke();
+        }
     }
 
     public async void CreateHPBar()

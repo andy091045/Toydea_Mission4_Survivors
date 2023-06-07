@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EventManager;
 
 public class EventManager : MonoBehaviour
 {
@@ -23,4 +24,8 @@ public class EventManager : MonoBehaviour
 
     public delegate void OccurChooseItemEventHandler();
     public static OccurChooseItemEventHandler OccurChooseItem;
+
+    //DevilStats
+    public delegate void OccurDevilDeadEventHandler();
+    public static OccurDevilDeadEventHandler OccurDevilDead;
 }

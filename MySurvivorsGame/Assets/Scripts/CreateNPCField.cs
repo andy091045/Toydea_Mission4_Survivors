@@ -26,9 +26,13 @@ public class CreateNPCField : MonoBehaviour
 
     [SerializeField] private float npcFieldLength_ = 25.0f;
 
-    void Start()
+    private void Awake()
     {
         EventManager.OccurInstantiateDevil += FollowDevil;
+    }
+
+    void Start()
+    {        
         unityData_ = GameContainer.Get<UnityData>();
         cam_ = FindObjectOfType<Camera>();
         UpdateCreateNPCFieldPos();
