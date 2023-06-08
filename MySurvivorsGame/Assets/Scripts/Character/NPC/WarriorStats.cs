@@ -47,13 +47,13 @@ public class WarriorStats : NPCStats
     {
         if (canAttackDevil_)
         {
-            //if (unityData.NowDevilData.DamageCut < npcPoolData.Attack)
-            //{
-            //    unityData.NowDevilData.HP = unityData.NowDevilData.HP + unityData.NowDevilData.DamageCut - npcPoolData.Attack;
-            //    EventManager.OccurDevilGetHurt.Invoke();
-            //}
-            unityData.NowDevilData.HP -= npcPoolData.Attack;
-            EventManager.OccurDevilGetHurt.Invoke();
+            if (unityData.NowDevilData.DamageCut < npcPoolData.Attack)
+            {
+                unityData.NowDevilData.HP = unityData.NowDevilData.HP + unityData.NowDevilData.DamageCut - npcPoolData.Attack;
+                EventManager.OccurDevilGetHurt.Invoke();
+            }
+            //unityData.NowDevilData.HP -= npcPoolData.Attack;
+            //EventManager.OccurDevilGetHurt.Invoke();
             Debug.Log("玩家血量: " + unityData.NowDevilData.HP);
         }
     }
