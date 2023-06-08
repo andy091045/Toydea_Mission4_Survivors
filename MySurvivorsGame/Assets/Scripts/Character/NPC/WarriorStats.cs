@@ -50,7 +50,7 @@ public class WarriorStats : NPCStats
             if (unityData.NowDevilData.DamageCut < npcPoolData.Attack)
             {
                 unityData.NowDevilData.HP = unityData.NowDevilData.HP + unityData.NowDevilData.DamageCut - npcPoolData.Attack;
-                EventManager.OccurDevilGetHurt.Invoke();
+                EventManager.OccurDevilHPChange.Invoke(true);
             }
             //unityData.NowDevilData.HP -= npcPoolData.Attack;
             //EventManager.OccurDevilGetHurt.Invoke();

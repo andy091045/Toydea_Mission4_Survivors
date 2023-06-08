@@ -35,7 +35,7 @@ public class DevilStats : CharacterStats, IHaveHPBar
         rgbd2d_ = GetComponent<Rigidbody2D>();
         KeyInputManager.Instance.onHorizontalMoveEvent.AddListener(GetHorizontalValue);
         KeyInputManager.Instance.onVerticalMoveEvent.AddListener(GetVerticalValue);
-        EventManager.OccurDevilGetHurt += Flash;
+        EventManager.OccurDevilHPChange += Flash;
         EventManager.OccurChooseItem += UpdateNowDevilDataByItem;
         EventManager.OccurChooseWeapon += AddNewWeapon;
         movementVector_ = new Vector3();
@@ -138,12 +138,10 @@ public class DevilStats : CharacterStats, IHaveHPBar
 
     void RecoveryHP()
     {
-        Debug.LogWarning("回血");
         if(unityData.NowDevilData.HP < dataManager.dataGroup.realTimePlayerData.Clone().HP + unityData.NowDevilData.Clone().Recovery)
         {
-            Debug.LogWarning("回血成功");
             unityData.NowDevilData.HP += unityData.NowDevilData.Clone().Recovery;
-            EventManager.OccurDevilGetHurt.Invoke();
+            EventManager.OccurDevilHPChange.Invoke(false);
         }        
     }
 
@@ -168,13 +166,16 @@ public class DevilStats : CharacterStats, IHaveHPBar
         flashMaterial_ = await Addressables.LoadAssetAsync<Material>("Assets/Materials/FlashMaterial.mat").Task;
     }
 
-    void Flash()
+    void Flash(bool i)
     {
-        if (flashRoutine_ != null)
+        if (i)
         {
-            StopCoroutine(flashRoutine_);
-        }
-        flashRoutine_ = StartCoroutine(FlashRoutine());
+            if (flashRoutine_ != null)
+            {
+                StopCoroutine(flashRoutine_);
+            }
+            flashRoutine_ = StartCoroutine(FlashRoutine());
+        }        
     }
 
     private IEnumerator FlashRoutine()
@@ -219,7 +220,7 @@ public class DevilStats : CharacterStats, IHaveHPBar
 
     private void OnDestroy()
     {
-        EventManager.OccurDevilGetHurt -= Flash;
+        EventManager.OccurDevilHPChange -= Flash;
         EventManager.OccurChooseItem -= UpdateNowDevilDataByItem;
         EventManager.OccurChooseWeapon -= AddNewWeapon;
     }
