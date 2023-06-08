@@ -9,7 +9,6 @@ public class MessageSystem : MonoBehaviour
 {
     [SerializeField] GameObject damageMessage_;
 
-    float offsetY_ = 1.0f;
     void Start()
     {
         InstantiatePrefab();

@@ -1,10 +1,8 @@
-﻿using Codice.CM.Common;
-using DataDefinition;
+﻿using DataDefinition;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using static PlasticPipe.Server.MonitorStats;
 
 public class VillagerStats : NPCStats
 {

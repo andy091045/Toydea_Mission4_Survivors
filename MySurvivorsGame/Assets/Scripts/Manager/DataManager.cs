@@ -1,6 +1,5 @@
 using DataDefinition;
 using DataProcess;
-using log4net.Core;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;

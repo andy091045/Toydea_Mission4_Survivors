@@ -2,7 +2,6 @@ using DataDefinition;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class NPCStats : CharacterStats
 {

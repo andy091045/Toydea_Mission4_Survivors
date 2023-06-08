@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ChooseDevils.unity
     guid: 3466d56f6ce813b4ebcb57e913647854
   - enabled: 1
