@@ -51,6 +51,8 @@ public class DevilStats : CharacterStats, IHaveHPBar
         originalMaterial_ = spriteRenderer_.material;
         AddFlashMaterial();
         childrenObject_ = gameObject.transform.Find("Object").gameObject;
+
+        InvokeRepeating("RecoveryHP", 0f, 2f);
     }
 
     protected override void Update()
@@ -132,6 +134,17 @@ public class DevilStats : CharacterStats, IHaveHPBar
         unityData.PlayerPos = transform.position;
 
         rgbd2d_.velocity = new Vector2(playerDir_.x * unityData.NowDevilData.Speed, playerDir_.y * unityData.NowDevilData.Speed);
+    }
+
+    void RecoveryHP()
+    {
+        Debug.LogWarning("回血");
+        if(unityData.NowDevilData.HP < dataManager.dataGroup.realTimePlayerData.Clone().HP + unityData.NowDevilData.Clone().Recovery)
+        {
+            Debug.LogWarning("回血成功");
+            unityData.NowDevilData.HP += unityData.NowDevilData.Clone().Recovery;
+            EventManager.OccurDevilGetHurt.Invoke();
+        }        
     }
 
     protected override void Dead()
