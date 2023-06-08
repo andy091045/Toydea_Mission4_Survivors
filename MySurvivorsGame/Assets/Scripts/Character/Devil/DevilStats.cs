@@ -27,6 +27,7 @@ public class DevilStats : CharacterStats, IHaveHPBar
     Coroutine flashRoutine_;
     float flashDuration_ = 0.06f;
 
+    GameObject childrenObject_;
 
     protected override void Awake()
     {
@@ -49,6 +50,7 @@ public class DevilStats : CharacterStats, IHaveHPBar
         spriteRenderer_ = GetComponentInChildren<SpriteRenderer>();
         originalMaterial_ = spriteRenderer_.material;
         AddFlashMaterial();
+        childrenObject_ = gameObject.transform.Find("Object").gameObject;
     }
 
     protected override void Update()
@@ -176,8 +178,9 @@ public class DevilStats : CharacterStats, IHaveHPBar
 
     void UpdateNowDevilDataByItem()
     {
+        float HP = unityData.NowDevilData.Clone().HP;
         unityData.NowDevilData = dataManager.dataGroup.realTimePlayerData.Clone();
-
+        unityData.NowDevilData.HP = HP;
         unityData.NowDevilData.AbsorbExpRange *= dataManager.dataGroup.itemsData[0].LevelList[dataManager.dataGroup.itemsData[0].NowItemLevel].Value;
         unityData.NowDevilData.DamageCut *= dataManager.dataGroup.itemsData[1].LevelList[dataManager.dataGroup.itemsData[1].NowItemLevel].Value;
         unityData.NowDevilData.Attack *= dataManager.dataGroup.itemsData[2].LevelList[dataManager.dataGroup.itemsData[2].NowItemLevel].Value;
@@ -188,8 +191,17 @@ public class DevilStats : CharacterStats, IHaveHPBar
         if (unityData.IsInNirvana)
         {
             unityData.NowDevilData.Attack *= 5;
-            unityData.NowDevilData.AttackCooldown /= 10;
+            unityData.NowDevilData.AttackCooldown /= 5;
         }
+    }
+
+    protected override void Flip()
+    {
+        isFacingRight_ = !isFacingRight_;
+
+        Vector3 newScale = childrenObject_.transform.localScale;
+        newScale.x *= -1;
+        childrenObject_.transform.localScale = newScale;
     }
 
     private void OnDestroy()

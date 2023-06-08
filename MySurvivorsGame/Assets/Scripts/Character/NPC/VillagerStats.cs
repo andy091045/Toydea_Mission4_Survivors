@@ -55,6 +55,7 @@ public class VillagerStats : NPCStats
             //}
             unityData.NowDevilData.HP -= npcPoolData.Attack;
             EventManager.OccurDevilGetHurt.Invoke();
+            Debug.Log("敵人攻擊力: " + npcPoolData.Attack);
             Debug.Log("玩家血量: " + unityData.NowDevilData.HP);
         }
     }
