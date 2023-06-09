@@ -17,7 +17,7 @@ public class UnityData
     public List<string> HoldItems = new List<string>();
     public List<string> HoldWeapons = new List<string>();
 
-    public BindableProperty<bool> IsInNirvanaTime = new BindableProperty<bool>();
+    public BindableProperty<bool> IsInNirvanaTime = new BindableProperty<bool>() {Value = false};
     public BindableProperty<float> EXP = new BindableProperty<float>();
     public BindableProperty<int> DevilLevel = new BindableProperty<int>();
     public BindableProperty<int> TotalDeadCount = new BindableProperty<int>();
